@@ -5,6 +5,8 @@ import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
+import UsuariosPage from "./pages/UsuariosPage";
+import FormulariosPage from "./pages/FormulariosPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import LoginPage from "./pages/LoginPage";
 import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
@@ -77,10 +79,7 @@ export default function App() {
           path="/usuarios"
           element={
             <RequireRole role="ADMIN">
-              <PlaceholderPage
-                titulo="Usuários"
-                descricao="Gerenciamento de usuários e perfis de acesso"
-              />
+              <UsuariosPage />
             </RequireRole>
           }
         />
@@ -88,10 +87,7 @@ export default function App() {
           path="/formularios"
           element={
             <RequireRole role="ADMIN">
-              <PlaceholderPage
-                titulo="Formulários"
-                descricao="Modelos de formulários e respostas (somente administrador)"
-              />
+              <FormulariosPage />
             </RequireRole>
           }
         />
