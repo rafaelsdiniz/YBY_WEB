@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import { login as loginService } from "../services/auth";
+import { login as loginService, logout as logoutService } from "../services/auth";
 import { AuthContext } from "./AuthContext";
 
 const STORAGE_KEY = "yby_usuario";
@@ -20,6 +20,7 @@ export default function AuthProvider({ children }) {
   const sair = useCallback(() => {
     setUsuario(null);
     localStorage.removeItem(STORAGE_KEY);
+    logoutService(); // limpa o JWT
   }, []);
 
   const atualizar = useCallback((dados) => {

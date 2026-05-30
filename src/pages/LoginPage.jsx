@@ -18,7 +18,7 @@ export default function LoginPage() {
     setErro("");
     setCarregando(true);
     try {
-      await entrar(email || "demo@tocantins.gov.br", senha || "demo");
+      await entrar(email, senha);
       navigate(destino, { replace: true });
     } catch (err) {
       setErro(err.message);
@@ -64,10 +64,6 @@ export default function LoginPage() {
         <button type="submit" className="auth-btn" disabled={carregando}>
           {carregando ? "Entrando..." : "Entrar"}
         </button>
-
-        <Link to="/painel" className="auth-explorar">
-          Explorar o sistema sem login →
-        </Link>
       </form>
     </AuthLayout>
   );

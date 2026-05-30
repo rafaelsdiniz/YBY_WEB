@@ -1,74 +1,55 @@
-// Camada de autenticacao. Hoje mock; troque USE_MOCK para false quando a
-// API Spring de login existir. Nenhuma tela muda.
-const USE_MOCK = true;
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+// Autenticacao contra a YBY-API (JWT). O login guarda o token e, em seguida,
+// busca o perfil completo em /auth/me (o /login devolve apenas token + role).
+import { http, setToken, clearToken } from "./http";
 
-const delay = (ms) => new Promise((r) => setTimeout(r, ms));
+// Normaliza o usuario vindo da API para o formato usado pelo app (perfil).
+function mapUsuario(dto) {
+  return {
+    id: dto.id,
+    nome: dto.nome,
+    email: dto.email,
+    perfil: dto.role, // "GESTOR" | "SERVIDOR"
+    ativo: dto.ativo,
+    primeiroAcessoTrocaSenha: dto.primeiroAcessoTrocaSenha,
+  };
+}
 
 export async function login(email, senha) {
-  if (USE_MOCK) {
-    await delay(400);
-    if (!email || !senha) throw new Error("Informe e-mail e senha.");
-    // mock: o perfil real virá do back; aqui, e-mail com "servidor" entra
-    // como SERVIDOR, qualquer outro como ADMIN (só para testar os dois fluxos).
-    const perfil = /servidor/i.test(email) ? "SERVIDOR" : "ADMIN";
-    return { nome: email.split("@")[0], email, perfil };
-  }
-  const res = await fetch(`${BASE_URL}/auth/login`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, senha }),
-  });
-  if (!res.ok) throw new Error("E-mail ou senha inválidos.");
-  return res.json();
+  if (!email || !senha) throw new Error("Informe e-mail e senha.");
+  const resp = await http.post("/auth/login", { email, senha }, { auth: false });
+  setToken(resp.accessToken);
+  // com o token salvo, obtem nome/email/role completos
+  const me = await http.get("/auth/me");
+  return mapUsuario(me);
 }
 
-// Solicita o e-mail de recuperação. Por segurança, a resposta é a mesma
-// exista ou não o e-mail (não revela se a conta existe).
+export async function me() {
+  return mapUsuario(await http.get("/auth/me"));
+}
+
+export function logout() {
+  clearToken();
+}
+
+// Troca a senha do usuario logado (RN: valida a senha atual; resposta 204).
+export async function trocarSenha(senhaAtual, novaSenha) {
+  if (!senhaAtual) throw new Error("Informe a senha atual.");
+  if (!novaSenha) throw new Error("Informe a nova senha.");
+  await http.patch("/auth/senha", { senhaAtual, novaSenha });
+  return { ok: true };
+}
+
+// Recuperacao por e-mail: ainda nao ha endpoint no backend (apenas /auth/login,
+// /auth/me e /auth/senha). Mantemos o contrato para a tela nao quebrar; quando
+// a API expuser /auth/recuperar e /auth/redefinir, ligar aqui.
 export async function solicitarRecuperacao(email) {
-  if (USE_MOCK) {
-    await delay(500);
-    if (!email) throw new Error("Informe seu e-mail.");
-    return { ok: true };
-  }
-  const res = await fetch(`${BASE_URL}/auth/recuperar`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email }),
-  });
-  if (!res.ok) throw new Error("Não foi possível enviar o e-mail de recuperação.");
-  return res.json();
+  if (!email) throw new Error("Informe seu e-mail.");
+  await new Promise((r) => setTimeout(r, 400));
+  return { ok: true };
 }
 
-// Troca a senha do usuário logado (informa a senha atual).
-export async function trocarSenha(atual, nova) {
-  if (USE_MOCK) {
-    await delay(500);
-    if (!atual) throw new Error("Informe a senha atual.");
-    if (!nova) throw new Error("Informe a nova senha.");
-    return { ok: true };
-  }
-  const res = await fetch(`${BASE_URL}/auth/senha`, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ atual, nova }),
-  });
-  if (!res.ok) throw new Error("Não foi possível trocar a senha.");
-  return res.json();
-}
-
-// Redefine a senha a partir do token recebido por e-mail.
 export async function redefinirSenha(token, novaSenha) {
-  if (USE_MOCK) {
-    await delay(500);
-    if (!novaSenha) throw new Error("Informe a nova senha.");
-    return { ok: true };
-  }
-  const res = await fetch(`${BASE_URL}/auth/redefinir`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ token, senha: novaSenha }),
-  });
-  if (!res.ok) throw new Error("Token inválido ou expirado.");
-  return res.json();
+  if (!novaSenha) throw new Error("Informe a nova senha.");
+  await new Promise((r) => setTimeout(r, 400));
+  return { ok: true };
 }
