@@ -18,7 +18,8 @@ export default function LoginPage() {
     setErro("");
     setCarregando(true);
     try {
-      await entrar(email, senha);
+      // por enquanto: qualquer clique entra (usa demo se vier vazio)
+      await entrar(email || "demo@tocantins.gov.br", senha || "demo");
       navigate(destino, { replace: true });
     } catch (err) {
       setErro(err.message);
@@ -66,7 +67,6 @@ export default function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="nome@tocantins.gov.br"
               autoComplete="email"
-              required
             />
           </label>
 
@@ -78,7 +78,6 @@ export default function LoginPage() {
               onChange={(e) => setSenha(e.target.value)}
               placeholder="••••••••"
               autoComplete="current-password"
-              required
             />
           </label>
 
