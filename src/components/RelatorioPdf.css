@@ -1,0 +1,43 @@
+.relatorio-btn {
+  margin-top: 16px;
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid var(--teal);
+  background: var(--teal);
+  color: var(--branco);
+  font: inherit;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: opacity 0.12s ease;
+}
+
+.relatorio-btn:hover {
+  opacity: 0.9;
+}
+
+/* Na impressao, isola o relatorio do municipio: esconde tudo menos o detalhe. */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .detalhe,
+  .detalhe * {
+    visibility: visible;
+  }
+
+  .detalhe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .relatorio-btn {
+    display: none;
+  }
+}
