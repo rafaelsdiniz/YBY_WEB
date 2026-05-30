@@ -123,7 +123,9 @@ export default function MapaTocantins({
         <g>
           {formas.map((f) => {
             const dado = porId.get(f.id);
-            const chave = corUnica || (dado && pintado(f) ? dado.semaforo : "SEM_DADO");
+            const chave = corUnica
+              ? (pintado(f) ? corUnica : "SEM_DADO")
+              : (dado && pintado(f) ? dado.semaforo : "SEM_DADO");
             return (
               <path
                 key={f.id}
