@@ -15,11 +15,12 @@ const CORES = { VERDE: "#2E8B3E", AMARELO: "#F4B400", VERMELHO: "#C62828" };
 export default function GraficoPrioridade({ municipios }) {
   const dados = [...municipios]
     .sort((a, b) => b.prioridade - a.prioridade)
+    .slice(0, 12)
     .map((m) => ({ nome: m.nome, prioridade: m.prioridade, semaforo: m.semaforo }));
 
   return (
     <div>
-      <h2 className="grafico-titulo">Prioridade por município</h2>
+      <h2 className="grafico-titulo">Top 12 por prioridade</h2>
       <ResponsiveContainer width="100%" height={Math.max(200, dados.length * 44)}>
         <BarChart
           layout="vertical"

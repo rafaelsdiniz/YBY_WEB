@@ -3,8 +3,13 @@ import "./RankingMunicipios.css";
 
 // Lista ordenada por prioridade, clicavel e sincronizada com o mapa
 // (recebe a selecao via props e dispara onSelecionar).
+const LIMITE = 12;
+
 export default function RankingMunicipios({ municipios, selecionado, onSelecionar }) {
-  const ordenado = [...municipios].sort((a, b) => b.prioridade - a.prioridade);
+  const ordenado = [...municipios]
+    .sort((a, b) => b.prioridade - a.prioridade)
+    .slice(0, LIMITE);
+  const restantes = municipios.length - ordenado.length;
 
   return (
     <div className="ranking">
@@ -28,6 +33,11 @@ export default function RankingMunicipios({ municipios, selecionado, onSeleciona
           );
         })}
       </ol>
+      {restantes > 0 && (
+        <p className="ranking-nota">
+          + {restantes} municípios — veja todos em <strong>Municípios</strong>.
+        </p>
+      )}
     </div>
   );
 }
