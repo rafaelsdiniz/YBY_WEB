@@ -18,6 +18,7 @@ import Loader from "../components/Loader";
 import Carrossel from "../components/Carrossel";
 import MapaDestaque from "../components/MapaDestaque";
 import ComoFunciona from "../components/ComoFunciona";
+import FlipCardGallery from "../components/ui/FlipCardGallery";
 import "./LandingPage.css";
 
 const NATUREZA = [
@@ -74,22 +75,49 @@ const NATUREZA = [
 
 const RECURSOS = [
   {
+    id: 1,
     icone: Map,
     titulo: "Mapa de prioridade",
-    texto:
-      "Os 139 municípios do Tocantins coloridos por urgência de investimento — o estado inteiro numa só tela.",
+    subtitulo: "Visualização territorial",
+    descricao:
+      "Os 139 municípios do Tocantins coloridos por urgência de investimento — o estado inteiro numa só tela, com prioridade objetiva.",
+    detalhes: [
+      "139 municípios mapeados",
+      "Prioridade visual por urgência",
+      "Semáforo verde / amarelo / vermelho",
+      "Atualizado com dados reais",
+    ],
+    href: "/municipios",
   },
   {
+    id: 2,
     icone: Gauge,
     titulo: "Semáforo de decisão",
-    texto:
-      "Verde, amarelo e vermelho traduzem risco e prontidão: onde pode investir, onde investir com cuidado e onde não investir agora.",
+    subtitulo: "Decisão baseada em dados",
+    descricao:
+      "Traduz risco e prontidão em três cores: onde investir agora, onde investir com cuidado e onde evitar no momento.",
+    detalhes: [
+      "Verde — pode investir",
+      "Amarelo — investir com cuidado",
+      "Vermelho — não investir agora",
+      "Baseado em conformidade e risco legal",
+    ],
+    href: "/municipios",
   },
   {
+    id: 3,
     icone: TrendingDown,
     titulo: "Detecção de desperdício",
-    texto:
-      "Identifica municípios que gastam muito e entregam pouco resultado ambiental, para realocar recursos.",
+    subtitulo: "Eficiência do gasto público",
+    descricao:
+      "Identifica municípios que gastam muito e entregam pouco resultado ambiental, para realocar recursos com precisão.",
+    detalhes: [
+      "Custo vs. resultado ambiental",
+      "Ranking de eficiência por município",
+      "Alertas automáticos de desperdício",
+      "Sugestão de realocação de recursos",
+    ],
+    href: "/indicadores",
   },
 ];
 
@@ -200,20 +228,7 @@ export default function LandingPage() {
             </p>
           </Reveal>
 
-          <div className="recursos">
-            {RECURSOS.map((r, i) => {
-              const Icone = r.icone;
-              return (
-                <Reveal as="article" className="recurso reveal-shine" key={r.titulo} delay={i * 110}>
-                  <span className="recurso-icone">
-                    <Icone size={38} strokeWidth={1.5} />
-                  </span>
-                  <h3>{r.titulo}</h3>
-                  <p>{r.texto}</p>
-                </Reveal>
-              );
-            })}
-          </div>
+          <FlipCardGallery cards={RECURSOS} />
         </div>
       </section>
 

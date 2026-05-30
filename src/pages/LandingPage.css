@@ -306,47 +306,6 @@
   color: var(--azul-escuro);
 }
 
-/* recursos (Sobre) */
-.recursos {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.recurso {
-  background: var(--branco);
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  padding: 26px;
-  box-shadow: var(--sombra-sm);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
-}
-
-.recurso:hover {
-  box-shadow: var(--sombra-lg);
-  transform: translateY(-4px);
-}
-
-/* Ícone da feature card — puro, sem fundo (Apple / Microsoft style) */
-.recurso-icone {
-  display: block;
-  color: var(--azul);
-  margin-bottom: 18px;
-}
-
-.recurso h3 {
-  font-size: 19px;
-  margin-bottom: 8px;
-}
-
-.recurso p {
-  font-size: 15px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--texto);
-  opacity: 0.85;
-}
 
 /* impactos */
 .impactos {
