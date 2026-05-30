@@ -1,0 +1,114 @@
+/* Estilos compartilhados pelas telas operacionais (indicadores, desmatamento,
+   alertas, inteligencia, carbono, transparencia). Reaproveitam .card, .campo,
+   .admin-tabela, .tag e .page-header ja existentes. */
+
+.painel-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+.painel-toolbar .campo {
+  margin: 0;
+  min-width: 200px;
+}
+.painel-toolbar .campo.estreito {
+  min-width: 120px;
+  max-width: 160px;
+}
+
+.painel-acao {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: var(--azul, #0a4d8c);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.painel-acao:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.painel-acao.secundario {
+  background: transparent;
+  color: var(--azul, #0a4d8c);
+  border: 1px solid var(--azul, #0a4d8c);
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+}
+.kpi-box {
+  background: var(--cinza-claro, #f4f7f5);
+  border: 1px solid #e6ebe8;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.kpi-box .kpi-rotulo {
+  display: block;
+  font-size: 0.78rem;
+  color: #5c6b66;
+  margin-bottom: 6px;
+}
+.kpi-box .kpi-valor {
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--azul-escuro, #0b3a66);
+  line-height: 1.1;
+}
+.kpi-box .kpi-sub {
+  display: block;
+  font-size: 0.74rem;
+  color: #7a8780;
+  margin-top: 4px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.painel-vazio {
+  color: #6b7873;
+  padding: 8px 2px;
+}
+
+.painel-just {
+  font-size: 0.84rem;
+  color: #4a5a54;
+  background: #f4f7f5;
+  border-left: 3px solid var(--azul, #0a4d8c);
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.painel-meta {
+  font-size: 0.78rem;
+  color: #7a8780;
+  margin-top: 12px;
+}
+
+/* selo de semaforo textual reutilizavel */
+.selo {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.selo--verde { background: #dff3e2; color: #1e6b2e; }
+.selo--amarelo { background: #fdf3d6; color: #8a6a00; }
+.selo--vermelho { background: #fadddd; color: #a81f1f; }
+.selo--neutro { background: #e9eef0; color: #41525c; }

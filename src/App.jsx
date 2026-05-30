@@ -5,6 +5,12 @@ import RequireAuth from "./components/RequireAuth";
 import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
+import IndicadoresPage from "./pages/IndicadoresPage";
+import DesmatamentoPage from "./pages/DesmatamentoPage";
+import AlertasPage from "./pages/AlertasPage";
+import InteligenciaPage from "./pages/InteligenciaPage";
+import CarbonoPage from "./pages/CarbonoPage";
+import TransparenciaPage from "./pages/TransparenciaPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
 import UsuariosPage from "./pages/UsuariosPage";
 import FormulariosPage from "./pages/FormulariosPage";
@@ -47,6 +53,54 @@ export default function App() {
           }
         />
         <Route
+          path="/indicadores"
+          element={
+            <RequireAuth>
+              <IndicadoresPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/desmatamento"
+          element={
+            <RequireAuth>
+              <DesmatamentoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/alertas"
+          element={
+            <RequireAuth>
+              <AlertasPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/inteligencia"
+          element={
+            <RequireAuth>
+              <InteligenciaPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/carbono"
+          element={
+            <RequireAuth>
+              <CarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/transparencia"
+          element={
+            <RequireAuth>
+              <TransparenciaPage />
+            </RequireAuth>
+          }
+        />
+        <Route
           path="/relatorios"
           element={
             <RequireAuth>
@@ -70,7 +124,7 @@ export default function App() {
         <Route
           path="/usuarios"
           element={
-            <RequireRole role="ADMIN">
+            <RequireRole role="GESTOR">
               <UsuariosPage />
             </RequireRole>
           }
@@ -78,7 +132,7 @@ export default function App() {
         <Route
           path="/formularios"
           element={
-            <RequireRole role="ADMIN">
+            <RequireRole role="GESTOR">
               <FormulariosPage />
             </RequireRole>
           }
