@@ -32,6 +32,24 @@ export default function Footer() {
         </div>
       </div>
 
+      <div className="rodape-institucional">
+        <span className="rodape-init-txt">
+          Uma iniciativa do <strong>Governo do Tocantins</strong> e da{" "}
+          <strong>Secretaria do Meio Ambiente e Recursos Hídricos</strong>.
+        </span>
+        <div className="rodape-logos">
+          <span className="rodape-logo-chip">
+            <img src="/governotocantins.webp" alt="Governo do Tocantins" />
+          </span>
+          <span className="rodape-logo-chip">
+            <img
+              src="/secretaria.png"
+              alt="Secretaria do Meio Ambiente e Recursos Hídricos"
+            />
+          </span>
+        </div>
+      </div>
+
       <div className="rodape-base">
         <span>© {ano} YBY · JREDD+ Intelligence — Tocantins</span>
       </div>
