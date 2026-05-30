@@ -23,8 +23,7 @@ export default function LandingNavbar() {
     <header className={solida ? "lnav lnav--solida" : "lnav"}>
       <div className="lnav-inner">
         <a href="#topo" className="lnav-brand">
-          <span className="lnav-logo">Y</span>
-          <span className="lnav-brand-txt">YBY</span>
+          <img src="/logoYBY.png" alt="YBY" className="lnav-logo-img" />
         </a>
 
         <nav className="lnav-links">

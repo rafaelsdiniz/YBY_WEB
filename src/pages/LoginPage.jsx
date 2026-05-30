@@ -46,11 +46,7 @@ export default function LoginPage() {
         <span className="login-faixa" aria-hidden="true" />
 
         <div className="login-brand">
-          <span className="login-logo-mark">Y</span>
-          <div className="login-brand-txt">
-            <strong>YBY</strong>
-            <small>JREDD+ Intelligence</small>
-          </div>
+          <img src="/logoYBY.png" alt="YBY — JREDD+ Intelligence" className="login-logo-img" />
         </div>
 
         <form className="login-form" onSubmit={aoEnviar}>

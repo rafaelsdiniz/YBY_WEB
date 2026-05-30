@@ -70,38 +70,12 @@
 .login-brand {
   display: flex;
   align-items: center;
-  gap: 11px;
-  margin-bottom: 26px;
+  margin-bottom: 24px;
 }
 
-.login-logo-mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 11px;
-  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%);
-  color: var(--branco);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 22px;
-}
-
-.login-brand-txt {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.15;
-}
-
-.login-brand-txt strong {
-  color: var(--azul-escuro);
-  font-size: 19px;
-  letter-spacing: 0.5px;
-}
-
-.login-brand-txt small {
-  color: var(--texto);
-  opacity: 0.6;
-  font-size: 12px;
+.login-logo-img {
+  height: 52px;
+  width: auto;
 }
 
 .login-form h1 {

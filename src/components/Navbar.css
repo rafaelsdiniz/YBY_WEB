@@ -35,34 +35,10 @@
   text-decoration: none;
 }
 
-.nav-logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%);
-  color: var(--branco);
-  font-weight: 800;
-  font-size: 20px;
-  display: grid;
-  place-items: center;
-}
-
-.nav-brand-txt {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.nav-brand-txt strong {
-  color: var(--azul-escuro);
-  font-size: 17px;
-  letter-spacing: 0.5px;
-}
-
-.nav-brand-txt small {
-  color: var(--texto);
-  opacity: 0.6;
-  font-size: 11px;
+.nav-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 
 /* links */

@@ -25,11 +25,7 @@ export default function Navbar() {
 
       <nav className="navbar">
         <Link to="/painel" className="nav-brand">
-          <span className="nav-logo" aria-hidden="true">Y</span>
-          <span className="nav-brand-txt">
-            <strong>YBY</strong>
-            <small>JREDD+ Intelligence</small>
-          </span>
+          <img src="/logoYBY.png" alt="YBY" className="nav-logo-img" />
         </Link>
 
         <ul className="nav-links">

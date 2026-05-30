@@ -35,22 +35,15 @@
   color: inherit;
 }
 
-.lnav-logo {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  border: 1.5px solid currentColor;
-  display: grid;
-  place-items: center;
-  font-weight: 500;
-  font-size: 17px;
+.lnav-logo-img {
+  height: 38px;
+  width: auto;
+  display: block;
 }
 
-.lnav-brand-txt {
-  color: inherit;
-  font-size: 19px;
-  font-weight: 400;
-  letter-spacing: 4px;
+/* sombra leve ajuda a logo a ler sobre o vídeo */
+.lnav:not(.lnav--solida) .lnav-logo-img {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
 }
 
 /* links */
