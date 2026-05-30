@@ -3,10 +3,16 @@ import KpiCard from "./KpiCard";
 import AlertaDesperdicio from "./AlertaDesperdicio";
 import GraficoDesmatamento from "./GraficoDesmatamento";
 import RelatorioPdf from "./RelatorioPdf";
+import { numero, moeda, temValor, SEM_DADO } from "../utils/format";
 import "./DetalheMunicipio.css";
 
-const moeda = (v) =>
-  v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+// tom do KpiCard tolerante a dado ausente (null => neutro)
+const tom = (v, { bom, ruim, invertido = false }) => {
+  if (!temValor(v)) return "neutro";
+  const n = Number(v);
+  if (invertido) return n >= ruim ? "ruim" : n <= bom ? "bom" : "neutro";
+  return n >= bom ? "bom" : n < ruim ? "ruim" : "neutro";
+};
 
 // Painel lateral com KPIs, semaforo e pendencias do municipio selecionado.
 export default function DetalheMunicipio({ municipio }) {
@@ -23,25 +29,25 @@ export default function DetalheMunicipio({ municipio }) {
       <div className="detalhe-kpis">
         <KpiCard
           rotulo="Retorno por R$ investido"
-          valor={m.retornoPorReal.toFixed(1)}
-          tom={m.retornoPorReal >= 1 ? "bom" : m.retornoPorReal < 0.5 ? "ruim" : "neutro"}
+          valor={temValor(m.retornoPorReal) ? numero(m.retornoPorReal, 1) : SEM_DADO}
+          tom={tom(m.retornoPorReal, { bom: 1, ruim: 0.5 })}
         />
         <KpiCard
           rotulo="Nota de risco"
-          valor={m.notaRisco}
-          tom={m.notaRisco >= 60 ? "ruim" : m.notaRisco <= 30 ? "bom" : "neutro"}
+          valor={numero(m.notaRisco, 1)}
+          tom={tom(m.notaRisco, { bom: 30, ruim: 60, invertido: true })}
         />
         <KpiCard
           rotulo="Redução do desmatamento"
-          valor={m.reducaoDesmatamento}
-          sufixo="%"
-          tom={m.reducaoDesmatamento >= 25 ? "bom" : m.reducaoDesmatamento < 10 ? "ruim" : "neutro"}
+          valor={numero(m.reducaoDesmatamento)}
+          sufixo={temValor(m.reducaoDesmatamento) ? "%" : ""}
+          tom={tom(m.reducaoDesmatamento, { bom: 25, ruim: 10 })}
         />
         <KpiCard
           rotulo="Conformidade (CAR)"
-          valor={m.conformidade}
-          sufixo="%"
-          tom={m.conformidade >= 70 ? "bom" : m.conformidade < 50 ? "ruim" : "neutro"}
+          valor={numero(m.conformidade)}
+          sufixo={temValor(m.conformidade) ? "%" : ""}
+          tom={tom(m.conformidade, { bom: 70, ruim: 50 })}
         />
       </div>
 

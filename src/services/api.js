@@ -13,7 +13,8 @@ import { historicoDesmatamento } from "./desmatamento";
 import { risco as riscoMunicipio } from "./alertas";
 import { rankingPublico } from "./publico";
 
-const num = (v) => (v == null ? 0 : Number(v));
+// Preserva null (dado ausente) em vez de coagir para 0 — a UI mostra "—".
+const numOuNull = (v) => (v == null ? null : Number(v));
 const upper = (s) => (s ? String(s).toUpperCase() : "SEM_DADO");
 
 // Ranking -> shape de lista usado por mapa, ranking, tabelas e resumo.
@@ -23,16 +24,17 @@ function mapRanking(dto) {
     apiId: dto.id, // id numerico da API (detalhe/kpi/desmatamento)
     nome: dto.nome,
     codigoIbge: dto.codigoIbge,
-    prioridade: Math.round(num(dto.scorePrioridade)),
-    semaforo: upper(dto.semaforo),
-    retornoPorReal: num(dto.kpiRetorno),
-    areaHa: num(dto.areaHa),
-    // campos nao presentes no ranking: defaults seguros p/ os componentes
-    notaRisco: 0,
-    conformidade: 0,
-    gastoPublico: 0,
+    prioridade: dto.scorePrioridade == null ? null : Math.round(Number(dto.scorePrioridade)),
+    // sem score => trata como sem-dado no mapa (cinza), ignorando default do back
+    semaforo: dto.scorePrioridade == null ? "SEM_DADO" : upper(dto.semaforo),
+    retornoPorReal: numOuNull(dto.kpiRetorno),
+    areaHa: numOuNull(dto.areaHa),
+    // campos nao presentes no ranking: ausentes ate o detalhe trazer
+    notaRisco: null,
+    conformidade: null,
+    gastoPublico: null,
     desperdicio: false,
-    reducaoDesmatamento: 0,
+    reducaoDesmatamento: null,
     pendencias: [],
     serieDesmatamento: [],
   };
@@ -77,13 +79,13 @@ export async function getMunicipioDetalhe(apiId) {
     apiId: detalhe.id,
     nome: detalhe.nome,
     codigoIbge: detalhe.codigoIbge,
-    prioridade: Math.round(num(detalhe.scorePrioridade)),
-    semaforo: upper(detalhe.semaforo),
-    notaRisco: num(detalhe.notaRisco ?? riscoInfo?.notaRisco),
-    retornoPorReal: num(detalhe.kpiRetorno ?? kpi?.kpiRetorno),
-    gastoPublico: num(kpi?.gastoPublico),
-    conformidade: 0, // nao exposto diretamente; reservado p/ quando a API trouxer
-    reducaoDesmatamento: 0,
+    prioridade: detalhe.scorePrioridade == null ? null : Math.round(Number(detalhe.scorePrioridade)),
+    semaforo: detalhe.scorePrioridade == null ? "SEM_DADO" : upper(detalhe.semaforo),
+    notaRisco: numOuNull(detalhe.notaRisco ?? riscoInfo?.notaRisco),
+    retornoPorReal: numOuNull(detalhe.kpiRetorno ?? kpi?.kpiRetorno),
+    gastoPublico: numOuNull(kpi?.gastoPublico),
+    conformidade: null, // nao exposto diretamente; reservado p/ quando a API trouxer
+    reducaoDesmatamento: null,
     desperdicio: false,
     pendencias: detalhe.pendencias || riscoInfo?.pendencias || [],
     serieDesmatamento: serie,

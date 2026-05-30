@@ -15,7 +15,7 @@ export default function ResumoEstado({ municipios }) {
   const verdes = municipios.filter((m) => m.semaforo === "VERDE").length;
   const vermelhos = municipios.filter((m) => m.semaforo === "VERMELHO").length;
   const desperdicio = municipios.filter((m) => m.desperdicio).length;
-  const investimento = municipios.reduce((s, m) => s + m.gastoPublico, 0);
+  const investimento = municipios.reduce((s, m) => s + (m.gastoPublico || 0), 0);
 
   const cards = [
     { icone: MapPin, tom: "azul", valor: total, rotulo: "Municípios analisados" },

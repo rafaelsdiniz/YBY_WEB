@@ -1,13 +1,15 @@
 import SemaforoBadge from "./SemaforoBadge";
+import { numero } from "../utils/format";
 import "./RankingMunicipios.css";
 
 // Lista ordenada por prioridade, clicavel e sincronizada com o mapa
 // (recebe a selecao via props e dispara onSelecionar).
 const LIMITE = 12;
+const pri = (m) => (m.prioridade == null ? -1 : m.prioridade); // sem-dado por ultimo
 
 export default function RankingMunicipios({ municipios, selecionado, onSelecionar }) {
   const ordenado = [...municipios]
-    .sort((a, b) => b.prioridade - a.prioridade)
+    .sort((a, b) => pri(b) - pri(a))
     .slice(0, LIMITE);
   const restantes = municipios.length - ordenado.length;
 
@@ -27,7 +29,7 @@ export default function RankingMunicipios({ municipios, selecionado, onSeleciona
                 <span className="ranking-pos">{i + 1}</span>
                 <SemaforoBadge semaforo={m.semaforo} compact />
                 <span className="ranking-nome">{m.nome}</span>
-                <span className="ranking-prioridade">{m.prioridade}</span>
+                <span className="ranking-prioridade">{numero(m.prioridade)}</span>
               </button>
             </li>
           );

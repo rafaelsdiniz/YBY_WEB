@@ -4,13 +4,15 @@ const ROTULOS = {
   VERDE: "Pode investir",
   AMARELO: "Investir com cuidado",
   VERMELHO: "Não investir agora",
+  SEM_DADO: "Sem dados",
 };
 
 // Etiqueta colorida do semaforo. Use compact para a versao so-bolinha (ranking).
 export default function SemaforoBadge({ semaforo, compact = false }) {
-  const classe = `semaforo semaforo--${semaforo.toLowerCase()}`;
+  const chave = semaforo || "SEM_DADO";
+  const classe = `semaforo semaforo--${chave.toLowerCase()}`;
   if (compact) {
-    return <span className={`${classe} semaforo--dot`} title={ROTULOS[semaforo]} />;
+    return <span className={`${classe} semaforo--dot`} title={ROTULOS[chave]} />;
   }
-  return <span className={classe}>{ROTULOS[semaforo]}</span>;
+  return <span className={classe}>{ROTULOS[chave] ?? "Sem dados"}</span>;
 }

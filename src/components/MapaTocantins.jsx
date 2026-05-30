@@ -169,7 +169,7 @@ export default function MapaTocantins({
             (hover.dado ? (
               <span className="mapa-tip-info">
                 <SemaforoBadge semaforo={hover.dado.semaforo} compact />
-                Prioridade {hover.dado.prioridade}
+                Prioridade {hover.dado.prioridade ?? "—"}
               </span>
             ) : (
               <span className="mapa-tip-sem">Sem dados</span>
