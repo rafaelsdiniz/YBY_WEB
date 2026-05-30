@@ -40,6 +40,23 @@ export async function solicitarRecuperacao(email) {
   return res.json();
 }
 
+// Troca a senha do usuário logado (informa a senha atual).
+export async function trocarSenha(atual, nova) {
+  if (USE_MOCK) {
+    await delay(500);
+    if (!atual) throw new Error("Informe a senha atual.");
+    if (!nova) throw new Error("Informe a nova senha.");
+    return { ok: true };
+  }
+  const res = await fetch(`${BASE_URL}/auth/senha`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ atual, nova }),
+  });
+  if (!res.ok) throw new Error("Não foi possível trocar a senha.");
+  return res.json();
+}
+
 // Redefine a senha a partir do token recebido por e-mail.
 export async function redefinirSenha(token, novaSenha) {
   if (USE_MOCK) {

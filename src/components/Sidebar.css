@@ -120,6 +120,23 @@
   flex: none;
 }
 
+.sidebar-conta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+  text-decoration: none;
+  padding: 6px;
+  margin: -6px;
+  border-radius: 10px;
+  transition: background 0.12s ease;
+}
+
+.sidebar-conta:hover {
+  background: var(--cinza-claro);
+}
+
 .sidebar-user {
   display: flex;
   flex-direction: column;

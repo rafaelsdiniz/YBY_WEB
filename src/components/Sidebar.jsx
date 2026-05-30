@@ -79,18 +79,20 @@ export default function Sidebar() {
       <div className="sidebar-rodape">
         {usuario ? (
           <>
-            <span className="sidebar-avatar">
-              {usuario.nome.charAt(0).toUpperCase()}
-            </span>
-            <span className="sidebar-user">
-              <strong>
-                {usuario.nome}
-                <em className={ehAdmin ? "sidebar-perfil admin" : "sidebar-perfil"}>
-                  {ehAdmin ? "Admin" : "Servidor"}
-                </em>
-              </strong>
-              <small>{usuario.email}</small>
-            </span>
+            <Link to="/minha-conta" className="sidebar-conta" title="Minha conta">
+              <span className="sidebar-avatar">
+                {usuario.nome.charAt(0).toUpperCase()}
+              </span>
+              <span className="sidebar-user">
+                <strong>
+                  {usuario.nome}
+                  <em className={ehAdmin ? "sidebar-perfil admin" : "sidebar-perfil"}>
+                    {ehAdmin ? "Admin" : "Servidor"}
+                  </em>
+                </strong>
+                <small>{usuario.email}</small>
+              </span>
+            </Link>
             <button
               type="button"
               className="sidebar-icone-btn"

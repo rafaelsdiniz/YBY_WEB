@@ -4,6 +4,7 @@ import RequireAuth from "./components/RequireAuth";
 import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
+import MinhaContaPage from "./pages/MinhaContaPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import LoginPage from "./pages/LoginPage";
 import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
@@ -51,6 +52,15 @@ export default function App() {
             </RequireAuth>
           }
         />
+        <Route
+          path="/minha-conta"
+          element={
+            <RequireAuth>
+              <MinhaContaPage />
+            </RequireAuth>
+          }
+        />
+
         {/* pública */}
         <Route
           path="/sobre"
