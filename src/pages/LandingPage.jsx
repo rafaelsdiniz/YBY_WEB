@@ -124,8 +124,8 @@ export default function LandingPage() {
             Inteligência que transforma dados em proteção para o Tocantins.
           </p>
           <div className="hero-acoes">
-            <a href="#sobre" className="btn-secundario">
-              Conhecer o YBY
+            <a href="#sobre" className="hero-btn">
+              Conhecer o YBY <ChevronDown size={18} />
             </a>
           </div>
         </div>
