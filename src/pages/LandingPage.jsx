@@ -17,7 +17,32 @@ import Reveal from "../components/Reveal";
 import Contador from "../components/Contador";
 import BarraProgresso from "../components/BarraProgresso";
 import Loader from "../components/Loader";
+import Carrossel from "../components/Carrossel";
 import "./LandingPage.css";
+
+const NATUREZA = [
+  {
+    img: "/pexels-gustavo-serrate-1076073965-37755146.jpg",
+    tag: "Chapadas",
+    titulo: "O relevo que guarda as nascentes",
+    texto:
+      "As chapadas do Tocantins abrigam nascentes que alimentam grandes bacias e uma biodiversidade única do cerrado.",
+  },
+  {
+    img: "/pexels-hiagorocha-17025997.jpg",
+    tag: "Cerrado",
+    titulo: "O berço das águas do Brasil",
+    texto:
+      "O cerrado é a savana mais biodiversa do mundo e a caixa-d'água que sustenta rios por todo o país.",
+  },
+  {
+    img: "/pexels-giovana-lhopi-1296651293-24864294.jpg",
+    tag: "Biodiversidade",
+    titulo: "Vida que depende de cada hectare",
+    texto:
+      "Árvores retorcidas, fauna e povos do cerrado dependem de cada hectare mantido em pé — e de onde o investimento chega.",
+  },
+];
 
 const RECURSOS = [
   {
@@ -165,6 +190,26 @@ export default function LandingPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* NATUREZA / POR QUE ISSO IMPORTA */}
+      <section id="natureza" className="secao secao--cinza">
+        <div className="secao-inner">
+          <Reveal>
+            <span className="secao-tag">A natureza do Tocantins</span>
+            <h2>Por que isso importa</h2>
+            <span className="secao-linha" aria-hidden="true" />
+            <p className="secao-lead">
+              O Tocantins é coração do cerrado — a savana mais biodiversa do
+              planeta e a origem das águas que abastecem o Brasil. Proteger esse
+              território é garantir clima, água e futuro. O YBY existe para que
+              cada real investido chegue onde mais protege essa riqueza.
+            </p>
+          </Reveal>
+          <Reveal>
+            <Carrossel slides={NATUREZA} />
+          </Reveal>
         </div>
       </section>
 
