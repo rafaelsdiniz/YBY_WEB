@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { User, ShieldCheck } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { trocarSenha } from "../services/auth";
@@ -69,6 +70,20 @@ export default function MinhaContaPage() {
         <h1>Minha conta</h1>
         <p>Gerencie seus dados de acesso</p>
       </header>
+
+      <section className="card conta-perfil">
+        <span className={ehAdmin ? "conta-avatar admin" : "conta-avatar"}>
+          <User size={34} strokeWidth={1.9} />
+        </span>
+        <div className="conta-perfil-info">
+          <strong>{usuario.nome}</strong>
+          <span className="conta-perfil-email">{usuario.email}</span>
+        </div>
+        <span className={ehAdmin ? "conta-perfil-selo admin" : "conta-perfil-selo"}>
+          {ehAdmin ? <ShieldCheck size={14} /> : <User size={14} />}
+          {ehAdmin ? "Gestor" : "Servidor"}
+        </span>
+      </section>
 
       <div className="conta-grid">
         <section className="card">

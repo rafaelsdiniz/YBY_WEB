@@ -108,16 +108,21 @@
 }
 
 .sidebar-avatar {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: var(--verde);
+  background: linear-gradient(140deg, var(--azul-claro), var(--azul-escuro));
   color: #fff;
   display: grid;
   place-items: center;
-  font-weight: 600;
-  font-size: 15px;
   flex: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 2px 6px rgba(20, 83, 45, 0.25);
+}
+
+.sidebar-conta:hover .sidebar-avatar {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35),
+    0 3px 9px rgba(20, 83, 45, 0.32);
 }
 
 .sidebar-conta {
@@ -144,25 +149,33 @@
   flex: 1;
 }
 
-.sidebar-user strong {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.sidebar-nome {
+  display: block;
   font-size: 14px;
   font-weight: 500;
   color: var(--azul-escuro);
   text-transform: capitalize;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* segunda linha: selo de perfil + e-mail */
+.sidebar-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  margin-top: 2px;
 }
 
 .sidebar-perfil {
   font-style: normal;
-  font-size: 10px;
+  font-size: 9.5px;
   font-weight: 600;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  padding: 2px 6px;
+  padding: 1px 5px;
   border-radius: 5px;
   background: var(--cinza-claro);
   color: var(--texto);
@@ -174,13 +187,14 @@
   color: var(--azul);
 }
 
-.sidebar-user small {
+.sidebar-meta small {
   font-size: 11.5px;
   color: var(--texto);
   opacity: 0.55;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  min-width: 0;
 }
 
 .sidebar-icone-btn {

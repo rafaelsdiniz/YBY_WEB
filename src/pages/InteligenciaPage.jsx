@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import MunicipioSelect from "../components/MunicipioSelect";
+import Select from "../components/Select";
 import {
   tendencia,
   kpiMultidimensional,
@@ -237,9 +238,11 @@ export default function InteligenciaPage() {
               </label>
               <label className="campo">
                 <span>Estratégia</span>
-                <select value={aloc.estrategia} onChange={(e) => setAloc({ ...aloc, estrategia: e.target.value })}>
-                  {ESTRATEGIAS.map((s) => <option key={s.v} value={s.v}>{s.r}</option>)}
-                </select>
+                <Select
+                  value={aloc.estrategia}
+                  onChange={(v) => setAloc({ ...aloc, estrategia: v })}
+                  options={ESTRATEGIAS.map((s) => ({ value: s.v, label: s.r }))}
+                />
               </label>
               <label className="campo">
                 <span>Máx. municípios</span>

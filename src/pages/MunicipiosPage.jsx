@@ -12,6 +12,7 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { useConfirm } from "../context/ConfirmContext";
 import SemaforoBadge from "../components/SemaforoBadge";
+import Select from "../components/Select";
 import Modal from "../components/Modal";
 import { numero, pct } from "../utils/format";
 import "./MunicipiosPage.css";
@@ -275,11 +276,15 @@ export default function MunicipiosPage() {
             </label>
             <label className="campo">
               <span>Semáforo</span>
-              <select value={form.semaforo} onChange={(e) => setForm({ ...form, semaforo: e.target.value })}>
-                <option value="VERDE">Verde</option>
-                <option value="AMARELO">Amarelo</option>
-                <option value="VERMELHO">Vermelho</option>
-              </select>
+              <Select
+                value={form.semaforo}
+                onChange={(v) => setForm({ ...form, semaforo: v })}
+                options={[
+                  { value: "VERDE", label: "Verde" },
+                  { value: "AMARELO", label: "Amarelo" },
+                  { value: "VERMELHO", label: "Vermelho" },
+                ]}
+              />
             </label>
             <div className="modal-acoes">
               <button type="button" className="modal-btn modal-btn--cancelar" onClick={() => setForm(null)}>Cancelar</button>

@@ -5,6 +5,7 @@ import ResumoEstado from "../components/ResumoEstado";
 import MapaTocantins from "../components/MapaTocantins";
 import GraficoPrioridade from "../components/GraficoPrioridade";
 import GraficoSemaforo from "../components/GraficoSemaforo";
+import GraficoDistribuicao from "../components/GraficoDistribuicao";
 import RankingMunicipios from "../components/RankingMunicipios";
 
 export default function DashboardPage() {
@@ -58,6 +59,9 @@ export default function DashboardPage() {
         <aside className="painel-col">
           <section className="card">
             <GraficoSemaforo municipios={municipios} />
+          </section>
+          <section className="card">
+            <GraficoDistribuicao municipios={municipios} />
           </section>
           <section className="card">
             <RankingMunicipios

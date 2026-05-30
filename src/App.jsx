@@ -14,7 +14,6 @@ import CarbonoPage from "./pages/CarbonoPage";
 import TransparenciaPage from "./pages/TransparenciaPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
 import UsuariosPage from "./pages/UsuariosPage";
-import FormulariosPage from "./pages/FormulariosPage";
 import RelatoriosPage from "./pages/RelatoriosPage";
 import SobrePage from "./pages/SobrePage";
 import LoginPage from "./pages/LoginPage";
@@ -135,14 +134,6 @@ export default function App() {
           element={
             <RequireRole role="GESTOR">
               <UsuariosPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/formularios"
-          element={
-            <RequireRole role="GESTOR">
-              <FormulariosPage />
             </RequireRole>
           }
         />

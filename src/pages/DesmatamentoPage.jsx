@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import MunicipioSelect from "../components/MunicipioSelect";
+import Select from "../components/Select";
 import GraficoDesmatamento from "../components/GraficoDesmatamento";
 import {
   resumoDesmatamento,
@@ -158,17 +159,18 @@ export default function DesmatamentoPage() {
           />
           <label className="campo estreito">
             <span>Fonte</span>
-            <select
+            <Select
               value={fonte}
-              onChange={(e) => {
-                setFonte(e.target.value);
-                consultarHistorico(municipio, e.target.value);
+              onChange={(v) => {
+                setFonte(v);
+                consultarHistorico(municipio, v);
               }}
-            >
-              <option value="ALL">Todas</option>
-              <option value="PRODES">PRODES</option>
-              <option value="DETER">DETER</option>
-            </select>
+              options={[
+                { value: "ALL", label: "Todas" },
+                { value: "PRODES", label: "PRODES" },
+                { value: "DETER", label: "DETER" },
+              ]}
+            />
           </label>
         </div>
         {serie.length > 0 ? (
