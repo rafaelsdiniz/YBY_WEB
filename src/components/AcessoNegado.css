@@ -1,0 +1,51 @@
+.negado {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.negado-icone {
+  display: grid;
+  place-items: center;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--vermelho-bg);
+  color: var(--vermelho);
+  margin-bottom: 14px;
+}
+
+.negado-codigo {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--vermelho);
+}
+
+.negado h1 {
+  font-size: 24px;
+  font-weight: 400;
+  margin: 6px 0 8px;
+}
+
+.negado p {
+  color: var(--texto);
+  opacity: 0.65;
+  font-weight: 300;
+  max-width: 360px;
+}
+
+.negado-btn {
+  margin-top: 22px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  background: var(--azul);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+}

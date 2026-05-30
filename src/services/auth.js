@@ -9,8 +9,10 @@ export async function login(email, senha) {
   if (USE_MOCK) {
     await delay(400);
     if (!email || !senha) throw new Error("Informe e-mail e senha.");
-    // mock: qualquer credencial valida entra
-    return { nome: email.split("@")[0], email };
+    // mock: o perfil real virá do back; aqui, e-mail com "servidor" entra
+    // como SERVIDOR, qualquer outro como ADMIN (só para testar os dois fluxos).
+    const perfil = /servidor/i.test(email) ? "SERVIDOR" : "ADMIN";
+    return { nome: email.split("@")[0], email, perfil };
   }
   const res = await fetch(`${BASE_URL}/auth/login`, {
     method: "POST",

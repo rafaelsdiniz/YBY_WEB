@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
+import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
@@ -58,6 +59,30 @@ export default function App() {
               titulo="Sobre o YBY"
               descricao="Inteligência de priorização para investimento ambiental (JREDD+)"
             />
+          }
+        />
+
+        {/* exclusivas do administrador */}
+        <Route
+          path="/usuarios"
+          element={
+            <RequireRole role="ADMIN">
+              <PlaceholderPage
+                titulo="Usuários"
+                descricao="Gerenciamento de usuários e perfis de acesso"
+              />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/formularios"
+          element={
+            <RequireRole role="ADMIN">
+              <PlaceholderPage
+                titulo="Formulários"
+                descricao="Modelos de formulários e respostas (somente administrador)"
+              />
+            </RequireRole>
           }
         />
       </Route>

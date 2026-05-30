@@ -1,9 +1,6 @@
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-
-// Liga/desliga a exigência de login. Deixe false para navegar livremente
-// pelo sistema (demo); volte para true para proteger as rotas internas.
-const AUTH_ATIVA = false;
+import { AUTH_ATIVA } from "../authConfig";
 
 // Protege rotas internas: sem usuario logado, redireciona para /login
 // guardando de onde veio (para voltar apos o login).

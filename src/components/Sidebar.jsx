@@ -4,6 +4,8 @@ import {
   MapPinned,
   FileText,
   Info,
+  Users,
+  ClipboardList,
   LogOut,
   LogIn,
 } from "lucide-react";
@@ -17,9 +19,19 @@ const LINKS = [
   { to: "/sobre", rotulo: "Sobre", icone: Info },
 ];
 
+const LINKS_ADMIN = [
+  { to: "/usuarios", rotulo: "Usuários", icone: Users },
+  { to: "/formularios", rotulo: "Formulários", icone: ClipboardList },
+];
+
+function itemClasse({ isActive }) {
+  return isActive ? "sidebar-link ativo" : "sidebar-link";
+}
+
 export default function Sidebar() {
   const { usuario, sair } = useAuth();
   const navigate = useNavigate();
+  const ehAdmin = usuario?.perfil === "ADMIN";
 
   function aoSair() {
     sair();
@@ -32,24 +44,37 @@ export default function Sidebar() {
         <img src="/logoYBY.png" alt="YBY" />
       </Link>
 
-      <span className="sidebar-secao">Navegação</span>
-      <nav className="sidebar-nav">
-        {LINKS.map((l) => {
-          const Icone = l.icone;
-          return (
-            <NavLink
-              key={l.to}
-              to={l.to}
-              className={({ isActive }) =>
-                isActive ? "sidebar-link ativo" : "sidebar-link"
-              }
-            >
-              <Icone size={19} strokeWidth={1.8} />
-              <span>{l.rotulo}</span>
-            </NavLink>
-          );
-        })}
-      </nav>
+      <div className="sidebar-corpo">
+        <span className="sidebar-secao">Navegação</span>
+        <nav className="sidebar-nav">
+          {LINKS.map((l) => {
+            const Icone = l.icone;
+            return (
+              <NavLink key={l.to} to={l.to} className={itemClasse}>
+                <Icone size={19} strokeWidth={1.8} />
+                <span>{l.rotulo}</span>
+              </NavLink>
+            );
+          })}
+        </nav>
+
+        {ehAdmin && (
+          <>
+            <span className="sidebar-secao sidebar-secao--sep">Administração</span>
+            <nav className="sidebar-nav">
+              {LINKS_ADMIN.map((l) => {
+                const Icone = l.icone;
+                return (
+                  <NavLink key={l.to} to={l.to} className={itemClasse}>
+                    <Icone size={19} strokeWidth={1.8} />
+                    <span>{l.rotulo}</span>
+                  </NavLink>
+                );
+              })}
+            </nav>
+          </>
+        )}
+      </div>
 
       <div className="sidebar-rodape">
         {usuario ? (
@@ -58,7 +83,12 @@ export default function Sidebar() {
               {usuario.nome.charAt(0).toUpperCase()}
             </span>
             <span className="sidebar-user">
-              <strong>{usuario.nome}</strong>
+              <strong>
+                {usuario.nome}
+                <em className={ehAdmin ? "sidebar-perfil admin" : "sidebar-perfil"}>
+                  {ehAdmin ? "Admin" : "Servidor"}
+                </em>
+              </strong>
               <small>{usuario.email}</small>
             </span>
             <button
