@@ -177,7 +177,55 @@ interface Municipio {
 
 ---
 
-## Etapa 8 — Integração com a API (Spring) ⬜
+## Etapa 8 — Identidade visual do Tocantins ✅
+
+**Objetivo:** dar a cara institucional do estado: branco, amarelo, azul e verde.
+
+**Arquivos:** `src/index.css` (tokens) + ajustes nos `.css` dos componentes.
+
+**Passos:**
+1. Definir os tokens: `--azul` (marca), `--azul-escuro` (títulos), `--amarelo`
+   e `--verde` (acentos), sobre `--branco`/`--cinza-claro`.
+2. Trocar navy/teal por azul em headings, KPIs, ranking, botões.
+3. Manter o **vermelho** apenas no semáforo (significado funcional).
+
+---
+
+## Etapa 9 — Roteamento + navbar institucional ✅
+
+**Objetivo:** virar um sistema de múltiplas páginas.
+
+**Arquivos:**
+- `src/main.jsx` (BrowserRouter), `src/App.jsx` (rotas).
+- `src/components/Navbar.jsx` / `.css`, `src/components/Layout.jsx`.
+- `src/pages/DashboardPage.jsx`, `src/pages/PlaceholderPage.jsx`.
+
+**Passos:**
+1. `npm install react-router-dom`.
+2. `Navbar` limpa: faixa institucional (amarelo/azul/verde), marca YBY, links
+   (Painel/Municípios/Relatórios/Sobre) com estado ativo, botão Entrar.
+3. `Layout` = navbar fixa + `<Outlet/>`; mover o dashboard para `DashboardPage`.
+4. `PlaceholderPage` para rotas ainda não implementadas (sem 404).
+
+---
+
+## Etapa 10 — Página de login ✅
+
+**Objetivo:** área de acesso institucional.
+
+**Arquivos:**
+- `src/pages/LoginPage.jsx` / `.css`.
+- `src/services/auth.js` (login mockado, padrão `USE_MOCK`).
+
+**Passos:**
+1. Layout split: painel azul da marca + formulário limpo (e-mail/senha).
+2. Estados de erro e loading; `login()` na camada de serviço.
+3. Rota `/login` **fora** do `Layout` (tela cheia, sem navbar).
+4. Backend depois: `USE_MOCK = false` → `POST /auth/login`.
+
+---
+
+## Etapa 11 — Integração com a API (Spring) ⬜
 
 **Objetivo:** trocar os mocks pelos dados reais do backend, sem tocar em
 componente.
@@ -196,7 +244,7 @@ componente.
 
 ---
 
-## Etapa 9 — Evidências georreferenciadas (diferencial) ⬜
+## Etapa 12 — Evidências georreferenciadas (diferencial) ⬜
 
 **Objetivo:** anexar fotos/provas por município.
 
@@ -207,7 +255,7 @@ componente.
 
 ---
 
-## Etapa 10 — Build e deploy ⬜
+## Etapa 13 — Build e deploy ⬜
 
 **Objetivo:** publicar o front.
 
