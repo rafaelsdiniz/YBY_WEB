@@ -21,7 +21,12 @@ const LEGENDA = [
 const LARGURA = 600;
 const ALTURA = 640;
 
-export default function MapaTocantins({ municipios, selecionado, onSelecionar }) {
+export default function MapaTocantins({
+  municipios,
+  selecionado,
+  onSelecionar,
+  cabecalho = true,
+}) {
   const wrapRef = useRef(null);
   const [hover, setHover] = useState(null);
 
@@ -61,20 +66,22 @@ export default function MapaTocantins({ municipios, selecionado, onSelecionar })
 
   return (
     <div className="mapa-wrap" ref={wrapRef} onMouseLeave={() => setHover(null)}>
-      <div className="mapa-head">
-        <div>
-          <h2>Mapa de prioridade</h2>
-          <span className="mapa-sub">Tocantins · clique em um município</span>
+      {cabecalho && (
+        <div className="mapa-head">
+          <div>
+            <h2>Mapa de prioridade</h2>
+            <span className="mapa-sub">Tocantins · clique em um município</span>
+          </div>
+          <ul className="mapa-legenda">
+            {LEGENDA.map((l) => (
+              <li key={l.rotulo}>
+                <span className="mapa-legenda-cor" style={{ background: l.cor }} />
+                {l.rotulo}
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul className="mapa-legenda">
-          {LEGENDA.map((l) => (
-            <li key={l.rotulo}>
-              <span className="mapa-legenda-cor" style={{ background: l.cor }} />
-              {l.rotulo}
-            </li>
-          ))}
-        </ul>
-      </div>
+      )}
 
       <svg
         className="mapa"

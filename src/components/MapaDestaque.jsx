@@ -17,6 +17,7 @@ export default function MapaDestaque() {
       municipios={municipios}
       selecionado={selecionado}
       onSelecionar={setSelecionado}
+      cabecalho={false}
     />
   );
 }

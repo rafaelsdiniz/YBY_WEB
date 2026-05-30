@@ -215,21 +215,18 @@ export default function LandingPage() {
       </section>
 
       {/* MAPA INTERATIVO (destaque) */}
-      <section id="mapa" className="secao">
+      <section id="mapa" className="secao secao--cinza">
         <div className="secao-inner mapa-destaque">
-          <div className="mapa-destaque-texto">
-            <Reveal>
-              <span className="secao-tag">Mapa interativo</span>
-              <h2>O Tocantins por prioridade</h2>
-              <span className="secao-linha" aria-hidden="true" />
-              <p className="secao-lead">
-                Passe o mouse e clique nos municípios para ver a prioridade de
-                investimento, o risco e a situação de cada um. É o mesmo mapa que
-                orienta as decisões dentro do sistema.
-              </p>
-            </Reveal>
-          </div>
-          <Reveal as="div" className="mapa-destaque-card card">
+          <Reveal>
+            <span className="secao-tag">Mapa interativo</span>
+            <h2>O Tocantins por prioridade</h2>
+            <span className="secao-linha mapa-destaque-linha" aria-hidden="true" />
+            <p className="secao-lead mapa-destaque-lead">
+              Passe o mouse e clique nos municípios para explorar as regiões do
+              estado.
+            </p>
+          </Reveal>
+          <Reveal as="div" className="mapa-destaque-mapa">
             <MapaDestaque />
           </Reveal>
         </div>
