@@ -1,23 +1,23 @@
 import "./Loader.css";
 
-// Loader com o tucano: flutua sobre um fundo azul, com anel girando e
-// sombra pulsando. `tela` deixa em tela cheia (splash); `fechando` faz o
-// fade-out antes de revelar o conteúdo.
+// Loader/splash do sistema: tucano flutuando sobre verde da marca, com glow
+// suave e barra de progresso. `tela` = tela cheia; `fechando` = fade-out.
 export default function Loader({ texto = "Carregando...", tela = false, fechando = false }) {
   const classe = ["loader", tela && "loader--tela", fechando && "loader--saindo"]
     .filter(Boolean)
     .join(" ");
   return (
     <div className={classe}>
-      <div className="loader-palco">
-        <span className="loader-anel" aria-hidden="true" />
-        <img src="/tucano.png" alt="" className="loader-tucano" />
-        <span className="loader-sombra" aria-hidden="true" />
+      <div className="loader-conteudo">
+        <div className="loader-tucano-wrap">
+          <span className="loader-glow" aria-hidden="true" />
+          <img src="/tucano.png" alt="" className="loader-tucano" />
+        </div>
+        <div className="loader-barra" aria-hidden="true">
+          <span />
+        </div>
+        <p className="loader-texto">{texto}</p>
       </div>
-      <p className="loader-texto">
-        {texto}
-        <span className="loader-dots" aria-hidden="true" />
-      </p>
     </div>
   );
 }

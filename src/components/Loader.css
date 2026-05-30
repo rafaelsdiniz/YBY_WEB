@@ -1,10 +1,9 @@
 .loader {
   display: grid;
   place-items: center;
-  gap: 26px;
   min-height: 64vh;
   border-radius: var(--raio);
-  background: linear-gradient(150deg, var(--azul) 0%, var(--azul-escuro) 100%);
+  background: radial-gradient(130% 130% at 50% 22%, #1f7a39 0%, #0c3a1c 78%);
   color: #fff;
   overflow: hidden;
 }
@@ -23,111 +22,100 @@
   pointer-events: none;
 }
 
-/* palco do tucano */
-.loader-palco {
+.loader-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* tucano + glow */
+.loader-tucano-wrap {
   position: relative;
-  width: 170px;
-  height: 170px;
+  width: 160px;
+  height: 160px;
   display: grid;
   place-items: center;
 }
 
-/* anel girando */
-.loader-anel {
+.loader-glow {
   position: absolute;
-  inset: 0;
+  width: 190px;
+  height: 190px;
   border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.14);
-  border-top-color: var(--amarelo);
-  border-right-color: var(--verde);
-  animation: loader-girar 1.1s linear infinite;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, transparent 64%);
+  animation: loader-glow 2.6s ease-in-out infinite;
 }
 
-/* tucano flutuando */
 .loader-tucano {
   position: relative;
   z-index: 1;
-  width: 104px;
+  width: 112px;
   height: auto;
-  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.35));
-  animation: loader-flutuar 2.4s ease-in-out infinite;
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.4));
+  animation: loader-flutuar 2.6s ease-in-out infinite;
 }
 
-/* sombra pulsando no chão */
-.loader-sombra {
-  position: absolute;
-  bottom: 14px;
-  width: 80px;
-  height: 12px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
-  filter: blur(4px);
-  animation: loader-sombra 2.4s ease-in-out infinite;
+/* barra de progresso indeterminada */
+.loader-barra {
+  width: 176px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  overflow: hidden;
+}
+
+.loader-barra span {
+  display: block;
+  height: 100%;
+  width: 42%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--amarelo), transparent);
+  animation: loader-barra 1.4s ease-in-out infinite;
 }
 
 .loader-texto {
-  display: inline-flex;
-  align-items: baseline;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 300;
   letter-spacing: 0.4px;
-  color: rgba(255, 255, 255, 0.92);
-}
-
-/* reticências animadas */
-.loader-dots::after {
-  content: "";
-  animation: loader-dots 1.4s steps(4, end) infinite;
-}
-
-@keyframes loader-girar {
-  to {
-    transform: rotate(360deg);
-  }
+  color: rgba(255, 255, 255, 0.9);
 }
 
 @keyframes loader-flutuar {
   0%,
   100% {
-    transform: translateY(0) rotate(-4deg);
+    transform: translateY(0) rotate(-3deg);
   }
   50% {
-    transform: translateY(-16px) rotate(4deg);
+    transform: translateY(-15px) rotate(3deg);
   }
 }
 
-@keyframes loader-sombra {
+@keyframes loader-glow {
   0%,
   100% {
-    transform: scaleX(1);
-    opacity: 0.32;
+    transform: scale(0.9);
+    opacity: 0.55;
   }
   50% {
-    transform: scaleX(0.62);
-    opacity: 0.16;
+    transform: scale(1.12);
+    opacity: 1;
   }
 }
 
-@keyframes loader-dots {
+@keyframes loader-barra {
   0% {
-    content: "";
+    transform: translateX(-130%);
   }
-  25% {
-    content: ".";
-  }
-  50% {
-    content: "..";
-  }
-  75% {
-    content: "...";
+  100% {
+    transform: translateX(330%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loader-anel,
   .loader-tucano,
-  .loader-sombra,
-  .loader-dots::after {
+  .loader-glow,
+  .loader-barra span {
     animation: none;
   }
 }
