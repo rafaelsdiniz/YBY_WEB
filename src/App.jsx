@@ -5,6 +5,7 @@ import RequireAuth from "./components/RequireAuth";
 import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
+import MunicipioDetalhePage from "./pages/MunicipioDetalhePage";
 import IndicadoresPage from "./pages/IndicadoresPage";
 import DesmatamentoPage from "./pages/DesmatamentoPage";
 import AlertasPage from "./pages/AlertasPage";
@@ -49,6 +50,14 @@ export default function App() {
           element={
             <RequireAuth>
               <MunicipiosPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/municipios/:id"
+          element={
+            <RequireAuth>
+              <MunicipioDetalhePage />
             </RequireAuth>
           }
         />

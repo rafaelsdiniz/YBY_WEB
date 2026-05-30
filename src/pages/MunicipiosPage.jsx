@@ -83,8 +83,8 @@ export default function MunicipiosPage() {
     );
   }
 
-  function abrirNoPainel(id) {
-    navigate("/painel", { state: { municipioId: id } });
+  function abrirDetalhe(apiId) {
+    navigate(`/municipios/${apiId}`);
   }
 
   function novo() {
@@ -226,7 +226,7 @@ export default function MunicipiosPage() {
             </thead>
             <tbody>
               {lista.map((m) => (
-                <tr key={m.id} onClick={() => abrirNoPainel(m.id)}>
+                <tr key={m.id} onClick={() => abrirDetalhe(m.apiId)}>
                   <td className="mun-nome">{m.nome}</td>
                   <td className="num">{numero(m.prioridade)}</td>
                   <td className="num">{numero(m.notaRisco, 1)}</td>
