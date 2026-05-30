@@ -15,6 +15,7 @@ import LandingNavbar from "../components/LandingNavbar";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
 import Contador from "../components/Contador";
+import BarraProgresso from "../components/BarraProgresso";
 import "./LandingPage.css";
 
 const RECURSOS = [
@@ -85,6 +86,7 @@ export default function LandingPage() {
 
   return (
     <div className="landing" id="topo">
+      <BarraProgresso />
       <LandingNavbar />
 
       {/* HERO */}

@@ -1,0 +1,20 @@
+.barra-progresso {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  z-index: 200;
+  background: linear-gradient(
+    90deg,
+    var(--amarelo) 0%,
+    var(--azul) 50%,
+    var(--verde) 100%
+  );
+  transition: width 0.08s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .barra-progresso {
+    transition: none;
+  }
+}
