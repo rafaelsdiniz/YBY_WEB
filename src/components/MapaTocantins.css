@@ -75,6 +75,13 @@
   }
 }
 
+/* modo "pintar no scroll": sem animação de entrada, com transição de cor */
+.mapa--pintar .mun {
+  animation: none;
+  opacity: 1;
+  transition: fill 0.5s ease;
+}
+
 .mun--clic {
   cursor: pointer;
 }
