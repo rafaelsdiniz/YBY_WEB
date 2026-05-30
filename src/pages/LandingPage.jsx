@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Map,
   Gauge,
@@ -63,6 +64,25 @@ const PASSOS = [
 ];
 
 export default function LandingPage() {
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+    let raf = null;
+    const aoRolar = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        setScrollY(window.scrollY);
+        raf = null;
+      });
+    };
+    window.addEventListener("scroll", aoRolar, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", aoRolar);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, []);
+
   return (
     <div className="landing" id="topo">
       <LandingNavbar />
@@ -77,6 +97,7 @@ export default function LandingPage() {
           loop
           playsInline
           aria-hidden="true"
+          style={{ transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(1.16)` }}
         />
         <div className="hero-conteudo">
           <h1>Onde investir para proteger o Tocantins</h1>
