@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getMunicipios } from "../services/api";
+import ResumoEstado from "../components/ResumoEstado";
 import MapaTocantins from "../components/MapaTocantins";
 import RankingMunicipios from "../components/RankingMunicipios";
 import DetalheMunicipio from "../components/DetalheMunicipio";
@@ -31,6 +32,8 @@ export default function DashboardPage() {
         <h1>Painel de priorização</h1>
         <p>Onde investir no Tocantins</p>
       </header>
+
+      <ResumoEstado municipios={municipios} />
 
       <div className="app-grid">
         <main className="card">
