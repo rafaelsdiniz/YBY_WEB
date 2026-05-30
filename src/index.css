@@ -25,7 +25,7 @@
 
   --sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
 
-  font: 400 16px/1.5 var(--sans);
+  font: 300 16px/1.55 var(--sans);
   letter-spacing: -0.1px;
   color: var(--texto);
   background: var(--cinza-claro);
@@ -48,8 +48,8 @@ h3 {
   color: var(--azul-escuro);
   margin: 0;
   line-height: 1.2;
-  font-weight: 600;
-  letter-spacing: -0.4px;
+  font-weight: 400;
+  letter-spacing: -0.5px;
 }
 
 a {

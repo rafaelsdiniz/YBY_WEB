@@ -77,7 +77,6 @@ export default function LandingPage() {
           playsInline
           aria-hidden="true"
         />
-        <div className="hero-overlay" aria-hidden="true" />
         <div className="hero-conteudo">
           <span className="hero-tag">Programa JREDD+ · Estado do Tocantins</span>
           <h1>Onde investir para proteger o Tocantins</h1>

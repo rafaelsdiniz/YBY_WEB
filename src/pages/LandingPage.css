@@ -2,15 +2,15 @@
   background: var(--branco);
 }
 
-/* ===== HERO ===== */
+/* ===== HERO (vídeo em tela cheia, sem filtro) ===== */
 .hero {
   position: relative;
-  min-height: 86vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
-  /* sobe sob a navbar sticky */
-  margin-top: -66px;
-  padding: 90px 24px 60px;
+  /* sobe sob a navbar transparente */
+  margin-top: -70px;
+  padding: 100px 24px 70px;
   overflow: hidden;
 }
 
@@ -23,18 +23,6 @@
   z-index: 0;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    105deg,
-    rgba(7, 52, 99, 0.86) 0%,
-    rgba(7, 52, 99, 0.55) 55%,
-    rgba(7, 52, 99, 0.25) 100%
-  );
-  z-index: 1;
-}
-
 .hero-conteudo {
   position: relative;
   z-index: 2;
@@ -42,35 +30,38 @@
   width: 100%;
   margin: 0 auto;
   color: #fff;
+  /* sombra suave dá legibilidade sem filtro sobre o vídeo */
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hero-tag {
   display: inline-block;
-  padding: 6px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 6px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   font-size: 13px;
-  letter-spacing: 0.3px;
-  margin-bottom: 22px;
-  color: rgba(255, 255, 255, 0.92);
+  font-weight: 300;
+  letter-spacing: 0.6px;
+  margin-bottom: 26px;
+  color: #fff;
 }
 
 .hero h1 {
   color: #fff;
-  font-size: clamp(34px, 5vw, 56px);
-  font-weight: 700;
-  line-height: 1.08;
-  letter-spacing: -1px;
-  max-width: 720px;
+  font-size: clamp(36px, 5.4vw, 60px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -1.4px;
+  max-width: 760px;
 }
 
 .hero p {
-  margin: 20px 0 32px;
+  margin: 22px 0 36px;
   font-size: clamp(16px, 2vw, 20px);
   font-weight: 300;
   line-height: 1.6;
   max-width: 560px;
-  color: rgba(255, 255, 255, 0.92);
+  color: rgba(255, 255, 255, 0.95);
 }
 
 .hero-acoes {
@@ -89,7 +80,7 @@
   background: var(--amarelo);
   color: #3a2e00;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 16px;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
@@ -142,12 +133,12 @@
 
 .secao-tag {
   display: inline-block;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--azul);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .secao-tag.claro {
@@ -155,9 +146,9 @@
 }
 
 .secao h2 {
-  font-size: clamp(26px, 3.4vw, 38px);
-  font-weight: 700;
-  letter-spacing: -0.6px;
+  font-size: clamp(28px, 3.6vw, 40px);
+  font-weight: 300;
+  letter-spacing: -1px;
 }
 
 .secao--azul h2 {
@@ -252,10 +243,10 @@
 }
 
 .impacto-valor {
-  font-size: 34px;
-  font-weight: 800;
+  font-size: 38px;
+  font-weight: 300;
   color: #fff;
-  letter-spacing: -1px;
+  letter-spacing: -1.2px;
   line-height: 1;
 }
 
@@ -379,8 +370,9 @@
 }
 
 .cta h2 {
-  font-size: clamp(26px, 3.4vw, 36px);
-  font-weight: 700;
+  font-size: clamp(28px, 3.4vw, 38px);
+  font-weight: 300;
+  letter-spacing: -0.8px;
 }
 
 .cta p {
