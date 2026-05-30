@@ -1,0 +1,132 @@
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--branco);
+  border-bottom: 1px solid #e4e9f0;
+}
+
+/* faixa fina com as cores do Tocantins (amarelo, azul, verde) */
+.nav-faixa {
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--amarelo) 0 33.33%,
+    var(--azul) 33.33% 66.66%,
+    var(--verde) 66.66% 100%
+  );
+}
+
+.navbar {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* marca */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%);
+  color: var(--branco);
+  font-weight: 800;
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+}
+
+.nav-brand-txt {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.nav-brand-txt strong {
+  color: var(--azul-escuro);
+  font-size: 17px;
+  letter-spacing: 0.5px;
+}
+
+.nav-brand-txt small {
+  color: var(--texto);
+  opacity: 0.6;
+  font-size: 11px;
+}
+
+/* links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--texto);
+  font-size: 15px;
+  font-weight: 500;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.nav-link:hover {
+  background: var(--cinza-claro);
+  color: var(--azul);
+}
+
+.nav-link.ativo {
+  color: var(--azul);
+  background: #e8f0fb;
+  font-weight: 600;
+}
+
+/* botao entrar */
+.nav-entrar {
+  padding: 9px 20px;
+  border-radius: 8px;
+  background: var(--azul);
+  color: var(--branco);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 15px;
+  transition: opacity 0.12s ease;
+}
+
+.nav-entrar:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    gap: 14px;
+    padding: 0 16px;
+  }
+  .nav-brand-txt small {
+    display: none;
+  }
+  .nav-links {
+    gap: 0;
+  }
+  .nav-link {
+    padding: 8px 9px;
+    font-size: 14px;
+  }
+}

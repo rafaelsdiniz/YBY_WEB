@@ -1,43 +1,23 @@
 .app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 24px;
+  padding: 28px 24px;
 }
 
-/* Banner da marca, em azul Tocantins com faixa amarela embaixo */
-.app-header {
-  position: relative;
+/* Cabecalho de pagina: limpo, institucional */
+.page-header {
   margin-bottom: 22px;
-  padding: 22px 26px;
-  background: linear-gradient(135deg, var(--azul) 0%, var(--azul-escuro) 100%);
-  border-radius: 14px;
-  border-bottom: 4px solid var(--amarelo);
-  overflow: hidden;
 }
 
-/* detalhe decorativo verde no canto */
-.app-header::after {
-  content: "";
-  position: absolute;
-  top: -40px;
-  right: -40px;
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, rgba(46, 139, 62, 0.45) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.app-header h1 {
-  position: relative;
-  font-size: 28px;
-  color: var(--branco);
+.page-header h1 {
+  font-size: 26px;
   letter-spacing: -0.4px;
 }
 
-.app-header p {
-  position: relative;
+.page-header p {
   margin: 4px 0 0;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--texto);
+  opacity: 0.7;
 }
 
 .app-grid {
