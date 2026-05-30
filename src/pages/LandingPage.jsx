@@ -6,9 +6,6 @@ import {
   ShieldCheck,
   Leaf,
   Coins,
-  Target,
-  Database,
-  BarChart3,
   ChevronDown,
 } from "lucide-react";
 import LandingNavbar from "../components/LandingNavbar";
@@ -19,6 +16,7 @@ import BarraProgresso from "../components/BarraProgresso";
 import Loader from "../components/Loader";
 import Carrossel from "../components/Carrossel";
 import MapaDestaque from "../components/MapaDestaque";
+import ComoFunciona from "../components/ComoFunciona";
 import "./LandingPage.css";
 
 const NATUREZA = [
@@ -99,24 +97,6 @@ const IMPACTOS = [
   { icone: Coins, prefixo: "R$ ", valor: 42, sufixo: " mi", rotulo: "em investimento acompanhado" },
   { icone: Leaf, prefixo: "+", valor: 30, sufixo: "%", rotulo: "redução de desmatamento onde há gasto eficiente" },
   { icone: ShieldCheck, valor: 64, sufixo: "%", rotulo: "conformidade média (CAR)" },
-];
-
-const PASSOS = [
-  {
-    icone: Database,
-    titulo: "1. Reúne os dados",
-    texto: "Desmatamento, conformidade (CAR), gasto público e risco legal em um só lugar.",
-  },
-  {
-    icone: Target,
-    titulo: "2. Calcula a prioridade",
-    texto: "Um índice único de 0 a 100 e um semáforo apontam onde cada real rende mais.",
-  },
-  {
-    icone: BarChart3,
-    titulo: "3. Investe e monitora",
-    texto: "Acompanhe a evolução por município e comprove o resultado ao longo do tempo.",
-  },
 ];
 
 export default function LandingPage() {
@@ -324,31 +304,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* COMO FUNCIONA */}
-      <section id="como-funciona" className="secao secao--cinza">
-        <div className="secao-inner">
-          <Reveal>
-            <span className="secao-tag">Como funciona</span>
-            <h2>Três passos</h2>
-            <span className="secao-linha" aria-hidden="true" />
-          </Reveal>
-
-          <div className="passos">
-            {PASSOS.map((p, i) => {
-              const Icone = p.icone;
-              return (
-                <Reveal as="article" className="passo" key={p.titulo} delay={i * 110}>
-                  <span className="passo-icone">
-                    <Icone size={22} strokeWidth={2} />
-                  </span>
-                  <h3>{p.titulo}</h3>
-                  <p>{p.texto}</p>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* COMO FUNCIONA (scrollytelling) */}
+      <ComoFunciona />
 
       {/* INICIATIVA DO GOVERNO (destaque) */}
       <section id="iniciativa" className="secao secao-iniciativa">

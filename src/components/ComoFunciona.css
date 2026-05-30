@@ -1,0 +1,136 @@
+.cf {
+  padding: 0;
+  height: 280vh;
+}
+
+.cf-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.cf-inner {
+  width: 100%;
+  text-align: center;
+}
+
+.cf-linha {
+  transform: scaleX(1);
+  transform-origin: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cf-passos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 46px;
+}
+
+.cf-passo {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--raio);
+  padding: 30px 26px;
+  color: #fff;
+  opacity: 0.35;
+  transform: scale(0.97);
+  transition: opacity 0.45s ease, transform 0.45s ease, background 0.45s ease,
+    box-shadow 0.45s ease;
+}
+
+.cf-passo.feito {
+  opacity: 0.7;
+}
+
+.cf-passo.ativo {
+  opacity: 1;
+  transform: scale(1.04);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.cf-passo-num {
+  display: inline-grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--amarelo);
+  color: var(--azul-escuro);
+  font-weight: 700;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.cf-passo-icone {
+  display: block;
+  color: var(--amarelo);
+  margin-bottom: 12px;
+}
+
+.cf-passo h3 {
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.cf-passo p {
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.cf-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.cf-dots span {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.cf-dots span.ativo {
+  width: 30px;
+  background: var(--amarelo);
+}
+
+@media (max-width: 860px) {
+  .cf {
+    height: 320vh;
+  }
+  .cf-passos {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .cf-passo {
+    padding: 20px 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cf {
+    height: auto;
+  }
+  .cf-sticky {
+    position: static;
+    height: auto;
+    padding: 80px 0;
+  }
+  .cf-passo {
+    opacity: 1;
+    transform: none;
+  }
+}
