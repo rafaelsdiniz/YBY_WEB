@@ -15,9 +15,10 @@
   --branco: #ffffff;
   --cinza-claro: #eef2f7; /* fundo levemente azulado */
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
 
   font: 16px/1.45 var(--sans);
+  letter-spacing: -0.1px;
   color: var(--texto);
   background: var(--cinza-claro);
   -webkit-font-smoothing: antialiased;
