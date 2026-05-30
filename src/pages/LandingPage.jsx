@@ -13,6 +13,7 @@ import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
 import Contador from "../components/Contador";
 import BarraProgresso from "../components/BarraProgresso";
+import SideDots from "../components/SideDots";
 import Loader from "../components/Loader";
 import Carrossel from "../components/Carrossel";
 import MapaDestaque from "../components/MapaDestaque";
@@ -135,6 +136,7 @@ export default function LandingPage() {
     <div className="landing" id="topo">
       {splash && <Loader tela fechando={splashSaindo} texto="Preparando o YBY" />}
       <BarraProgresso />
+      <SideDots />
       <LandingNavbar />
 
       {/* HERO (cinematográfico) */}
@@ -202,7 +204,7 @@ export default function LandingPage() {
             {RECURSOS.map((r, i) => {
               const Icone = r.icone;
               return (
-                <Reveal as="article" className="recurso" key={r.titulo} delay={i * 110}>
+                <Reveal as="article" className="recurso reveal-shine" key={r.titulo} delay={i * 110}>
                   <span className="recurso-icone">
                     <Icone size={24} strokeWidth={2} />
                   </span>
@@ -238,10 +240,10 @@ export default function LandingPage() {
       {/* MAPA INTERATIVO (destaque) */}
       <section id="mapa" className="secao secao--cinza">
         <div className="secao-inner mapa-destaque">
-          <Reveal as="div" className="mapa-destaque-mapa">
+          <Reveal as="div" className="mapa-destaque-mapa" direcao="left">
             <MapaDestaque />
           </Reveal>
-          <Reveal className="mapa-destaque-texto">
+          <Reveal className="mapa-destaque-texto" direcao="right">
             <span className="secao-tag">Mapa interativo</span>
             <h2>Conheça o Tocantins, região por região</h2>
             <span className="secao-linha" aria-hidden="true" />
@@ -271,7 +273,7 @@ export default function LandingPage() {
             {IMPACTOS.map((i, idx) => {
               const Icone = i.icone;
               return (
-                <Reveal as="div" className="impacto" key={i.rotulo} delay={idx * 110}>
+                <Reveal as="div" className="impacto reveal-shine" key={i.rotulo} delay={idx * 110}>
                   <Icone size={26} strokeWidth={2} className="impacto-icone" />
                   <strong className="impacto-valor">
                     <Contador valor={i.valor} prefixo={i.prefixo} sufixo={i.sufixo} />
@@ -295,7 +297,7 @@ export default function LandingPage() {
           </Reveal>
 
           <div className="mudancas">
-            <Reveal as="div" className="mudanca mudanca--antes">
+            <Reveal as="div" className="mudanca mudanca--antes" direcao="left">
               <h4>Antes</h4>
               <ul>
                 <li>Dados espalhados em planilhas e relatórios soltos</li>
@@ -304,7 +306,7 @@ export default function LandingPage() {
                 <li>Decisões lentas e pouco transparentes</li>
               </ul>
             </Reveal>
-            <Reveal as="div" className="mudanca mudanca--depois" delay={120}>
+            <Reveal as="div" className="mudanca mudanca--depois" direcao="right">
               <h4>Com o YBY</h4>
               <ul>
                 <li>Visão única do estado, atualizada e comparável</li>

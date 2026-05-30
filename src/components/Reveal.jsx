@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import "./Reveal.css";
 
-// Revela o elemento com fade+slide quando ele entra na viewport.
-// Use `as` para virar o próprio elemento (ex.: as="article" num grid).
+// Revela o elemento ao entrar na viewport. `direcao`: up (padrão), left,
+// right, zoom ou blur. Use `as` para virar o próprio elemento (ex.: grid).
 export default function Reveal({
   children,
   as: Tag = "div",
   className = "",
   delay = 0,
+  direcao = "up",
 }) {
   const ref = useRef(null);
   const [visivel, setVisivel] = useState(false);
@@ -28,10 +29,12 @@ export default function Reveal({
     return () => obs.disconnect();
   }, []);
 
+  const cls = `reveal reveal--${direcao} ${visivel ? "reveal--on" : ""} ${className}`.trim();
+
   return (
     <Tag
       ref={ref}
-      className={`reveal ${visivel ? "reveal--on" : ""} ${className}`.trim()}
+      className={cls}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
     >
       {children}

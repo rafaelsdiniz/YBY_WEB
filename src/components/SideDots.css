@@ -1,0 +1,59 @@
+.side-dots {
+  position: fixed;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.side-dots a {
+  position: relative;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(20, 83, 45, 0.25);
+  border: 1.5px solid transparent;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.side-dots a:hover {
+  background: var(--azul);
+}
+
+.side-dots a.ativo {
+  background: var(--azul);
+  transform: scale(1.25);
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.18);
+}
+
+/* rótulo no hover */
+.side-dots-tip {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: var(--azul-escuro);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.side-dots a:hover .side-dots-tip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 1100px) {
+  .side-dots {
+    display: none;
+  }
+}
