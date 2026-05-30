@@ -23,25 +23,53 @@ import "./LandingPage.css";
 
 const NATUREZA = [
   {
-    img: "/pexels-gustavo-serrate-1076073965-37755146.jpg",
-    tag: "Chapadas",
-    titulo: "O relevo que guarda as nascentes",
-    texto:
-      "As chapadas do Tocantins abrigam nascentes que alimentam grandes bacias e uma biodiversidade única do cerrado.",
-  },
-  {
-    img: "/pexels-hiagorocha-17025997.jpg",
+    img: "/tocantinscarrossel2.jpg",
     tag: "Cerrado",
-    titulo: "O berço das águas do Brasil",
+    titulo: "Onde a serra encontra a savana",
     texto:
-      "O cerrado é a savana mais biodiversa do mundo e a caixa-d'água que sustenta rios por todo o país.",
+      "Chapadas e palmeiras de buriti formam a paisagem do cerrado tocantinense — a savana mais biodiversa do planeta.",
   },
   {
-    img: "/pexels-giovana-lhopi-1296651293-24864294.jpg",
-    tag: "Biodiversidade",
-    titulo: "Vida que depende de cada hectare",
+    img: "/tocantinscarrosel.jpg",
+    tag: "Águas",
+    titulo: "Águas que brotam do cerrado",
     texto:
-      "Árvores retorcidas, fauna e povos do cerrado dependem de cada hectare mantido em pé — e de onde o investimento chega.",
+      "Fervedouros e corredeiras de águas cristalinas nascem da rocha e alimentam grandes bacias do Brasil.",
+  },
+  {
+    img: "/tocantinscarrossel4.jpg",
+    tag: "Rios",
+    titulo: "Praias de água doce",
+    texto:
+      "Rios e lagos de águas claras viram praia no coração do país, cercados pelas serras do estado.",
+  },
+  {
+    img: "/tocantinscarrossel3.jpg",
+    tag: "Cachoeiras",
+    titulo: "Quedas escondidas nos paredões",
+    texto:
+      "Cachoeiras surgem entre paredões de rocha e mata — refúgios da riqueza natural do Tocantins.",
+  },
+  {
+    img: "/tocantinscarrossel1.jpg",
+    tag: "Biodiversidade",
+    titulo: "Refúgios de vida",
+    texto:
+      "Lagoas e palmeirais abrigam fauna e flora que dependem de cada hectare mantido em pé.",
+  },
+  {
+    img: "/tocantinscarrossel5.jpg",
+    tag: "Jalapão",
+    titulo: "Serras que guardam nascentes",
+    texto:
+      "Os relevos do Jalapão protegem as nascentes que sustentam a vida por todo o território.",
+  },
+  {
+    img: "/tocantinscarrossel6.jpg",
+    tag: "Futuro",
+    titulo: "Um convite à preservação",
+    texto:
+      "Cada hectare preservado é água, clima e futuro. É isso que o YBY ajuda a proteger.",
   },
 ];
 
