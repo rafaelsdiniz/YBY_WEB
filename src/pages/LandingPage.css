@@ -150,6 +150,44 @@
   background: linear-gradient(150deg, var(--azul) 0%, var(--azul-escuro) 100%);
 }
 
+/* fundos com foto (ponte e rio) + overlay para legibilidade */
+#impactos {
+  background-image:
+    linear-gradient(150deg, rgba(7, 52, 99, 0.82), rgba(10, 77, 156, 0.85)),
+    url("/ponte.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#como-funciona {
+  background-image:
+    linear-gradient(150deg, rgba(7, 52, 99, 0.86), rgba(7, 52, 99, 0.92)),
+    url("/rio%20tocantins.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+#como-funciona h2 {
+  color: #fff;
+}
+
+#como-funciona .secao-tag {
+  color: var(--amarelo);
+}
+
+#como-funciona .secao-linha {
+  background: var(--amarelo);
+}
+
+@media (max-width: 860px) {
+  #impactos,
+  #como-funciona {
+    background-attachment: scroll;
+  }
+}
+
 .secao-inner {
   max-width: 1200px;
   margin: 0 auto;
