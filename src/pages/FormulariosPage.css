@@ -22,15 +22,14 @@
   justify-content: space-between;
 }
 
+/* Ícone do card — sem fundo */
 .form-icone {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 11px;
-  background: #e6f2e7;
   color: var(--azul);
+  flex: none;
 }
+
 
 .form-titulo {
   font-size: 17px;

@@ -66,7 +66,7 @@ export default function ComoFunciona() {
                 <article key={p.titulo} className={cls}>
                   <span className="cf-passo-num">{i + 1}</span>
                   <span className="cf-passo-icone">
-                    <Icone size={24} strokeWidth={1.8} />
+                    <Icone size={32} strokeWidth={1.5} />
                   </span>
                   <h3>{p.titulo.replace(/^\d+\.\s/, "")}</h3>
                   <p>{p.texto}</p>

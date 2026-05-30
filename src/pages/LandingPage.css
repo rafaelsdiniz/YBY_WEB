@@ -300,7 +300,6 @@
   color: var(--azul-escuro);
 }
 
-/* recursos (Sobre) */
 .recursos {
   margin-top: 40px;
   display: grid;
@@ -365,8 +364,8 @@
 }
 
 .impacto-icone {
-  color: var(--amarelo);
-  margin-bottom: 6px;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 10px;
 }
 
 .impacto-valor {

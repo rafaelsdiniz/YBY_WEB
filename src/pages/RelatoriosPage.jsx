@@ -83,7 +83,7 @@ export default function RelatoriosPage() {
         <div style={{ display: "flex", gap: 10 }}>
           {ehGestor && (
             <button type="button" className="painel-acao secundario" onClick={gerarExecutivo} disabled={gerando}>
-              <FileText size={16} /> {gerando ? "Gerando…" : "Relatório executivo"}
+              <FileText size={15} strokeWidth={1.75} /> {gerando ? "Gerando…" : "Relatório executivo"}
             </button>
           )}
           <button
@@ -92,7 +92,7 @@ export default function RelatoriosPage() {
             onClick={exportarCSV}
             disabled={carregando || !municipios.length}
           >
-            <Download size={18} /> Exportar CSV
+            <Download size={17} strokeWidth={1.75} /> Exportar CSV
           </button>
         </div>
       </header>

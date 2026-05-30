@@ -67,12 +67,19 @@
 }
 
 .sidebar-link svg {
-  opacity: 0.7;
+  opacity: 0.55;
+  flex: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 
 .sidebar-link:hover {
   background: var(--cinza-claro);
   color: var(--azul);
+}
+
+.sidebar-link:hover svg {
+  opacity: 0.85;
+  transform: scale(1.06);
 }
 
 .sidebar-link.ativo {

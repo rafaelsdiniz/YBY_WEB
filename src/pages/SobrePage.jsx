@@ -2,10 +2,10 @@ import { Map, Gauge, TrendingDown, Database } from "lucide-react";
 import "./SobrePage.css";
 
 const RECURSOS = [
-  { icone: Map, titulo: "Mapa de prioridade", texto: "Os 139 municípios do Tocantins coloridos por urgência de investimento." },
-  { icone: Gauge, titulo: "Semáforo de decisão", texto: "Verde, amarelo e vermelho traduzem risco e prontidão para investir." },
-  { icone: TrendingDown, titulo: "Detecção de desperdício", texto: "Aponta quem gasta muito e entrega pouco resultado ambiental." },
-  { icone: Database, titulo: "Dados integrados", texto: "Desmatamento, conformidade (CAR), gasto público e risco em um só índice." },
+  { icone: Map,         titulo: "Mapa de prioridade",      texto: "Os 139 municípios do Tocantins coloridos por urgência de investimento." },
+  { icone: Gauge,       titulo: "Semáforo de decisão",     texto: "Verde, amarelo e vermelho traduzem risco e prontidão para investir." },
+  { icone: TrendingDown,titulo: "Detecção de desperdício", texto: "Aponta quem gasta muito e entrega pouco resultado ambiental." },
+  { icone: Database,    titulo: "Dados integrados",        texto: "Desmatamento, conformidade (CAR), gasto público e risco em um só índice." },
 ];
 
 const SEMAFORO = [
@@ -37,7 +37,7 @@ export default function SobrePage() {
           return (
             <article key={r.titulo} className="card sobre-card">
               <span className="sobre-icone">
-                <Icone size={22} strokeWidth={1.8} />
+                <Icone size={34} strokeWidth={1.5} />
               </span>
               <h3>{r.titulo}</h3>
               <p>{r.texto}</p>

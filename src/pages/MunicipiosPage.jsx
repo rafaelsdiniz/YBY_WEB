@@ -180,10 +180,10 @@ export default function MunicipiosPage() {
         {ehGestor && (
           <div style={{ display: "flex", gap: 10 }}>
             <button type="button" className="painel-acao secundario" onClick={sincronizar} disabled={sincronizando}>
-              <RefreshCw size={16} /> {sincronizando ? "Sincronizando…" : "Sincronizar IBGE"}
+              <RefreshCw size={16} strokeWidth={1.75} /> {sincronizando ? "Sincronizando…" : "Sincronizar IBGE"}
             </button>
             <button type="button" className="painel-acao" onClick={novo}>
-              <Plus size={16} /> Novo município
+              <Plus size={16} strokeWidth={1.75} /> Novo município
             </button>
           </div>
         )}

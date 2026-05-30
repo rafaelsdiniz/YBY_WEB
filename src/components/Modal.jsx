@@ -9,7 +9,7 @@ export default function Modal({ titulo, onFechar, children }) {
         <header className="modal-head">
           <h2>{titulo}</h2>
           <button type="button" onClick={onFechar} aria-label="Fechar">
-            <X size={18} />
+            <X size={17} strokeWidth={1.75} />
           </button>
         </header>
         <div className="modal-corpo">{children}</div>
