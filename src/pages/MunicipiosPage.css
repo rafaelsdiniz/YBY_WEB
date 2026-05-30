@@ -1,0 +1,85 @@
+.mun-busca {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px 13px;
+  border: 1px solid #d4dbe6;
+  border-radius: 9px;
+  font: inherit;
+  margin-bottom: 16px;
+}
+
+.mun-busca:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(10, 77, 156, 0.15);
+}
+
+.mun-tabela-wrap {
+  overflow-x: auto;
+}
+
+.mun-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.mun-tabela th,
+.mun-tabela td {
+  padding: 11px 12px;
+  text-align: left;
+  border-bottom: 1px solid #eef2f7;
+  white-space: nowrap;
+}
+
+.mun-tabela th.num,
+.mun-tabela td.num {
+  text-align: right;
+}
+
+.mun-tabela thead th {
+  border-bottom: 2px solid #e4e9f0;
+}
+
+.mun-tabela thead button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 700;
+  color: var(--azul-escuro);
+  cursor: pointer;
+}
+
+.mun-tabela thead button:hover {
+  color: var(--azul);
+}
+
+.mun-seta {
+  font-size: 10px;
+  color: var(--azul);
+}
+
+.mun-tabela tbody tr {
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.mun-tabela tbody tr:hover {
+  background: #f5f8fc;
+}
+
+.mun-nome {
+  font-weight: 600;
+  color: var(--azul-escuro);
+}
+
+.mun-vazio {
+  text-align: center !important;
+  padding: 28px !important;
+  color: var(--texto);
+  opacity: 0.7;
+}

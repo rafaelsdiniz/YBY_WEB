@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { getMunicipios } from "../services/api";
 import MapaTocantins from "../components/MapaTocantins";
 import RankingMunicipios from "../components/RankingMunicipios";
@@ -6,8 +7,10 @@ import DetalheMunicipio from "../components/DetalheMunicipio";
 import Legenda from "../components/Legenda";
 
 export default function DashboardPage() {
+  const location = useLocation();
   const [municipios, setMunicipios] = useState([]);
-  const [selecionado, setSelecionado] = useState(null);
+  // município escolhido na página de Municípios chega via state da navegação
+  const [selecionado, setSelecionado] = useState(location.state?.municipioId ?? null);
   const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {

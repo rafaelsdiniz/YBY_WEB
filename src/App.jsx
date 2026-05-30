@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
 import DashboardPage from "./pages/DashboardPage";
+import MunicipiosPage from "./pages/MunicipiosPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import LoginPage from "./pages/LoginPage";
 import "./App.css";
@@ -23,10 +24,7 @@ export default function App() {
           path="/municipios"
           element={
             <RequireAuth>
-              <PlaceholderPage
-                titulo="Municípios"
-                descricao="Lista completa dos 139 municípios do Tocantins"
-              />
+              <MunicipiosPage />
             </RequireAuth>
           }
         />
