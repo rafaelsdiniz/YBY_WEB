@@ -17,7 +17,7 @@ export default function CookieConsent() {
   return (
     <div className="cookie" role="dialog" aria-label="Aviso de cookies">
       <span className="cookie-icone">
-        <Cookie size={22} />
+        <Cookie size={20} strokeWidth={1.75} />
       </span>
       <p>
         Usamos cookies para melhorar sua experiência no YBY. Ao continuar

@@ -32,14 +32,11 @@
   opacity: 0.8;
 }
 
+/* Ícone puro, sem fundo */
 .sobre-icone {
-  display: grid;
-  place-items: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 12px;
-  background: #e6f2e7;
+  display: block;
   color: var(--azul);
+  margin-bottom: 12px;
 }
 
 .sobre-semaforo {

@@ -94,9 +94,9 @@ const RECURSOS = [
 ];
 
 const IMPACTOS = [
-  { icone: Map, valor: 139, rotulo: "municípios monitorados" },
-  { icone: Coins, prefixo: "R$ ", valor: 42, sufixo: " mi", rotulo: "em investimento acompanhado" },
-  { icone: Leaf, prefixo: "+", valor: 30, sufixo: "%", rotulo: "redução de desmatamento onde há gasto eficiente" },
+  { icone: Map,         valor: 139, rotulo: "municípios monitorados" },
+  { icone: Coins,       prefixo: "R$ ", valor: 42, sufixo: " mi", rotulo: "em investimento acompanhado" },
+  { icone: Leaf,        prefixo: "+",   valor: 30, sufixo: "%",    rotulo: "redução de desmatamento onde há gasto eficiente" },
   { icone: ShieldCheck, valor: 64, sufixo: "%", rotulo: "conformidade média (CAR)" },
 ];
 
@@ -169,7 +169,7 @@ export default function LandingPage() {
           </p>
           <div className="hero-acoes">
             <a href="#sobre" className="hero-btn">
-              Conhecer o YBY <ChevronDown size={18} />
+              Conhecer o YBY <ChevronDown size={17} strokeWidth={1.75} />
             </a>
           </div>
         </div>
@@ -180,7 +180,7 @@ export default function LandingPage() {
           aria-label="Rolar para baixo"
           style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
         >
-          <ChevronDown size={26} />
+          <ChevronDown size={24} strokeWidth={1.75} />
         </a>
       </header>
 
@@ -206,7 +206,7 @@ export default function LandingPage() {
               return (
                 <Reveal as="article" className="recurso reveal-shine" key={r.titulo} delay={i * 110}>
                   <span className="recurso-icone">
-                    <Icone size={24} strokeWidth={2} />
+                    <Icone size={38} strokeWidth={1.5} />
                   </span>
                   <h3>{r.titulo}</h3>
                   <p>{r.texto}</p>
@@ -270,15 +270,15 @@ export default function LandingPage() {
           </Reveal>
 
           <div className="impactos">
-            {IMPACTOS.map((i, idx) => {
-              const Icone = i.icone;
+            {IMPACTOS.map((item, idx) => {
+              const Icone = item.icone;
               return (
-                <Reveal as="div" className="impacto reveal-shine" key={i.rotulo} delay={idx * 110}>
-                  <Icone size={26} strokeWidth={2} className="impacto-icone" />
+                <Reveal as="div" className="impacto reveal-shine" key={item.rotulo} delay={idx * 110}>
+                  <Icone size={34} strokeWidth={1.5} className="impacto-icone" />
                   <strong className="impacto-valor">
-                    <Contador valor={i.valor} prefixo={i.prefixo} sufixo={i.sufixo} />
+                    <Contador valor={item.valor} prefixo={item.prefixo} sufixo={item.sufixo} />
                   </strong>
-                  <span className="impacto-rotulo">{i.rotulo}</span>
+                  <span className="impacto-rotulo">{item.rotulo}</span>
                 </Reveal>
               );
             })}

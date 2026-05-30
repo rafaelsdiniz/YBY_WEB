@@ -43,7 +43,7 @@ export default function Carrossel({ slides, intervalo = 5500 }) {
           onClick={() => ir(i - 1)}
           aria-label="Anterior"
         >
-          <ChevronLeft size={22} />
+          <ChevronLeft size={22} strokeWidth={1.75} />
         </button>
         <button
           type="button"
@@ -51,7 +51,7 @@ export default function Carrossel({ slides, intervalo = 5500 }) {
           onClick={() => ir(i + 1)}
           aria-label="Próximo"
         >
-          <ChevronRight size={22} />
+          <ChevronRight size={22} strokeWidth={1.75} />
         </button>
       </div>
 

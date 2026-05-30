@@ -41,10 +41,10 @@ export default function ToastProvider({ children }) {
           const Icone = ICONES[t.tipo] ?? Info;
           return (
             <div key={t.id} className={`toast toast--${t.tipo}`}>
-              <Icone size={18} className="toast-icone" />
+              <Icone size={17} strokeWidth={1.75} className="toast-icone" />
               <span>{t.texto}</span>
               <button type="button" onClick={() => remover(t.id)} aria-label="Fechar">
-                <X size={15} />
+                <X size={14} strokeWidth={1.75} />
               </button>
             </div>
           );

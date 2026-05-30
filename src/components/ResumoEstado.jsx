@@ -18,11 +18,11 @@ export default function ResumoEstado({ municipios }) {
   const investimento = municipios.reduce((s, m) => s + m.gastoPublico, 0);
 
   const cards = [
-    { icone: MapPin, tom: "azul", valor: total, rotulo: "Municípios analisados" },
-    { icone: ShieldCheck, tom: "verde", valor: verdes, rotulo: "Prontos para investir" },
-    { icone: AlertTriangle, tom: "vermelho", valor: vermelhos, rotulo: "Em risco alto" },
-    { icone: TrendingDown, tom: "amarelo", valor: desperdicio, rotulo: "Com desperdício" },
-    { icone: Wallet, tom: "azul", valor: moedaCompacta(investimento), rotulo: "Investimento monitorado" },
+    { icone: MapPin,        tom: "neutro",   valor: total,                       rotulo: "Municípios analisados" },
+    { icone: ShieldCheck,   tom: "verde",    valor: verdes,                      rotulo: "Prontos para investir" },
+    { icone: AlertTriangle, tom: "vermelho", valor: vermelhos,                   rotulo: "Em risco alto" },
+    { icone: TrendingDown,  tom: "amarelo",  valor: desperdicio,                 rotulo: "Com desperdício" },
+    { icone: Wallet,        tom: "neutro",   valor: moedaCompacta(investimento), rotulo: "Investimento monitorado" },
   ];
 
   return (
@@ -32,7 +32,7 @@ export default function ResumoEstado({ municipios }) {
         return (
           <div key={c.rotulo} className={`stat stat--${c.tom}`}>
             <span className="stat-icone">
-              <Icone size={20} strokeWidth={2.2} />
+              <Icone size={22} strokeWidth={1.5} />
             </span>
             <div className="stat-txt">
               <strong className="stat-valor">{c.valor}</strong>

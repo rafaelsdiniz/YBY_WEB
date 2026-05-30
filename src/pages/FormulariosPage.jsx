@@ -30,7 +30,7 @@ export default function FormulariosPage() {
           className="admin-novo"
           onClick={() => toast.info("Criação de formulário disponível em breve.")}
         >
-          <Plus size={18} /> Novo formulário
+          <Plus size={17} strokeWidth={1.75} /> Novo formulário
         </button>
       </header>
 
@@ -42,7 +42,7 @@ export default function FormulariosPage() {
             <article key={f.id} className="card form-card">
               <div className="form-card-topo">
                 <span className="form-icone">
-                  <FileText size={20} strokeWidth={1.8} />
+                  <FileText size={22} strokeWidth={1.5} />
                 </span>
                 <span
                   className={`tag ${f.status === "PUBLICADO" ? "tag--verde" : "tag--amarelo"}`}
@@ -55,7 +55,7 @@ export default function FormulariosPage() {
 
               <div className="form-meta">
                 <span>
-                  <MessageSquare size={15} /> {f.respostas} resposta(s)
+                  <MessageSquare size={14} strokeWidth={1.75} /> {f.respostas} resposta(s)
                 </span>
                 <span>Atualizado em {dataBR(f.atualizado)}</span>
               </div>
@@ -66,7 +66,7 @@ export default function FormulariosPage() {
                   className="admin-acao"
                   onClick={() => toast.info(`Editar "${f.titulo}" — em breve.`)}
                 >
-                  <Pencil size={14} /> Editar
+                  <Pencil size={14} strokeWidth={1.75} /> Editar
                 </button>
                 <button
                   type="button"

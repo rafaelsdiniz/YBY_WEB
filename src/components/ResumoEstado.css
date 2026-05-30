@@ -34,14 +34,20 @@
   transform: translateY(-2px);
 }
 
+/* Ícone puro, sem fundo — estilo Apple SF Symbols / Microsoft Fluent */
 .stat-icone {
-  width: 42px;
-  height: 42px;
-  border-radius: 11px;
   display: grid;
   place-items: center;
+  width: 36px;
+  height: 36px;
   flex: none;
 }
+
+/* Cores semânticas diretamente no ícone */
+.stat--neutro   .stat-icone { color: var(--azul); }
+.stat--verde    .stat-icone { color: var(--verde); }
+.stat--vermelho .stat-icone { color: var(--vermelho); }
+.stat--amarelo  .stat-icone { color: #b45309; }
 
 .stat-txt {
   display: flex;
@@ -65,22 +71,4 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* tons dos icones */
-.stat--azul .stat-icone {
-  background: #e6f2e7;
-  color: var(--azul);
-}
-.stat--verde .stat-icone {
-  background: var(--verde-bg);
-  color: var(--verde);
-}
-.stat--vermelho .stat-icone {
-  background: var(--vermelho-bg);
-  color: var(--vermelho);
-}
-.stat--amarelo .stat-icone {
-  background: var(--amarelo-bg);
-  color: #8a6d00;
 }

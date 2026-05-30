@@ -7,7 +7,7 @@ export default function AcessoNegado() {
   return (
     <div className="negado">
       <span className="negado-icone">
-        <ShieldAlert size={34} strokeWidth={1.6} />
+        <ShieldAlert size={34} strokeWidth={1.75} />
       </span>
       <span className="negado-codigo">403</span>
       <h1>Acesso restrito</h1>

@@ -61,7 +61,7 @@ export default function Assistente() {
         onClick={() => setAberto((a) => !a)}
         aria-label={aberto ? "Fechar assistente" : "Abrir assistente"}
       >
-        {aberto ? <X size={22} /> : <MessageSquare size={22} />}
+        {aberto ? <X size={20} strokeWidth={1.75} /> : <MessageSquare size={20} strokeWidth={1.75} />}
       </button>
 
       {aberto && (
@@ -122,7 +122,7 @@ export default function Assistente() {
               aria-label="Sua pergunta"
             />
             <button type="submit" disabled={pensando || !entrada.trim()} aria-label="Enviar">
-              <Send size={18} />
+              <Send size={17} strokeWidth={1.75} />
             </button>
           </form>
         </section>

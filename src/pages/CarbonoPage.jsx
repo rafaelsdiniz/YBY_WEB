@@ -113,7 +113,7 @@ export default function CarbonoPage() {
             {carregando ? "Consultando…" : "Consultar"}
           </button>
           <button type="button" className="painel-acao secundario" onClick={baixarPdf} disabled={baixando}>
-            <Download size={16} /> {baixando ? "Gerando…" : "Baixar PDF"}
+            <Download size={16} strokeWidth={1.75} /> {baixando ? "Gerando…" : "Baixar PDF"}
           </button>
         </div>
 

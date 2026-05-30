@@ -88,13 +88,13 @@ export default function UsuariosPage() {
           <p>Gerenciamento de usuários e perfis de acesso</p>
         </div>
         <button type="button" className="admin-novo" onClick={novo}>
-          <UserPlus size={18} /> Novo usuário
+          <UserPlus size={17} strokeWidth={1.75} /> Novo usuário
         </button>
       </header>
 
       <section className="card">
         <div className="admin-busca">
-          <Search size={17} />
+          <Search size={17} strokeWidth={1.75} />
           <input
             type="search"
             value={busca}

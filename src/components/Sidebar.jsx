@@ -63,7 +63,7 @@ export default function Sidebar() {
             const Icone = l.icone;
             return (
               <NavLink key={l.to} to={l.to} className={itemClasse}>
-                <Icone size={19} strokeWidth={1.8} />
+                <Icone size={19} strokeWidth={1.75} />
                 <span>{l.rotulo}</span>
               </NavLink>
             );
@@ -78,7 +78,7 @@ export default function Sidebar() {
                 const Icone = l.icone;
                 return (
                   <NavLink key={l.to} to={l.to} className={itemClasse}>
-                    <Icone size={19} strokeWidth={1.8} />
+                    <Icone size={19} strokeWidth={1.75} />
                     <span>{l.rotulo}</span>
                   </NavLink>
                 );
@@ -112,12 +112,12 @@ export default function Sidebar() {
               title="Sair"
               aria-label="Sair"
             >
-              <LogOut size={18} />
+              <LogOut size={17} strokeWidth={1.75} />
             </button>
           </>
         ) : (
           <Link to="/" className="sidebar-entrar">
-            <LogIn size={18} />
+            <LogIn size={17} strokeWidth={1.75} />
             <span>Entrar</span>
           </Link>
         )}
