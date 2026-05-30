@@ -5,13 +5,15 @@ import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import LoginPage from "./pages/LoginPage";
+import LandingPage from "./pages/LandingPage";
 import "./App.css";
 
 export default function App() {
   return (
     <Routes>
-      {/* login é a tela inicial: fora do layout, tela cheia, sem navbar */}
-      <Route index element={<LoginPage />} />
+      {/* site institucional na raiz */}
+      <Route index element={<LandingPage />} />
+      {/* login: tela cheia, sem navbar; ao entrar vai para /painel */}
       <Route path="/login" element={<LoginPage />} />
 
       <Route element={<Layout />}>
