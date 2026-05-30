@@ -22,27 +22,111 @@
   opacity: 0.6;
 }
 
+.mapa-controles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* alternador semáforo / prioridade */
+.mapa-modo {
+  display: inline-flex;
+  background: var(--cinza-claro);
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  padding: 2px;
+}
+
+.mapa-modo button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--texto);
+  opacity: 0.7;
+  padding: 4px 12px;
+  border-radius: 99px;
+  transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+
+.mapa-modo button.ativo {
+  background: var(--branco);
+  color: var(--azul-escuro);
+  opacity: 1;
+  box-shadow: var(--sombra-sm);
+}
+
 .mapa-legenda {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 14px;
+  gap: 6px 10px;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.mapa-legenda li {
+.mapa-legenda-item {
   display: flex;
   align-items: center;
   gap: 6px;
+  font: inherit;
   font-size: 12.5px;
   color: var(--texto);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  padding: 3px 9px 3px 7px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.mapa-legenda-item:hover {
+  background: var(--cinza-claro);
+}
+
+.mapa-legenda-item.ativo {
+  background: var(--cinza-claro);
+  border-color: var(--borda);
+  font-weight: 600;
+}
+
+/* quando há um filtro ativo, as outras categorias ficam apagadas */
+.mapa-legenda:has(.ativo) .mapa-legenda-item:not(.ativo) {
+  opacity: 0.45;
+}
+
+.mapa-legenda-item--estatico {
+  cursor: default;
+  padding: 0;
+}
+.mapa-legenda-item--estatico:hover {
+  background: transparent;
 }
 
 .mapa-legenda-cor {
   width: 12px;
   height: 12px;
   border-radius: 3px;
+  flex: none;
+}
+
+/* escala contínua (modo prioridade) */
+.mapa-escala {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--texto);
+  opacity: 0.75;
+}
+
+.mapa-escala-barra {
+  width: 130px;
+  height: 9px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #c62828, #f4b400 50%, #2e8b3e);
 }
 
 /* fundo suave atrás do mapa */
@@ -62,6 +146,7 @@
   outline: none;
   opacity: 0;
   animation: mun-entra 0.55s ease forwards;
+  transition: fill-opacity 0.2s ease, fill 0.25s ease;
 }
 
 @keyframes mun-entra {

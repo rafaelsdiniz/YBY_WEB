@@ -6,11 +6,11 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import ResumoEstado from "../components/ResumoEstado";
 import SemaforoBadge from "../components/SemaforoBadge";
+import { numero, moeda, pct } from "../utils/format";
 import "./AdminTabela.css";
 import "./Paineis.css";
 
-const moeda = (v) =>
-  v.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
+const pri = (m) => (m.prioridade == null ? -1 : m.prioridade);
 
 export default function RelatoriosPage() {
   const toast = useToast();
@@ -49,16 +49,17 @@ export default function RelatoriosPage() {
       "Conformidade (%)",
       "Gasto público (R$)",
     ];
+    const cel = (v) => (v == null ? "" : v);
     const linhas = [...municipios]
-      .sort((a, b) => b.prioridade - a.prioridade)
+      .sort((a, b) => pri(b) - pri(a))
       .map((m) => [
         m.nome,
         m.semaforo,
-        m.prioridade,
-        m.notaRisco,
-        m.retornoPorReal,
-        m.conformidade,
-        m.gastoPublico,
+        cel(m.prioridade),
+        cel(m.notaRisco),
+        cel(m.retornoPorReal),
+        cel(m.conformidade),
+        cel(m.gastoPublico),
       ]);
     const csv = [cab, ...linhas].map((l) => l.join(";")).join("\n");
     const blob = new Blob(["﻿" + csv], { type: "text/csv;charset=utf-8" });
@@ -71,7 +72,7 @@ export default function RelatoriosPage() {
     toast.sucesso("Relatório exportado (CSV).");
   }
 
-  const ordenados = [...municipios].sort((a, b) => b.prioridade - a.prioridade);
+  const ordenados = [...municipios].sort((a, b) => pri(b) - pri(a));
 
   return (
     <>
@@ -132,10 +133,10 @@ export default function RelatoriosPage() {
                   <tr key={m.id}>
                     <td className="admin-nome">{m.nome}</td>
                     <td><SemaforoBadge semaforo={m.semaforo} /></td>
-                    <td className="dir">{m.prioridade}</td>
-                    <td className="dir">{m.notaRisco}</td>
-                    <td className="dir">{m.retornoPorReal.toFixed(1)}</td>
-                    <td className="dir">{m.conformidade}%</td>
+                    <td className="dir">{numero(m.prioridade)}</td>
+                    <td className="dir">{numero(m.notaRisco, 1)}</td>
+                    <td className="dir">{numero(m.retornoPorReal, 1)}</td>
+                    <td className="dir">{pct(m.conformidade)}</td>
                     <td className="dir admin-mut">{moeda(m.gastoPublico)}</td>
                   </tr>
                 ))}

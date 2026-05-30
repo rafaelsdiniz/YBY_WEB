@@ -1,0 +1,116 @@
+/* Gatilho: mesma aparência dos inputs .campo (borda, raio, foco verde). */
+.sel-trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  background: var(--branco);
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.sel-trigger:hover {
+  border-color: #c7d3c9;
+}
+
+.sel-trigger:focus-visible,
+.sel-trigger.aberto {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+.sel-trigger:disabled {
+  background: var(--cinza-claro);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.sel-valor {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sel-placeholder {
+  color: var(--texto);
+  opacity: 0.5;
+}
+
+.sel-seta {
+  flex: none;
+  color: #5c6b66;
+  transition: transform 0.15s ease;
+}
+
+.sel-trigger.aberto .sel-seta {
+  transform: rotate(180deg);
+}
+
+/* Lista aberta (em portal, posição fixa). */
+.sel-lista {
+  position: fixed;
+  z-index: 1200;
+  margin: 0;
+  padding: 5px;
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 11px;
+  box-shadow: var(--sombra-lg);
+  animation: sel-abre 0.13s ease;
+}
+
+@keyframes sel-abre {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sel-opcao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.sel-opcao.ativa {
+  background: var(--cinza-claro);
+}
+
+.sel-opcao.sel {
+  color: var(--azul-escuro);
+  font-weight: 600;
+}
+
+.sel-opcao.sel svg {
+  color: var(--azul);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sel-lista {
+    animation: none;
+  }
+  .sel-seta {
+    transition: none;
+  }
+}

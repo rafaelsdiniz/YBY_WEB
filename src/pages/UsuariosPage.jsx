@@ -4,6 +4,7 @@ import { getUsuarios, criarUsuario, atualizarStatus } from "../services/usuarios
 import { useToast } from "../context/ToastContext";
 import { useConfirm } from "../context/ConfirmContext";
 import Modal from "../components/Modal";
+import Select from "../components/Select";
 import "./AdminTabela.css";
 
 const norm = (s) =>
@@ -178,13 +179,14 @@ export default function UsuariosPage() {
             </label>
             <label className="campo">
               <span>Perfil</span>
-              <select
+              <Select
                 value={form.perfil}
-                onChange={(e) => setForm({ ...form, perfil: e.target.value })}
-              >
-                <option value="SERVIDOR">Servidor</option>
-                <option value="GESTOR">Gestor</option>
-              </select>
+                onChange={(v) => setForm({ ...form, perfil: v })}
+                options={[
+                  { value: "SERVIDOR", label: "Servidor" },
+                  { value: "GESTOR", label: "Gestor" },
+                ]}
+              />
             </label>
             <div className="modal-acoes">
               <button type="button" className="modal-btn modal-btn--cancelar" onClick={() => setForm(null)}>

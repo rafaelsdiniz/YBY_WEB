@@ -18,6 +18,48 @@
   max-width: 160px;
 }
 
+/* Controles de formulário das telas operacionais. Sem isto, os <select>/<input>
+   ficavam com a aparência nativa do navegador ("crus"). Casa com o visual de
+   .campo do Modal e da Minha Conta. */
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--branco);
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+.campo input:disabled,
+.campo select:disabled {
+  background: var(--cinza-claro);
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* seta própria no lugar do widget nativo */
+.campo select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c6b66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
 .painel-acao {
   display: inline-flex;
   align-items: center;

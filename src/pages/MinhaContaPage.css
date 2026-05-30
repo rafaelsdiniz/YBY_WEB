@@ -1,3 +1,73 @@
+/* cabeçalho de perfil */
+.conta-perfil {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 860px;
+  margin-bottom: 20px;
+}
+
+.conta-avatar {
+  flex: none;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(140deg, var(--azul-claro), var(--azul-escuro));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.25),
+    0 6px 16px rgba(20, 83, 45, 0.28);
+}
+
+.conta-perfil-info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.conta-perfil-info strong {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  text-transform: capitalize;
+}
+
+.conta-perfil-email {
+  font-size: 13.5px;
+  color: var(--texto);
+  opacity: 0.6;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conta-perfil-selo {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--cinza-claro);
+  color: var(--texto);
+}
+
+.conta-perfil-selo.admin {
+  background: var(--verde-bg);
+  color: var(--azul);
+}
+
+@media (max-width: 520px) {
+  .conta-perfil {
+    flex-wrap: wrap;
+  }
+}
+
 .conta-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

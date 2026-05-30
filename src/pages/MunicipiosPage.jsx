@@ -12,7 +12,9 @@ import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import { useConfirm } from "../context/ConfirmContext";
 import SemaforoBadge from "../components/SemaforoBadge";
+import Select from "../components/Select";
 import Modal from "../components/Modal";
+import { numero, pct } from "../utils/format";
 import "./MunicipiosPage.css";
 import "./Paineis.css";
 
@@ -68,7 +70,9 @@ export default function MunicipiosPage() {
     const fator = dir === "asc" ? 1 : -1;
     return [...filtrados].sort((a, b) => {
       if (campo === "nome") return a.nome.localeCompare(b.nome) * fator;
-      return (a[campo] - b[campo]) * fator;
+      const va = a[campo] == null ? -Infinity : a[campo];
+      const vb = b[campo] == null ? -Infinity : b[campo];
+      return (va - vb) * fator;
     });
   }, [municipios, busca, ordem]);
 
@@ -80,8 +84,8 @@ export default function MunicipiosPage() {
     );
   }
 
-  function abrirNoPainel(id) {
-    navigate("/painel", { state: { municipioId: id } });
+  function abrirDetalhe(apiId) {
+    navigate(`/municipios/${apiId}`);
   }
 
   function novo() {
@@ -223,12 +227,12 @@ export default function MunicipiosPage() {
             </thead>
             <tbody>
               {lista.map((m) => (
-                <tr key={m.id} onClick={() => abrirNoPainel(m.id)}>
+                <tr key={m.id} onClick={() => abrirDetalhe(m.apiId)}>
                   <td className="mun-nome">{m.nome}</td>
-                  <td className="num">{m.prioridade}</td>
-                  <td className="num">{m.notaRisco}</td>
-                  <td className="num">{m.retornoPorReal.toFixed(1)}</td>
-                  <td className="num">{m.conformidade}%</td>
+                  <td className="num">{numero(m.prioridade)}</td>
+                  <td className="num">{numero(m.notaRisco, 1)}</td>
+                  <td className="num">{numero(m.retornoPorReal, 1)}</td>
+                  <td className="num">{pct(m.conformidade)}</td>
                   <td><SemaforoBadge semaforo={m.semaforo} /></td>
                   {ehGestor && (
                     <td className="admin-acoes-col">
@@ -272,11 +276,15 @@ export default function MunicipiosPage() {
             </label>
             <label className="campo">
               <span>Semáforo</span>
-              <select value={form.semaforo} onChange={(e) => setForm({ ...form, semaforo: e.target.value })}>
-                <option value="VERDE">Verde</option>
-                <option value="AMARELO">Amarelo</option>
-                <option value="VERMELHO">Vermelho</option>
-              </select>
+              <Select
+                value={form.semaforo}
+                onChange={(v) => setForm({ ...form, semaforo: v })}
+                options={[
+                  { value: "VERDE", label: "Verde" },
+                  { value: "AMARELO", label: "Amarelo" },
+                  { value: "VERMELHO", label: "Vermelho" },
+                ]}
+              />
             </label>
             <div className="modal-acoes">
               <button type="button" className="modal-btn modal-btn--cancelar" onClick={() => setForm(null)}>Cancelar</button>

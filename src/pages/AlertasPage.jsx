@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import MunicipioSelect from "../components/MunicipioSelect";
+import Select from "../components/Select";
 import { desperdicio, risco, salvarAlerta } from "../services/alertas";
 import "./AdminTabela.css";
 import "./Paineis.css";
@@ -177,15 +178,19 @@ export default function AlertasPage() {
             <div className="form-grid">
               <label className="campo">
                 <span>Tipo</span>
-                <select value={form.tipo} onChange={(e) => setForm({ ...form, tipo: e.target.value })}>
-                  {TIPOS.map((t) => <option key={t} value={t}>{t}</option>)}
-                </select>
+                <Select
+                  value={form.tipo}
+                  onChange={(v) => setForm({ ...form, tipo: v })}
+                  options={TIPOS.map((t) => ({ value: t, label: t }))}
+                />
               </label>
               <label className="campo">
                 <span>Gravidade</span>
-                <select value={form.gravidade} onChange={(e) => setForm({ ...form, gravidade: e.target.value })}>
-                  {GRAVIDADES.map((g) => <option key={g} value={g}>{g}</option>)}
-                </select>
+                <Select
+                  value={form.gravidade}
+                  onChange={(v) => setForm({ ...form, gravidade: v })}
+                  options={GRAVIDADES.map((g) => ({ value: g, label: g }))}
+                />
               </label>
               <label className="campo">
                 <span>Data do alerta</span>
@@ -201,10 +206,14 @@ export default function AlertasPage() {
               </label>
               <label className="campo">
                 <span>Ativo</span>
-                <select value={form.ativo ? "1" : "0"} onChange={(e) => setForm({ ...form, ativo: e.target.value === "1" })}>
-                  <option value="1">Sim</option>
-                  <option value="0">Não</option>
-                </select>
+                <Select
+                  value={form.ativo ? "1" : "0"}
+                  onChange={(v) => setForm({ ...form, ativo: v === "1" })}
+                  options={[
+                    { value: "1", label: "Sim" },
+                    { value: "0", label: "Não" },
+                  ]}
+                />
               </label>
             </div>
             <div className="modal-acoes">

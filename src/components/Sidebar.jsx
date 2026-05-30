@@ -5,7 +5,6 @@ import {
   FileText,
   Info,
   Users,
-  ClipboardList,
   LogOut,
   LogIn,
   TrendingUp,
@@ -14,6 +13,7 @@ import {
   BrainCircuit,
   Cloud,
   ShieldCheck,
+  User,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import "./Sidebar.css";
@@ -33,7 +33,6 @@ const LINKS = [
 
 const LINKS_ADMIN = [
   { to: "/usuarios", rotulo: "Usuários", icone: Users },
-  { to: "/formularios", rotulo: "Formulários", icone: ClipboardList },
 ];
 
 function itemClasse({ isActive }) {
@@ -92,17 +91,17 @@ export default function Sidebar() {
         {usuario ? (
           <>
             <Link to="/minha-conta" className="sidebar-conta" title="Minha conta">
-              <span className="sidebar-avatar">
-                {usuario.nome.charAt(0).toUpperCase()}
+              <span className={ehAdmin ? "sidebar-avatar admin" : "sidebar-avatar"}>
+                <User size={18} strokeWidth={2} />
               </span>
               <span className="sidebar-user">
-                <strong>
-                  {usuario.nome}
+                <strong className="sidebar-nome">{usuario.nome}</strong>
+                <span className="sidebar-meta">
                   <em className={ehAdmin ? "sidebar-perfil admin" : "sidebar-perfil"}>
                     {ehAdmin ? "Gestor" : "Servidor"}
                   </em>
-                </strong>
-                <small>{usuario.email}</small>
+                  <small>{usuario.email}</small>
+                </span>
               </span>
             </Link>
             <button

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMunicipios } from "../services/api";
+import Select from "./Select";
 
 // Seletor de municipio reutilizavel. Carrega o ranking e devolve, no onChange,
 // o objeto completo do municipio (inclui apiId para as chamadas de detalhe).
@@ -13,20 +14,12 @@ export default function MunicipioSelect({ value, onChange, label = "Município" 
   return (
     <label className="campo">
       <span>{label}</span>
-      <select
+      <Select
         value={value ?? ""}
-        onChange={(e) => {
-          const m = municipios.find((x) => String(x.apiId) === e.target.value);
-          onChange(m ?? null);
-        }}
-      >
-        <option value="">Selecione um município…</option>
-        {municipios.map((m) => (
-          <option key={m.apiId} value={m.apiId}>
-            {m.nome}
-          </option>
-        ))}
-      </select>
+        onChange={(v) => onChange(municipios.find((x) => String(x.apiId) === String(v)) ?? null)}
+        placeholder="Selecione um município…"
+        options={municipios.map((m) => ({ value: m.apiId, label: m.nome }))}
+      />
     </label>
   );
 }

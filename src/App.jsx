@@ -5,6 +5,7 @@ import RequireAuth from "./components/RequireAuth";
 import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
+import MunicipioDetalhePage from "./pages/MunicipioDetalhePage";
 import IndicadoresPage from "./pages/IndicadoresPage";
 import DesmatamentoPage from "./pages/DesmatamentoPage";
 import AlertasPage from "./pages/AlertasPage";
@@ -13,7 +14,6 @@ import CarbonoPage from "./pages/CarbonoPage";
 import TransparenciaPage from "./pages/TransparenciaPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
 import UsuariosPage from "./pages/UsuariosPage";
-import FormulariosPage from "./pages/FormulariosPage";
 import RelatoriosPage from "./pages/RelatoriosPage";
 import SobrePage from "./pages/SobrePage";
 import LoginPage from "./pages/LoginPage";
@@ -49,6 +49,14 @@ export default function App() {
           element={
             <RequireAuth>
               <MunicipiosPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/municipios/:id"
+          element={
+            <RequireAuth>
+              <MunicipioDetalhePage />
             </RequireAuth>
           }
         />
@@ -126,14 +134,6 @@ export default function App() {
           element={
             <RequireRole role="GESTOR">
               <UsuariosPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/formularios"
-          element={
-            <RequireRole role="GESTOR">
-              <FormulariosPage />
             </RequireRole>
           }
         />
