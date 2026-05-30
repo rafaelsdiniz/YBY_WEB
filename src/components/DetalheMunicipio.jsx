@@ -1,6 +1,7 @@
 import SemaforoBadge from "./SemaforoBadge";
 import KpiCard from "./KpiCard";
 import AlertaDesperdicio from "./AlertaDesperdicio";
+import GraficoDesmatamento from "./GraficoDesmatamento";
 import "./DetalheMunicipio.css";
 
 const moeda = (v) =>
@@ -59,6 +60,8 @@ export default function DetalheMunicipio({ municipio }) {
           </ul>
         )}
       </div>
+
+      <GraficoDesmatamento serie={m.serieDesmatamento} />
     </section>
   );
 }
