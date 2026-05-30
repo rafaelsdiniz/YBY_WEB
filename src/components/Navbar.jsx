@@ -1,4 +1,5 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
 
 const LINKS = [
@@ -9,6 +10,14 @@ const LINKS = [
 ];
 
 export default function Navbar() {
+  const { usuario, sair } = useAuth();
+  const navigate = useNavigate();
+
+  function aoSair() {
+    sair();
+    navigate("/login", { replace: true });
+  }
+
   return (
     <header className="nav-wrap">
       {/* faixa institucional com as cores do Tocantins */}
@@ -39,9 +48,21 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <Link to="/login" className="nav-entrar">
-          Entrar
-        </Link>
+        {usuario ? (
+          <div className="nav-usuario">
+            <span className="nav-avatar" aria-hidden="true">
+              {usuario.nome.charAt(0).toUpperCase()}
+            </span>
+            <span className="nav-nome">{usuario.nome}</span>
+            <button type="button" className="nav-sair" onClick={aoSair}>
+              Sair
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="nav-entrar">
+            Entrar
+          </Link>
+        )}
       </nav>
     </header>
   );

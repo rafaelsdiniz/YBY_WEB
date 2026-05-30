@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import RequireAuth from "./components/RequireAuth";
 import DashboardPage from "./pages/DashboardPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import LoginPage from "./pages/LoginPage";
@@ -9,25 +10,38 @@ export default function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route index element={<DashboardPage />} />
+        {/* rotas internas protegidas */}
+        <Route
+          index
+          element={
+            <RequireAuth>
+              <DashboardPage />
+            </RequireAuth>
+          }
+        />
         <Route
           path="/municipios"
           element={
-            <PlaceholderPage
-              titulo="Municípios"
-              descricao="Lista completa dos 139 municípios do Tocantins"
-            />
+            <RequireAuth>
+              <PlaceholderPage
+                titulo="Municípios"
+                descricao="Lista completa dos 139 municípios do Tocantins"
+              />
+            </RequireAuth>
           }
         />
         <Route
           path="/relatorios"
           element={
-            <PlaceholderPage
-              titulo="Relatórios"
-              descricao="Relatórios consolidados de investimento e conformidade"
-            />
+            <RequireAuth>
+              <PlaceholderPage
+                titulo="Relatórios"
+                descricao="Relatórios consolidados de investimento e conformidade"
+              />
+            </RequireAuth>
           }
         />
+        {/* pública */}
         <Route
           path="/sobre"
           element={

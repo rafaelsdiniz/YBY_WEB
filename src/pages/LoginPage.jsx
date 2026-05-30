@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { login } from "../services/auth";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import "./LoginPage.css";
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const { entrar } = useAuth();
+  const destino = location.state?.from?.pathname || "/";
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -15,8 +18,8 @@ export default function LoginPage() {
     setErro("");
     setCarregando(true);
     try {
-      await login(email, senha);
-      navigate("/");
+      await entrar(email, senha);
+      navigate(destino, { replace: true });
     } catch (err) {
       setErro(err.message);
     } finally {

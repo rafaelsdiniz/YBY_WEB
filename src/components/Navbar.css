@@ -114,6 +114,50 @@
   opacity: 0.9;
 }
 
+/* usuario logado */
+.nav-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--verde);
+  color: var(--branco);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.nav-nome {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  text-transform: capitalize;
+}
+
+.nav-sair {
+  padding: 7px 14px;
+  border: 1px solid #d4dbe6;
+  background: var(--branco);
+  color: var(--texto);
+  border-radius: 8px;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.12s ease, color 0.12s ease;
+}
+
+.nav-sair:hover {
+  border-color: var(--azul);
+  color: var(--azul);
+}
+
 @media (max-width: 720px) {
   .navbar {
     gap: 14px;
