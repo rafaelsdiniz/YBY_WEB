@@ -11,7 +11,7 @@ export default function RequireAuth({ children }) {
   const { usuario } = useAuth();
   const location = useLocation();
   if (AUTH_ATIVA && !usuario) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
   return children;
 }

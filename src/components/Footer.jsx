@@ -19,7 +19,7 @@ export default function Footer() {
 
         <nav className="rodape-links">
           <h4>Navegação</h4>
-          <Link to="/">Painel</Link>
+          <Link to="/painel">Painel</Link>
           <Link to="/municipios">Municípios</Link>
           <Link to="/relatorios">Relatórios</Link>
           <Link to="/sobre">Sobre</Link>

@@ -48,7 +48,7 @@ export default function MunicipiosPage() {
   }
 
   function abrirNoPainel(id) {
-    navigate("/", { state: { municipioId: id } });
+    navigate("/painel", { state: { municipioId: id } });
   }
 
   if (carregando) {

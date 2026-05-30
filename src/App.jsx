@@ -10,10 +10,14 @@ import "./App.css";
 export default function App() {
   return (
     <Routes>
+      {/* login é a tela inicial: fora do layout, tela cheia, sem navbar */}
+      <Route index element={<LoginPage />} />
+      <Route path="/login" element={<LoginPage />} />
+
       <Route element={<Layout />}>
         {/* rotas internas protegidas */}
         <Route
-          index
+          path="/painel"
           element={
             <RequireAuth>
               <DashboardPage />
@@ -50,9 +54,6 @@ export default function App() {
           }
         />
       </Route>
-
-      {/* login fica fora do layout: tela cheia, sem navbar */}
-      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }

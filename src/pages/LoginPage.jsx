@@ -7,7 +7,7 @@ export default function LoginPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const { entrar } = useAuth();
-  const destino = location.state?.from?.pathname || "/";
+  const destino = location.state?.from?.pathname || "/painel";
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
@@ -29,22 +29,29 @@ export default function LoginPage() {
 
   return (
     <div className="login">
-      {/* painel institucional */}
-      <aside className="login-brand">
-        <Link to="/" className="login-logo">
-          <span className="login-logo-mark">Y</span>
-          <span>YBY</span>
-        </Link>
-        <h2>JREDD+ Intelligence</h2>
-        <p>
-          Plataforma de priorização de investimento ambiental do Tocantins.
-          Decisões baseadas em risco, retorno e conformidade.
-        </p>
-        <span className="login-faixa" aria-hidden="true" />
-      </aside>
+      {/* fundo: Jalapão (Tocantins) */}
+      <video
+        className="login-video"
+        src="/jalapao.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden="true"
+      />
+      <div className="login-overlay" aria-hidden="true" />
 
-      {/* formulario */}
-      <main className="login-form-wrap">
+      <main className="login-card">
+        <span className="login-faixa" aria-hidden="true" />
+
+        <div className="login-brand">
+          <span className="login-logo-mark">Y</span>
+          <div className="login-brand-txt">
+            <strong>YBY</strong>
+            <small>JREDD+ Intelligence</small>
+          </div>
+        </div>
+
         <form className="login-form" onSubmit={aoEnviar}>
           <h1>Acessar o sistema</h1>
           <p className="login-sub">Entre com suas credenciais institucionais.</p>
@@ -85,8 +92,8 @@ export default function LoginPage() {
             {carregando ? "Entrando..." : "Entrar"}
           </button>
 
-          <Link to="/" className="login-voltar">
-            ← Voltar ao site
+          <Link to="/painel" className="login-explorar">
+            Explorar o sistema sem login →
           </Link>
         </form>
       </main>

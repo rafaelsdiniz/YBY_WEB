@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext";
 import "./Navbar.css";
 
 const LINKS = [
-  { to: "/", rotulo: "Painel", exact: true },
+  { to: "/painel", rotulo: "Painel" },
   { to: "/municipios", rotulo: "Municípios" },
   { to: "/relatorios", rotulo: "Relatórios" },
   { to: "/sobre", rotulo: "Sobre" },
@@ -24,7 +24,7 @@ export default function Navbar() {
       <div className="nav-faixa" aria-hidden="true" />
 
       <nav className="navbar">
-        <Link to="/" className="nav-brand">
+        <Link to="/painel" className="nav-brand">
           <span className="nav-logo" aria-hidden="true">Y</span>
           <span className="nav-brand-txt">
             <strong>YBY</strong>
@@ -37,7 +37,6 @@ export default function Navbar() {
             <li key={l.to}>
               <NavLink
                 to={l.to}
-                end={l.exact}
                 className={({ isActive }) =>
                   isActive ? "nav-link ativo" : "nav-link"
                 }
@@ -59,7 +58,7 @@ export default function Navbar() {
             </button>
           </div>
         ) : (
-          <Link to="/login" className="nav-entrar">
+          <Link to="/" className="nav-entrar">
             Entrar
           </Link>
         )}
