@@ -52,6 +52,20 @@
   }
 }
 
+.painel-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+.grafico-titulo {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--azul-escuro);
+  margin-bottom: 14px;
+}
+
 .card {
   background: var(--branco);
   border: 1px solid var(--borda);
@@ -67,10 +81,9 @@
 }
 
 .detalhe-vazio {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid var(--cinza-claro);
   font-size: 14px;
+  font-weight: 300;
   color: var(--texto);
   opacity: 0.7;
+  text-align: center;
 }

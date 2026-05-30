@@ -1,7 +1,5 @@
 .detalhe {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid var(--cinza-claro);
+  margin-top: 0;
 }
 
 .detalhe-head {

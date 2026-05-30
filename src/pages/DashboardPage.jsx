@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 import { getMunicipios } from "../services/api";
 import ResumoEstado from "../components/ResumoEstado";
 import MapaTocantins from "../components/MapaTocantins";
+import GraficoPrioridade from "../components/GraficoPrioridade";
+import GraficoSemaforo from "../components/GraficoSemaforo";
 import RankingMunicipios from "../components/RankingMunicipios";
 import DetalheMunicipio from "../components/DetalheMunicipio";
 
@@ -35,23 +37,36 @@ export default function DashboardPage() {
       <ResumoEstado municipios={municipios} />
 
       <div className="app-grid">
-        <main className="card">
-          <MapaTocantins
-            municipios={municipios}
-            selecionado={selecionado}
-            onSelecionar={setSelecionado}
-          />
-        </main>
-        <aside className="card">
-          <RankingMunicipios
-            municipios={municipios}
-            selecionado={selecionado}
-            onSelecionar={setSelecionado}
-          />
+        <div className="painel-col">
+          <section className="card">
+            <MapaTocantins
+              municipios={municipios}
+              selecionado={selecionado}
+              onSelecionar={setSelecionado}
+            />
+          </section>
+          <section className="card">
+            <GraficoPrioridade municipios={municipios} />
+          </section>
+        </div>
+
+        <aside className="painel-col">
+          <section className="card">
+            <GraficoSemaforo municipios={municipios} />
+          </section>
+          <section className="card">
+            <RankingMunicipios
+              municipios={municipios}
+              selecionado={selecionado}
+              onSelecionar={setSelecionado}
+            />
+          </section>
           {detalhe ? (
-            <DetalheMunicipio municipio={detalhe} />
+            <section className="card">
+              <DetalheMunicipio municipio={detalhe} />
+            </section>
           ) : (
-            <p className="detalhe-vazio">
+            <p className="card detalhe-vazio">
               Clique em um município no mapa ou no ranking para ver os detalhes.
             </p>
           )}

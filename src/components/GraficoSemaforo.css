@@ -1,0 +1,68 @@
+.gsem-corpo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.gsem-donut {
+  position: relative;
+  flex: 1;
+  min-width: 180px;
+}
+
+.gsem-centro {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.gsem-centro strong {
+  font-size: 30px;
+  font-weight: 300;
+  color: var(--azul-escuro);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.gsem-centro span {
+  font-size: 11px;
+  color: var(--texto);
+  opacity: 0.6;
+}
+
+.gsem-legenda {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.gsem-legenda li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--texto);
+}
+
+.gsem-legenda li span {
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+  flex: none;
+}
+
+.gsem-legenda li b {
+  margin-left: auto;
+  font-weight: 500;
+  color: var(--azul-escuro);
+}
