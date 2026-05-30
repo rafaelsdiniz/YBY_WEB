@@ -18,6 +18,7 @@ import Contador from "../components/Contador";
 import BarraProgresso from "../components/BarraProgresso";
 import Loader from "../components/Loader";
 import Carrossel from "../components/Carrossel";
+import MapaDestaque from "../components/MapaDestaque";
 import "./LandingPage.css";
 
 const NATUREZA = [
@@ -209,6 +210,27 @@ export default function LandingPage() {
           </Reveal>
           <Reveal>
             <Carrossel slides={NATUREZA} />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* MAPA INTERATIVO (destaque) */}
+      <section id="mapa" className="secao">
+        <div className="secao-inner mapa-destaque">
+          <div className="mapa-destaque-texto">
+            <Reveal>
+              <span className="secao-tag">Mapa interativo</span>
+              <h2>O Tocantins por prioridade</h2>
+              <span className="secao-linha" aria-hidden="true" />
+              <p className="secao-lead">
+                Passe o mouse e clique nos municípios para ver a prioridade de
+                investimento, o risco e a situação de cada um. É o mesmo mapa que
+                orienta as decisões dentro do sistema.
+              </p>
+            </Reveal>
+          </div>
+          <Reveal as="div" className="mapa-destaque-card card">
+            <MapaDestaque />
           </Reveal>
         </div>
       </section>

@@ -448,6 +448,25 @@
   opacity: 0.85;
 }
 
+/* mapa interativo (destaque) */
+.mapa-destaque {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 44px;
+  align-items: center;
+}
+
+.mapa-destaque-card {
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+  .mapa-destaque {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
 /* iniciativa do governo (destaque) */
 .secao-iniciativa {
   background: var(--branco);
