@@ -124,6 +124,7 @@ export default function LandingPage() {
           <Reveal>
             <span className="secao-tag">Sobre o YBY</span>
             <h2>Inteligência para o investimento ambiental</h2>
+            <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead">
               <strong>Yby</strong> significa “terra” em tupi. É a plataforma de
               priorização do programa JREDD+ que reúne desmatamento,
@@ -156,6 +157,7 @@ export default function LandingPage() {
           <Reveal>
             <span className="secao-tag claro">Impactos</span>
             <h2>Resultado que se mede</h2>
+            <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead claro">
               Mais do que um mapa: uma régua comum para o estado decidir,
               priorizar e cobrar resultado.
@@ -186,6 +188,7 @@ export default function LandingPage() {
           <Reveal>
             <span className="secao-tag">O que muda</span>
             <h2>Da planilha à decisão</h2>
+            <span className="secao-linha" aria-hidden="true" />
           </Reveal>
 
           <div className="mudancas">
@@ -217,6 +220,7 @@ export default function LandingPage() {
           <Reveal>
             <span className="secao-tag">Como funciona</span>
             <h2>Três passos</h2>
+            <span className="secao-linha" aria-hidden="true" />
           </Reveal>
 
           <div className="passos">

@@ -142,6 +142,34 @@
   color: var(--amarelo);
 }
 
+/* traço animado sob o título (entra com o Reveal) */
+.secao-linha {
+  display: block;
+  width: 64px;
+  height: 3px;
+  margin-top: 18px;
+  border-radius: 3px;
+  background: var(--azul);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) 0.25s;
+}
+
+.reveal--on .secao-linha {
+  transform: scaleX(1);
+}
+
+.secao--azul .secao-linha {
+  background: var(--amarelo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secao-linha {
+    transform: none;
+    transition: none;
+  }
+}
+
 .secao h2 {
   font-size: clamp(28px, 3.6vw, 40px);
   font-weight: 300;
