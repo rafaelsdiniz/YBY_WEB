@@ -302,6 +302,32 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* INICIATIVA DO GOVERNO (destaque) */}
+      <section id="iniciativa" className="secao secao-iniciativa">
+        <div className="secao-inner iniciativa-inner">
+          <Reveal>
+            <span className="secao-tag">Iniciativa oficial</span>
+            <h2>Um compromisso do Estado do Tocantins</h2>
+            <span className="secao-linha iniciativa-linha" aria-hidden="true" />
+            <p className="secao-lead iniciativa-lead">
+              O YBY é uma iniciativa do <strong>Governo do Tocantins</strong>,
+              conduzida pela <strong>Secretaria do Meio Ambiente e Recursos
+              Hídricos</strong>, para transformar o investimento ambiental em
+              política pública transparente, eficiente e baseada em evidências —
+              colocando a tecnologia a serviço da preservação do cerrado.
+            </p>
+            <div className="iniciativa-logos">
+              <img src="/governotocantins.webp" alt="Governo do Tocantins" />
+              <span className="iniciativa-sep" aria-hidden="true" />
+              <img
+                src="/secretaria.png"
+                alt="Secretaria do Meio Ambiente e Recursos Hídricos"
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );
