@@ -3,6 +3,7 @@ import { getMunicipios } from "./services/api";
 import MapaTocantins from "./components/MapaTocantins";
 import RankingMunicipios from "./components/RankingMunicipios";
 import DetalheMunicipio from "./components/DetalheMunicipio";
+import Legenda from "./components/Legenda";
 import "./App.css";
 
 export default function App() {
@@ -36,6 +37,7 @@ export default function App() {
             selecionado={selecionado}
             onSelecionar={setSelecionado}
           />
+          <Legenda />
         </main>
         <aside className="card">
           <RankingMunicipios
