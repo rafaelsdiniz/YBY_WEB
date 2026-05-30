@@ -1,43 +1,52 @@
-.layout {
-  min-height: 100vh;
+/* Shell do sistema: sidebar + conteúdo */
+.shell {
   display: flex;
-  flex-direction: column;
+  min-height: 100vh;
+  align-items: stretch;
 }
 
-.app {
+.shell-main {
   flex: 1;
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 28px 24px;
+  min-width: 0;
+  padding: 30px 34px 48px;
 }
 
-/* Cabecalho de pagina: limpo, institucional */
+@media (max-width: 860px) {
+  .shell {
+    flex-direction: column;
+  }
+  .shell-main {
+    padding: 22px 18px 36px;
+  }
+}
+
+/* Cabeçalho de página */
 .page-header {
-  margin-bottom: 22px;
+  margin-bottom: 24px;
 }
 
 .page-header h1 {
   font-size: 30px;
-  font-weight: 400;
-  letter-spacing: -0.8px;
+  font-weight: 300;
+  letter-spacing: -0.9px;
 }
 
 .page-header p {
   margin: 5px 0 0;
   color: var(--texto);
-  opacity: 0.65;
+  opacity: 0.6;
   font-size: 15px;
+  font-weight: 300;
 }
 
 .app-grid {
   display: grid;
-  grid-template-columns: 1fr 380px;
+  grid-template-columns: 1fr 360px;
   gap: 20px;
   align-items: start;
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1080px) {
   .app-grid {
     grid-template-columns: 1fr;
   }

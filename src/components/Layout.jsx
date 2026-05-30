@@ -1,17 +1,14 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import Sidebar from "./Sidebar";
 
-// Layout institucional: navbar no topo, conteúdo da rota e footer no rodapé
-// (footer fica colado embaixo mesmo em páginas curtas).
+// Shell do sistema (área de quem opera): sidebar fixa + conteúdo da rota.
 export default function Layout() {
   return (
-    <div className="layout">
-      <Navbar />
-      <div className="app">
+    <div className="shell">
+      <Sidebar />
+      <main className="shell-main">
         <Outlet />
-      </div>
-      <Footer />
+      </main>
     </div>
   );
 }

@@ -36,17 +36,17 @@
 
 .ranking-pos {
   width: 22px;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--azul);
   flex: none;
 }
 
 .ranking-nome {
   flex: 1;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .ranking-prioridade {
-  font-weight: 700;
+  font-weight: 500;
   color: var(--azul-escuro);
 }
