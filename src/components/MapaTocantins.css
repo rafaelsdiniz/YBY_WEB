@@ -1,0 +1,19 @@
+.mapa {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.mun {
+  outline: none;
+  transition: fill 0.15s ease;
+}
+
+.mun.clicavel {
+  cursor: pointer;
+}
+
+.mun.clicavel:hover {
+  stroke: #12343b;
+  stroke-width: 1.2;
+}

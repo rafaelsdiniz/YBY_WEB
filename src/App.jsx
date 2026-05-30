@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getMunicipios } from "./services/api";
+import MapaTocantins from "./components/MapaTocantins";
 import "./App.css";
 
 export default function App() {
@@ -26,8 +27,11 @@ export default function App() {
 
       <div className="app-grid">
         <main className="card">
-          {/* Mapa entra aqui (próxima funcionalidade) */}
-          <p className="estado">Mapa do Tocantins em construção…</p>
+          <MapaTocantins
+            municipios={municipios}
+            selecionado={selecionado}
+            onSelecionar={setSelecionado}
+          />
         </main>
         <aside className="card">
           {/* Ranking + detalhe entram aqui */}
