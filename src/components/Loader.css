@@ -26,22 +26,58 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 28px;
+  gap: 22px;
+  padding: 24px;
+}
+
+/* logos */
+.loader-logo-yby {
+  height: 74px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.loader-gov {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding-top: 24px;
+  width: min(320px, 80vw);
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.loader-gov-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.loader-logo-gov {
+  height: 60px;
+  max-width: 250px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
 }
 
 /* tucano + glow */
 .loader-tucano-wrap {
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   display: grid;
   place-items: center;
 }
 
 .loader-glow {
   position: absolute;
-  width: 190px;
-  height: 190px;
+  width: 175px;
+  height: 175px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, transparent 64%);
   animation: loader-glow 2.6s ease-in-out infinite;
@@ -50,7 +86,7 @@
 .loader-tucano {
   position: relative;
   z-index: 1;
-  width: 112px;
+  width: 98px;
   height: auto;
   filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.4));
   animation: loader-flutuar 2.6s ease-in-out infinite;
