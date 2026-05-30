@@ -31,13 +31,13 @@
 
 .ranking-item.ativo {
   background: var(--verde-bg);
-  outline: 2px solid var(--teal);
+  outline: 2px solid var(--azul);
 }
 
 .ranking-pos {
   width: 22px;
   font-weight: 700;
-  color: var(--teal);
+  color: var(--azul);
   flex: none;
 }
 
@@ -48,5 +48,5 @@
 
 .ranking-prioridade {
   font-weight: 700;
-  color: var(--navy);
+  color: var(--azul-escuro);
 }

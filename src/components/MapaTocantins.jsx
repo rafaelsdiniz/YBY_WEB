@@ -4,10 +4,10 @@ import geoTO from "../assets/to-municipios.json";
 import "./MapaTocantins.css";
 
 const CORES = {
-  VERDE: "#2E7D32",
-  AMARELO: "#C9A227",
+  VERDE: "#2E8B3E",
+  AMARELO: "#F4B400",
   VERMELHO: "#C62828",
-  SEM_DADO: "#D9E2DD",
+  SEM_DADO: "#D3DDD6",
 };
 
 const LARGURA = 600;
@@ -45,7 +45,7 @@ export default function MapaTocantins({ municipios, selecionado, onSelecionar })
             key={geo.properties.id}
             d={path(geo)}
             fill={cor}
-            stroke={ativo ? "#12343B" : "#FFFFFF"}
+            stroke={ativo ? "#073463" : "#FFFFFF"}
             strokeWidth={ativo ? 1.6 : 0.4}
             className={clicavel ? "mun clicavel" : "mun"}
             onClick={() => dado && onSelecionar(dado.id)}

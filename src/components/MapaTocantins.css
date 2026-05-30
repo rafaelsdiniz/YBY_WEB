@@ -14,6 +14,6 @@
 }
 
 .mun.clicavel:hover {
-  stroke: #12343b;
+  stroke: var(--azul-escuro);
   stroke-width: 1.2;
 }

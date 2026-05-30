@@ -2,13 +2,13 @@
   background: var(--cinza-claro);
   border-radius: 10px;
   padding: 12px 14px;
-  border-left: 4px solid var(--teal);
+  border-left: 4px solid var(--azul);
 }
 
 .kpi-valor {
   font-size: 24px;
   font-weight: 700;
-  color: var(--navy);
+  color: var(--azul-escuro);
   line-height: 1.1;
 }
 

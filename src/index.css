@@ -1,20 +1,19 @@
 :root {
-  /* Identidade YBY / JREDD+ Intelligence */
-  --navy: #12343b; /* títulos */
-  --teal: #1b5e5a; /* cabeçalhos, destaques */
-  --texto: #1f2a2e;
-
-  /* semáforo */
-  --verde: #2e7d32;
-  --verde-bg: #d7ebdd;
-  --amarelo: #c9a227;
-  --amarelo-bg: #fff1c2;
-  --vermelho: #c62828;
+  /* Identidade do Tocantins: branco, amarelo, azul e verde */
+  --azul: #0a4d9c; /* marca principal: header, botões, realces */
+  --azul-escuro: #073463; /* títulos */
+  --azul-claro: #2f7de0; /* hover / links */
+  --amarelo: #f4b400; /* destaque */
+  --amarelo-bg: #fff3cf;
+  --verde: #2e8b3e; /* natureza + semáforo verde */
+  --verde-bg: #d9efdc;
+  --vermelho: #c62828; /* semáforo vermelho */
   --vermelho-bg: #fad4d4;
-  --sem-dado: #d9e2dd;
+  --sem-dado: #d3ddd6;
 
-  --cinza-claro: #f2f4f3;
+  --texto: #16242e;
   --branco: #ffffff;
+  --cinza-claro: #eef2f7; /* fundo levemente azulado */
 
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
 
@@ -37,11 +36,11 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--navy);
+  color: var(--azul-escuro);
   margin: 0;
   line-height: 1.2;
 }
 
 a {
-  color: var(--teal);
+  color: var(--azul);
 }
