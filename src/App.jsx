@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import CookieConsent from "./components/CookieConsent";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
 import RequireRole from "./components/RequireRole";
@@ -18,6 +19,7 @@ import "./App.css";
 
 export default function App() {
   return (
+    <>
     <Routes>
       {/* site institucional na raiz */}
       <Route index element={<LandingPage />} />
@@ -86,5 +88,7 @@ export default function App() {
       {/* 404 */}
       <Route path="*" element={<NaoEncontradaPage />} />
     </Routes>
+    <CookieConsent />
+    </>
   );
 }
