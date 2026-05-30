@@ -1,7 +1,7 @@
 import "./Loader.css";
 
-// Splash do sistema: tucano + logo YBY + logo do Governo, sobre o verde da
-// marca. `tela` = tela cheia; `fechando` = fade-out.
+// Splash/loader claro: logo YBY com pulso, barra de progresso verde e
+// atribuição ao Governo do Tocantins. `tela` = tela cheia; `fechando` = fade.
 export default function Loader({ texto = "Carregando...", tela = false, fechando = false }) {
   const classe = ["loader", tela && "loader--tela", fechando && "loader--saindo"]
     .filter(Boolean)
@@ -9,12 +9,7 @@ export default function Loader({ texto = "Carregando...", tela = false, fechando
   return (
     <div className={classe}>
       <div className="loader-conteudo">
-        <div className="loader-tucano-wrap">
-          <span className="loader-glow" aria-hidden="true" />
-          <img src="/tucano.png" alt="" className="loader-tucano" />
-        </div>
-
-        <img src="/logoYBY.png" alt="YBY" className="loader-logo-yby" />
+        <img src="/logoYBY.png" alt="YBY" className="loader-logo" />
 
         <div className="loader-barra" aria-hidden="true">
           <span />
@@ -22,11 +17,11 @@ export default function Loader({ texto = "Carregando...", tela = false, fechando
         <p className="loader-texto">{texto}</p>
 
         <div className="loader-gov">
-          <span className="loader-gov-label">Uma iniciativa do</span>
+          <span className="loader-gov-label">Uma iniciativa do Governo do Tocantins</span>
           <img
             src="/governotocantins.webp"
             alt="Governo do Tocantins"
-            className="loader-logo-gov"
+            className="loader-gov-logo"
           />
         </div>
       </div>

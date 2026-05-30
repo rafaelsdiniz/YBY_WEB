@@ -3,8 +3,8 @@
   place-items: center;
   min-height: 64vh;
   border-radius: var(--raio);
-  background: radial-gradient(130% 130% at 50% 22%, #1f7a39 0%, #0c3a1c 78%);
-  color: #fff;
+  background: linear-gradient(170deg, #f4f9f4 0%, #e8f2e8 100%);
+  color: var(--texto);
   overflow: hidden;
 }
 
@@ -26,131 +26,90 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 26px;
   padding: 24px;
+  text-align: center;
 }
 
-/* logos */
-.loader-logo-yby {
-  height: 74px;
+.loader-logo {
+  height: 104px;
   width: auto;
-  filter: brightness(0) invert(1);
+  animation: loader-pulsa 2s ease-in-out infinite;
 }
 
-.loader-gov {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  margin-top: 8px;
-  padding-top: 24px;
-  width: min(320px, 80vw);
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.loader-gov-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
-}
-
-.loader-logo-gov {
-  height: 60px;
-  max-width: 250px;
-  width: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
-}
-
-/* tucano + glow */
-.loader-tucano-wrap {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  display: grid;
-  place-items: center;
-}
-
-.loader-glow {
-  position: absolute;
-  width: 175px;
-  height: 175px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.16) 0%, transparent 64%);
-  animation: loader-glow 2.6s ease-in-out infinite;
-}
-
-.loader-tucano {
-  position: relative;
-  z-index: 1;
-  width: 98px;
-  height: auto;
-  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.4));
-  animation: loader-flutuar 2.6s ease-in-out infinite;
-}
-
-/* barra de progresso indeterminada */
+/* barra de progresso indeterminada (verde) */
 .loader-barra {
-  width: 176px;
-  height: 3px;
+  width: 210px;
+  height: 4px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgba(46, 125, 50, 0.16);
   overflow: hidden;
 }
 
 .loader-barra span {
   display: block;
   height: 100%;
-  width: 42%;
+  width: 40%;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, var(--amarelo), transparent);
-  animation: loader-barra 1.4s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, var(--azul), transparent);
+  animation: loader-barra 1.3s ease-in-out infinite;
 }
 
 .loader-texto {
   font-size: 15px;
   font-weight: 300;
-  letter-spacing: 0.4px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--texto);
+  opacity: 0.7;
 }
 
-@keyframes loader-flutuar {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-3deg);
-  }
-  50% {
-    transform: translateY(-15px) rotate(3deg);
-  }
+.loader-gov {
+  margin-top: 20px;
+  padding-top: 22px;
+  border-top: 1px solid var(--borda);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: min(300px, 78vw);
 }
 
-@keyframes loader-glow {
+.loader-gov-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--texto);
+  opacity: 0.45;
+}
+
+.loader-gov-logo {
+  height: 46px;
+  max-width: 220px;
+  width: auto;
+  object-fit: contain;
+}
+
+@keyframes loader-pulsa {
   0%,
   100% {
-    transform: scale(0.9);
-    opacity: 0.55;
+    transform: scale(1);
   }
   50% {
-    transform: scale(1.12);
-    opacity: 1;
+    transform: scale(1.05);
   }
 }
 
 @keyframes loader-barra {
   0% {
-    transform: translateX(-130%);
+    transform: translateX(-140%);
   }
   100% {
-    transform: translateX(330%);
+    transform: translateX(340%);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loader-tucano,
-  .loader-glow,
+  .loader-logo,
   .loader-barra span {
     animation: none;
   }

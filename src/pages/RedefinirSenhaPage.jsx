@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { redefinirSenha } from "../services/auth";
-import "./LoginPage.css";
+import AuthLayout from "../components/AuthLayout";
 
 export default function RedefinirSenhaPage() {
   const [params] = useSearchParams();
@@ -35,67 +35,57 @@ export default function RedefinirSenhaPage() {
   }
 
   return (
-    <div className="login">
-      <video className="login-video" src="/jalapao.mp4" autoPlay muted loop playsInline aria-hidden="true" />
-      <div className="login-overlay" aria-hidden="true" />
-
-      <main className="login-card">
-        <span className="login-faixa" aria-hidden="true" />
-        <div className="login-brand">
-          <img src="/logoYBY.png" alt="YBY — JREDD+ Intelligence" className="login-logo-img" />
+    <AuthLayout>
+      {pronto ? (
+        <div>
+          <h1 className="auth-titulo">Senha redefinida</h1>
+          <p className="auth-sub">
+            Sua nova senha foi salva. Você já pode acessar o sistema.
+          </p>
+          <Link to="/" className="auth-btn auth-btn--link">
+            Ir para o login
+          </Link>
         </div>
+      ) : (
+        <form onSubmit={aoEnviar}>
+          <h1 className="auth-titulo">Definir nova senha</h1>
+          <p className="auth-sub">Crie uma senha para acessar o sistema.</p>
 
-        {pronto ? (
-          <div className="login-form">
-            <h1>Senha redefinida</h1>
-            <p className="login-sub">
-              Sua nova senha foi salva. Você já pode acessar o sistema.
-            </p>
-            <Link to="/" className="login-btn login-btn--link">
-              Ir para o login
-            </Link>
-          </div>
-        ) : (
-          <form className="login-form" onSubmit={aoEnviar}>
-            <h1>Definir nova senha</h1>
-            <p className="login-sub">Crie uma senha para acessar o sistema.</p>
+          {erro && <div className="auth-erro" role="alert">{erro}</div>}
 
-            {erro && <div className="login-erro" role="alert">{erro}</div>}
+          <label className="auth-campo">
+            <span>Nova senha</span>
+            <input
+              type="password"
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              placeholder="••••••••"
+              autoComplete="new-password"
+              required
+            />
+          </label>
 
-            <label className="login-campo">
-              <span>Nova senha</span>
-              <input
-                type="password"
-                value={senha}
-                onChange={(e) => setSenha(e.target.value)}
-                placeholder="••••••••"
-                autoComplete="new-password"
-                required
-              />
-            </label>
+          <label className="auth-campo">
+            <span>Confirmar senha</span>
+            <input
+              type="password"
+              value={confirma}
+              onChange={(e) => setConfirma(e.target.value)}
+              placeholder="••••••••"
+              autoComplete="new-password"
+              required
+            />
+          </label>
 
-            <label className="login-campo">
-              <span>Confirmar senha</span>
-              <input
-                type="password"
-                value={confirma}
-                onChange={(e) => setConfirma(e.target.value)}
-                placeholder="••••••••"
-                autoComplete="new-password"
-                required
-              />
-            </label>
+          <button type="submit" className="auth-btn" disabled={carregando}>
+            {carregando ? "Salvando..." : "Salvar nova senha"}
+          </button>
 
-            <button type="submit" className="login-btn" disabled={carregando}>
-              {carregando ? "Salvando..." : "Salvar nova senha"}
-            </button>
-
-            <Link to="/" className="login-explorar">
-              ← Voltar ao login
-            </Link>
-          </form>
-        )}
-      </main>
-    </div>
+          <Link to="/" className="auth-explorar">
+            ← Voltar ao login
+          </Link>
+        </form>
+      )}
+    </AuthLayout>
   );
 }

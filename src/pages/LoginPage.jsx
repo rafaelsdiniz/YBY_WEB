@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import "./LoginPage.css";
+import AuthLayout from "../components/AuthLayout";
 
 export default function LoginPage() {
   const navigate = useNavigate();
@@ -18,7 +18,6 @@ export default function LoginPage() {
     setErro("");
     setCarregando(true);
     try {
-      // por enquanto: qualquer clique entra (usa demo se vier vazio)
       await entrar(email || "demo@tocantins.gov.br", senha || "demo");
       navigate(destino, { replace: true });
     } catch (err) {
@@ -29,67 +28,47 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="login">
-      {/* fundo: Jalapão (Tocantins) */}
-      <video
-        className="login-video"
-        src="/jalapao.mp4"
-        autoPlay
-        muted
-        loop
-        playsInline
-        aria-hidden="true"
-      />
-      <div className="login-overlay" aria-hidden="true" />
+    <AuthLayout>
+      <form onSubmit={aoEnviar}>
+        <h1 className="auth-titulo">Acessar o sistema</h1>
+        <p className="auth-sub">Entre com suas credenciais institucionais.</p>
 
-      <main className="login-card">
-        <span className="login-faixa" aria-hidden="true" />
+        {erro && <div className="auth-erro" role="alert">{erro}</div>}
 
-        <div className="login-brand">
-          <img src="/logoYBY.png" alt="YBY — JREDD+ Intelligence" className="login-logo-img" />
+        <label className="auth-campo">
+          <span>E-mail</span>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="nome@tocantins.gov.br"
+            autoComplete="email"
+          />
+        </label>
+
+        <label className="auth-campo">
+          <span>Senha</span>
+          <input
+            type="password"
+            value={senha}
+            onChange={(e) => setSenha(e.target.value)}
+            placeholder="••••••••"
+            autoComplete="current-password"
+          />
+        </label>
+
+        <div className="auth-extra">
+          <Link to="/esqueci-senha">Esqueci minha senha</Link>
         </div>
 
-        <form className="login-form" onSubmit={aoEnviar}>
-          <h1>Acessar o sistema</h1>
-          <p className="login-sub">Entre com suas credenciais institucionais.</p>
+        <button type="submit" className="auth-btn" disabled={carregando}>
+          {carregando ? "Entrando..." : "Entrar"}
+        </button>
 
-          {erro && <div className="login-erro" role="alert">{erro}</div>}
-
-          <label className="login-campo">
-            <span>E-mail</span>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="nome@tocantins.gov.br"
-              autoComplete="email"
-            />
-          </label>
-
-          <label className="login-campo">
-            <span>Senha</span>
-            <input
-              type="password"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              placeholder="••••••••"
-              autoComplete="current-password"
-            />
-          </label>
-
-          <div className="login-extra">
-            <Link to="/esqueci-senha">Esqueci minha senha</Link>
-          </div>
-
-          <button type="submit" className="login-btn" disabled={carregando}>
-            {carregando ? "Entrando..." : "Entrar"}
-          </button>
-
-          <Link to="/painel" className="login-explorar">
-            Explorar o sistema sem login →
-          </Link>
-        </form>
-      </main>
-    </div>
+        <Link to="/painel" className="auth-explorar">
+          Explorar o sistema sem login →
+        </Link>
+      </form>
+    </AuthLayout>
   );
 }
