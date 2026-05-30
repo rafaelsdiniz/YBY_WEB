@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { useToast } from "../context/ToastContext";
 import { trocarSenha } from "../services/auth";
 import "./MinhaContaPage.css";
 
 export default function MinhaContaPage() {
   const { usuario, atualizar } = useAuth();
+  const toast = useToast();
 
   const [nome, setNome] = useState(usuario?.nome ?? "");
-  const [contaSalva, setContaSalva] = useState(false);
 
   const [atual, setAtual] = useState("");
   const [nova, setNova] = useState("");
   const [confirma, setConfirma] = useState("");
   const [erroSenha, setErroSenha] = useState("");
-  const [senhaOk, setSenhaOk] = useState(false);
   const [carregando, setCarregando] = useState(false);
 
   if (!usuario) {
@@ -35,14 +35,12 @@ export default function MinhaContaPage() {
   function salvarConta(e) {
     e.preventDefault();
     atualizar({ nome: nome.trim() || usuario.nome });
-    setContaSalva(true);
-    setTimeout(() => setContaSalva(false), 2500);
+    toast.sucesso("Dados salvos com sucesso.");
   }
 
   async function salvarSenha(e) {
     e.preventDefault();
     setErroSenha("");
-    setSenhaOk(false);
     if (nova.length < 6) {
       setErroSenha("A nova senha deve ter pelo menos 6 caracteres.");
       return;
@@ -54,7 +52,7 @@ export default function MinhaContaPage() {
     setCarregando(true);
     try {
       await trocarSenha(atual, nova);
-      setSenhaOk(true);
+      toast.sucesso("Senha atualizada com sucesso.");
       setAtual("");
       setNova("");
       setConfirma("");
@@ -91,7 +89,6 @@ export default function MinhaContaPage() {
               <input value={ehAdmin ? "Administrador" : "Servidor"} disabled />
             </label>
 
-            {contaSalva && <div className="msg-ok">Dados salvos.</div>}
             <button type="submit" className="conta-btn">Salvar alterações</button>
           </form>
         </section>
@@ -130,7 +127,6 @@ export default function MinhaContaPage() {
             </label>
 
             {erroSenha && <div className="msg-erro">{erroSenha}</div>}
-            {senhaOk && <div className="msg-ok">Senha atualizada com sucesso.</div>}
 
             <button type="submit" className="conta-btn" disabled={carregando}>
               {carregando ? "Salvando..." : "Trocar senha"}

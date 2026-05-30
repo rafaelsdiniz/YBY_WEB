@@ -1,12 +1,16 @@
 import { useEffect, useMemo, useState } from "react";
 import { UserPlus, Search } from "lucide-react";
 import { getUsuarios } from "../services/usuarios";
+import { useToast } from "../context/ToastContext";
+import { useConfirm } from "../context/ConfirmContext";
 import "./AdminTabela.css";
 
 const norm = (s) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
 
 export default function UsuariosPage() {
+  const toast = useToast();
+  const confirmar = useConfirm();
   const [usuarios, setUsuarios] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [busca, setBusca] = useState("");
@@ -26,10 +30,21 @@ export default function UsuariosPage() {
   );
 
   // ativar/inativar local (mock) — vira chamada à API depois
-  function alternar(id) {
+  async function alternar(u) {
+    const inativar = u.ativo;
+    const ok = await confirmar({
+      titulo: inativar ? "Inativar usuário?" : "Ativar usuário?",
+      mensagem: inativar
+        ? `${u.nome} perderá o acesso ao sistema.`
+        : `${u.nome} voltará a ter acesso ao sistema.`,
+      confirmar: inativar ? "Inativar" : "Ativar",
+      tipo: inativar ? "perigo" : "ok",
+    });
+    if (!ok) return;
     setUsuarios((lista) =>
-      lista.map((u) => (u.id === id ? { ...u, ativo: !u.ativo } : u))
+      lista.map((x) => (x.id === u.id ? { ...x, ativo: !x.ativo } : x))
     );
+    toast.sucesso(`${u.nome} foi ${inativar ? "inativado" : "ativado"}.`);
   }
 
   return (
@@ -39,7 +54,11 @@ export default function UsuariosPage() {
           <h1>Usuários</h1>
           <p>Gerenciamento de usuários e perfis de acesso</p>
         </div>
-        <button type="button" className="admin-novo">
+        <button
+          type="button"
+          className="admin-novo"
+          onClick={() => toast.info("Cadastro de usuário disponível em breve.")}
+        >
           <UserPlus size={18} /> Novo usuário
         </button>
       </header>
@@ -88,7 +107,7 @@ export default function UsuariosPage() {
                       </span>
                     </td>
                     <td className="dir">
-                      <button type="button" className="admin-acao" onClick={() => alternar(u.id)}>
+                      <button type="button" className="admin-acao" onClick={() => alternar(u)}>
                         {u.ativo ? "Inativar" : "Ativar"}
                       </button>
                     </td>

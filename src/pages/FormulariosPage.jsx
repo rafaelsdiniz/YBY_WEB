@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Plus, FileText, MessageSquare, Pencil } from "lucide-react";
 import { getFormularios } from "../services/formularios";
+import { useToast } from "../context/ToastContext";
 import "./AdminTabela.css";
 import "./FormulariosPage.css";
 
 const dataBR = (iso) => new Date(iso).toLocaleDateString("pt-BR");
 
 export default function FormulariosPage() {
+  const toast = useToast();
   const [formularios, setFormularios] = useState([]);
   const [carregando, setCarregando] = useState(true);
 
@@ -23,7 +25,11 @@ export default function FormulariosPage() {
           <h1>Formulários</h1>
           <p>Modelos de coleta de dados (exclusivo do administrador)</p>
         </div>
-        <button type="button" className="admin-novo">
+        <button
+          type="button"
+          className="admin-novo"
+          onClick={() => toast.info("Criação de formulário disponível em breve.")}
+        >
           <Plus size={18} /> Novo formulário
         </button>
       </header>
@@ -55,10 +61,18 @@ export default function FormulariosPage() {
               </div>
 
               <div className="form-acoes">
-                <button type="button" className="admin-acao">
+                <button
+                  type="button"
+                  className="admin-acao"
+                  onClick={() => toast.info(`Editar "${f.titulo}" — em breve.`)}
+                >
                   <Pencil size={14} /> Editar
                 </button>
-                <button type="button" className="admin-acao">
+                <button
+                  type="button"
+                  className="admin-acao"
+                  onClick={() => toast.info(`${f.respostas} resposta(s) — visualização em breve.`)}
+                >
                   Ver respostas
                 </button>
               </div>

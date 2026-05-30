@@ -10,13 +10,22 @@ import '@fontsource/inter/800.css'
 import './index.css'
 import App from './App.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
+import ToastProvider from './context/ToastProvider.jsx'
+import ConfirmProvider from './context/ConfirmProvider.jsx'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <ToastProvider>
+          <ConfirmProvider>
+            <AuthProvider>
+              <App />
+            </AuthProvider>
+          </ConfirmProvider>
+        </ToastProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>,
 )
