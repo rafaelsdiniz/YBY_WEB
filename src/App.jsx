@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import DashboardPage from "./pages/DashboardPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import LoginPage from "./pages/LoginPage";
 import "./App.css";
 
 export default function App() {
@@ -37,6 +38,9 @@ export default function App() {
           }
         />
       </Route>
+
+      {/* login fica fora do layout: tela cheia, sem navbar */}
+      <Route path="/login" element={<LoginPage />} />
     </Routes>
   );
 }
