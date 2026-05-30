@@ -26,6 +26,7 @@ export default function MapaTocantins({
   selecionado,
   onSelecionar,
   cabecalho = true,
+  tooltipDetalhe = true,
 }) {
   const wrapRef = useRef(null);
   const [hover, setHover] = useState(null);
@@ -153,14 +154,15 @@ export default function MapaTocantins({
       {hover && (
         <div className="mapa-tip" style={{ left: hover.x, top: hover.y }}>
           <strong>{hover.nome}</strong>
-          {hover.dado ? (
-            <span className="mapa-tip-info">
-              <SemaforoBadge semaforo={hover.dado.semaforo} compact />
-              Prioridade {hover.dado.prioridade}
-            </span>
-          ) : (
-            <span className="mapa-tip-sem">Sem dados</span>
-          )}
+          {tooltipDetalhe &&
+            (hover.dado ? (
+              <span className="mapa-tip-info">
+                <SemaforoBadge semaforo={hover.dado.semaforo} compact />
+                Prioridade {hover.dado.prioridade}
+              </span>
+            ) : (
+              <span className="mapa-tip-sem">Sem dados</span>
+            ))}
         </div>
       )}
     </div>

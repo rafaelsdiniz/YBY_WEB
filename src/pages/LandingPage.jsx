@@ -217,17 +217,18 @@ export default function LandingPage() {
       {/* MAPA INTERATIVO (destaque) */}
       <section id="mapa" className="secao secao--cinza">
         <div className="secao-inner mapa-destaque">
-          <Reveal>
-            <span className="secao-tag">Mapa interativo</span>
-            <h2>O Tocantins por prioridade</h2>
-            <span className="secao-linha mapa-destaque-linha" aria-hidden="true" />
-            <p className="secao-lead mapa-destaque-lead">
-              Passe o mouse e clique nos municípios para explorar as regiões do
-              estado.
-            </p>
-          </Reveal>
           <Reveal as="div" className="mapa-destaque-mapa">
             <MapaDestaque />
+          </Reveal>
+          <Reveal className="mapa-destaque-texto">
+            <span className="secao-tag">Mapa interativo</span>
+            <h2>Conheça o Tocantins, região por região</h2>
+            <span className="secao-linha" aria-hidden="true" />
+            <p className="secao-lead">
+              São 139 municípios em um só território. Passe o mouse pelo mapa e
+              explore o estado — a mesma base que, dentro do sistema, se
+              transforma em prioridade de investimento ambiental.
+            </p>
           </Reveal>
         </div>
       </section>

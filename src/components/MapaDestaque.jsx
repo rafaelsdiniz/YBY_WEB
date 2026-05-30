@@ -18,6 +18,7 @@ export default function MapaDestaque() {
       selecionado={selecionado}
       onSelecionar={setSelecionado}
       cabecalho={false}
+      tooltipDetalhe={false}
     />
   );
 }
