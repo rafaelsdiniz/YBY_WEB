@@ -24,7 +24,8 @@
   --sombra-md: 0 4px 14px rgba(18, 38, 63, 0.08);
   --sombra-lg: 0 14px 40px rgba(18, 38, 63, 0.12);
 
-  --sans: "Inter", system-ui, "Segoe UI", Roboto, sans-serif;
+  --sans: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
+  --display: "Raleway", "Manrope", sans-serif;
 
   font: 300 16px/1.55 var(--sans);
   letter-spacing: -0.1px;
@@ -46,6 +47,7 @@ body {
 h1,
 h2,
 h3 {
+  font-family: var(--display);
   color: var(--azul-escuro);
   margin: 0;
   line-height: 1.2;
