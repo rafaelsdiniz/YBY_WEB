@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMunicipios } from "./services/api";
 import MapaTocantins from "./components/MapaTocantins";
+import RankingMunicipios from "./components/RankingMunicipios";
 import "./App.css";
 
 export default function App() {
@@ -34,15 +35,12 @@ export default function App() {
           />
         </main>
         <aside className="card">
-          {/* Ranking + detalhe entram aqui */}
-          <ul className="lista-temp">
-            {municipios.map((m) => (
-              <li key={m.id}>
-                <span>{m.nome}</span>
-                <strong>{m.prioridade}</strong>
-              </li>
-            ))}
-          </ul>
+          <RankingMunicipios
+            municipios={municipios}
+            selecionado={selecionado}
+            onSelecionar={setSelecionado}
+          />
+          {/* Detalhe do município entra aqui */}
         </aside>
       </div>
     </div>

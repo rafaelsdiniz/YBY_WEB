@@ -44,17 +44,3 @@
   text-align: center;
   color: var(--teal);
 }
-
-/* Placeholder temporário da fundação — substituído pelos componentes */
-.lista-temp {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.lista-temp li {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--cinza-claro);
-  display: flex;
-  justify-content: space-between;
-}

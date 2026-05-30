@@ -1,0 +1,52 @@
+.ranking-titulo {
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.ranking-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ranking-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: var(--texto);
+  transition: background 0.12s ease;
+}
+
+.ranking-item:hover {
+  background: var(--cinza-claro);
+}
+
+.ranking-item.ativo {
+  background: var(--verde-bg);
+  outline: 2px solid var(--teal);
+}
+
+.ranking-pos {
+  width: 22px;
+  font-weight: 700;
+  color: var(--teal);
+  flex: none;
+}
+
+.ranking-nome {
+  flex: 1;
+  font-weight: 600;
+}
+
+.ranking-prioridade {
+  font-weight: 700;
+  color: var(--navy);
+}
