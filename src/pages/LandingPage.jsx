@@ -13,6 +13,7 @@ import {
 import LandingNavbar from "../components/LandingNavbar";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
+import Contador from "../components/Contador";
 import "./LandingPage.css";
 
 const RECURSOS = [
@@ -37,10 +38,10 @@ const RECURSOS = [
 ];
 
 const IMPACTOS = [
-  { icone: Map, valor: "139", rotulo: "municípios monitorados" },
-  { icone: Coins, valor: "R$ 42 mi", rotulo: "em investimento acompanhado" },
-  { icone: Leaf, valor: "+30%", rotulo: "redução de desmatamento onde há gasto eficiente" },
-  { icone: ShieldCheck, valor: "64%", rotulo: "conformidade média (CAR)" },
+  { icone: Map, valor: 139, rotulo: "municípios monitorados" },
+  { icone: Coins, prefixo: "R$ ", valor: 42, sufixo: " mi", rotulo: "em investimento acompanhado" },
+  { icone: Leaf, prefixo: "+", valor: 30, sufixo: "%", rotulo: "redução de desmatamento onde há gasto eficiente" },
+  { icone: ShieldCheck, valor: 64, sufixo: "%", rotulo: "conformidade média (CAR)" },
 ];
 
 const PASSOS = [
@@ -146,7 +147,9 @@ export default function LandingPage() {
               return (
                 <Reveal as="div" className="impacto" key={i.rotulo} delay={idx * 110}>
                   <Icone size={26} strokeWidth={2} className="impacto-icone" />
-                  <strong className="impacto-valor">{i.valor}</strong>
+                  <strong className="impacto-valor">
+                    <Contador valor={i.valor} prefixo={i.prefixo} sufixo={i.sufixo} />
+                  </strong>
                   <span className="impacto-rotulo">{i.rotulo}</span>
                 </Reveal>
               );
