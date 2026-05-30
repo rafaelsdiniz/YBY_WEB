@@ -1,19 +1,181 @@
+.mapa-wrap {
+  position: relative;
+}
+
+.mapa-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.mapa-head h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mapa-sub {
+  font-size: 13px;
+  color: var(--texto);
+  opacity: 0.6;
+}
+
+.mapa-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mapa-legenda li {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--texto);
+}
+
+.mapa-legenda-cor {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+
+/* fundo suave atrás do mapa */
 .mapa {
   width: 100%;
   height: auto;
   display: block;
+  overflow: visible;
+  background: radial-gradient(120% 80% at 50% 18%, #f4f9f5 0%, #ffffff 70%);
+  border-radius: var(--raio-sm);
 }
 
+/* municípios */
 .mun {
+  stroke: #ffffff;
+  stroke-width: 0.5;
   outline: none;
-  transition: fill 0.15s ease;
+  opacity: 0;
+  animation: mun-entra 0.55s ease forwards;
 }
 
-.mun.clicavel {
+@keyframes mun-entra {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mun--clic {
   cursor: pointer;
 }
 
-.mun.clicavel:hover {
-  stroke: var(--azul-escuro);
-  stroke-width: 1.2;
+.mun--clic:hover {
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+/* destaque (hover/selecionado) renderizado por cima */
+.mun-destaque {
+  stroke: #ffffff;
+  stroke-width: 1.6;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: destaque-pop 0.18s ease forwards;
+}
+
+@keyframes destaque-pop {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* marcadores pulsantes */
+.mapa-marcadores {
+  pointer-events: none;
+}
+
+.marcador-pulso {
+  fill: var(--vermelho);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: marcador-pulso 1.9s ease-out infinite;
+}
+
+@keyframes marcador-pulso {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.marcador-ponto {
+  fill: var(--vermelho);
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+/* tooltip flutuante */
+.mapa-tip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, calc(-100% - 14px));
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  box-shadow: var(--sombra-lg);
+  padding: 9px 12px;
+  pointer-events: none;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mapa-tip strong {
+  font-size: 14px;
+  color: var(--azul-escuro);
+}
+
+.mapa-tip-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--texto);
+}
+
+.mapa-tip-sem {
+  font-size: 12.5px;
+  color: var(--texto);
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mun,
+  .mun-destaque,
+  .marcador-pulso {
+    animation: none;
+    opacity: 1;
+  }
 }

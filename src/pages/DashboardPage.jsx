@@ -5,7 +5,6 @@ import ResumoEstado from "../components/ResumoEstado";
 import MapaTocantins from "../components/MapaTocantins";
 import RankingMunicipios from "../components/RankingMunicipios";
 import DetalheMunicipio from "../components/DetalheMunicipio";
-import Legenda from "../components/Legenda";
 
 export default function DashboardPage() {
   const location = useLocation();
@@ -42,7 +41,6 @@ export default function DashboardPage() {
             selecionado={selecionado}
             onSelecionar={setSelecionado}
           />
-          <Legenda />
         </main>
         <aside className="card">
           <RankingMunicipios
