@@ -116,11 +116,12 @@ export default function LandingPage() {
           style={{ transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(1.16)` }}
         />
         <div className="hero-conteudo">
-          <h1>Onde investir para proteger o Tocantins</h1>
-          <p>
-            O YBY transforma dados ambientais, fiscais e de risco em decisões
-            claras de investimento — município a município, com transparência e
-            foco em resultado.
+          <h1 className="hero-titulo">
+            <span className="hero-yby">YBY</span>
+            <span className="hero-sub-titulo">Gestão Ambiental</span>
+          </h1>
+          <p className="hero-frase">
+            Inteligência que transforma dados em proteção para o Tocantins.
           </p>
           <div className="hero-acoes">
             <a href="#sobre" className="btn-secundario">
