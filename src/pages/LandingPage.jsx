@@ -137,7 +137,7 @@ export default function LandingPage() {
       <BarraProgresso />
       <LandingNavbar />
 
-      {/* HERO */}
+      {/* HERO (cinematográfico) */}
       <header className="hero">
         <video
           className="hero-video"
@@ -147,9 +147,17 @@ export default function LandingPage() {
           loop
           playsInline
           aria-hidden="true"
-          style={{ transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(1.16)` }}
+          style={{
+            transform: `translate3d(0, ${scrollY * 0.4}px, 0) scale(${1.16 + Math.min(scrollY, 900) * 0.0004})`,
+          }}
         />
-        <div className="hero-conteudo">
+        <div
+          className="hero-conteudo"
+          style={{
+            opacity: Math.max(0, 1 - scrollY / 480),
+            transform: `translateY(${scrollY * 0.3}px)`,
+          }}
+        >
           <h1 className="hero-titulo">
             <span className="hero-yby">YBY</span>
             <span className="hero-sub-titulo">Gestão Ambiental</span>
@@ -164,7 +172,12 @@ export default function LandingPage() {
           </div>
         </div>
 
-        <a href="#sobre" className="hero-scroll" aria-label="Rolar para baixo">
+        <a
+          href="#sobre"
+          className="hero-scroll"
+          aria-label="Rolar para baixo"
+          style={{ opacity: Math.max(0, 1 - scrollY / 200) }}
+        >
           <ChevronDown size={26} />
         </a>
       </header>
