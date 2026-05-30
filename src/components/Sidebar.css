@@ -76,7 +76,7 @@
 }
 
 .sidebar-link.ativo {
-  background: #e8f0fb;
+  background: #e6f2e7;
   color: var(--azul);
   font-weight: 500;
 }
@@ -170,7 +170,7 @@
 }
 
 .sidebar-perfil.admin {
-  background: #e8f0fb;
+  background: #e6f2e7;
   color: var(--azul);
 }
 

@@ -27,9 +27,9 @@ export default function GraficoDesmatamento({ serie }) {
           <Line
             type="monotone"
             dataKey="valor"
-            stroke="#0A4D9C"
+            stroke="#2E7D32"
             strokeWidth={2.5}
-            dot={{ r: 3, fill: "#0A4D9C" }}
+            dot={{ r: 3, fill: "#2E7D32" }}
             activeDot={{ r: 5 }}
           />
         </LineChart>

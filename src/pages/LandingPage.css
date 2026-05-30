@@ -154,7 +154,7 @@
 /* fundos com foto (ponte e rio) + overlay para legibilidade */
 #impactos {
   background-image:
-    linear-gradient(150deg, rgba(7, 52, 99, 0.82), rgba(10, 77, 156, 0.85)),
+    linear-gradient(150deg, rgba(20, 83, 45, 0.82), rgba(46, 125, 50, 0.85)),
     url("/ponte.webp");
   background-size: cover;
   background-position: center;
@@ -163,7 +163,7 @@
 
 #como-funciona {
   background-image:
-    linear-gradient(150deg, rgba(7, 52, 99, 0.86), rgba(7, 52, 99, 0.92)),
+    linear-gradient(150deg, rgba(20, 83, 45, 0.86), rgba(20, 83, 45, 0.92)),
     url("/rio%20tocantins.webp");
   background-size: cover;
   background-position: center;
@@ -292,7 +292,7 @@
   width: 52px;
   height: 52px;
   border-radius: 13px;
-  background: #e8f0fb;
+  background: #e6f2e7;
   color: var(--azul);
   margin-bottom: 16px;
 }

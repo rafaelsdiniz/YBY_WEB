@@ -1,8 +1,9 @@
 :root {
-  /* Identidade do Tocantins: branco, amarelo, azul e verde */
-  --azul: #0a4d9c; /* marca principal: header, botões, realces */
-  --azul-escuro: #073463; /* títulos */
-  --azul-claro: #2f7de0; /* hover / links */
+  /* Identidade da LOGO: verdes. Os tokens --azul* guardam o verde da marca
+     (nome mantido por compatibilidade — o sistema inteiro referencia eles). */
+  --azul: #2e7d32; /* marca principal: header, botões, realces (verde da logo) */
+  --azul-escuro: #14532d; /* verde profundo: títulos */
+  --azul-claro: #43a047; /* verde claro: hover / links */
   --amarelo: #f4b400; /* destaque */
   --amarelo-bg: #fff3cf;
   --verde: #2e8b3e; /* natureza + semáforo verde */
@@ -11,10 +12,10 @@
   --vermelho-bg: #fad4d4;
   --sem-dado: #d3ddd6;
 
-  --texto: #16242e;
+  --texto: #1a261c;
   --branco: #ffffff;
-  --cinza-claro: #eef2f7; /* fundo levemente azulado */
-  --borda: #e4e9f0;
+  --cinza-claro: #eef3ee; /* fundo levemente esverdeado */
+  --borda: #e2eae2;
 
   /* elevação */
   --raio: 16px;
