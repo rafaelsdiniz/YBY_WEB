@@ -16,6 +16,7 @@ import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
 import Contador from "../components/Contador";
 import BarraProgresso from "../components/BarraProgresso";
+import Loader from "../components/Loader";
 import "./LandingPage.css";
 
 const RECURSOS = [
@@ -66,6 +67,18 @@ const PASSOS = [
 
 export default function LandingPage() {
   const [scrollY, setScrollY] = useState(0);
+  // splash de entrada do site institucional (aparece ao carregar/recarregar)
+  const [splash, setSplash] = useState(true);
+  const [splashSaindo, setSplashSaindo] = useState(false);
+
+  useEffect(() => {
+    const t1 = setTimeout(() => setSplashSaindo(true), 1700);
+    const t2 = setTimeout(() => setSplash(false), 2150);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, []);
 
   useEffect(() => {
     if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
@@ -86,6 +99,7 @@ export default function LandingPage() {
 
   return (
     <div className="landing" id="topo">
+      {splash && <Loader tela fechando={splashSaindo} texto="Preparando o YBY" />}
       <BarraProgresso />
       <LandingNavbar />
 

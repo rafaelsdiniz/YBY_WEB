@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { getMunicipios } from "../services/api";
-import Loader from "../components/Loader";
 import ResumoEstado from "../components/ResumoEstado";
 import MapaTocantins from "../components/MapaTocantins";
 import RankingMunicipios from "../components/RankingMunicipios";
@@ -22,7 +21,7 @@ export default function DashboardPage() {
   }, []);
 
   if (carregando) {
-    return <Loader texto="Carregando dados do Tocantins" />;
+    return <p className="estado">Carregando dados do Tocantins...</p>;
   }
 
   const detalhe = municipios.find((m) => m.id === selecionado);

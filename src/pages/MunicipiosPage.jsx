@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getMunicipios } from "../services/api";
-import Loader from "../components/Loader";
 import SemaforoBadge from "../components/SemaforoBadge";
 import "./MunicipiosPage.css";
 
@@ -53,7 +52,7 @@ export default function MunicipiosPage() {
   }
 
   if (carregando) {
-    return <Loader texto="Carregando municípios" />;
+    return <p className="estado">Carregando municípios...</p>;
   }
 
   return (
