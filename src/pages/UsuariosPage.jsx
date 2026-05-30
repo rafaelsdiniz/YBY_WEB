@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { UserPlus, Search } from "lucide-react";
-import { getUsuarios } from "../services/usuarios";
+import { getUsuarios, criarUsuario, atualizarStatus } from "../services/usuarios";
 import { useToast } from "../context/ToastContext";
 import { useConfirm } from "../context/ConfirmContext";
 import Modal from "../components/Modal";
@@ -8,8 +8,6 @@ import "./AdminTabela.css";
 
 const norm = (s) =>
   s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
-
-let seqId = 100;
 
 export default function UsuariosPage() {
   const toast = useToast();
@@ -19,12 +17,14 @@ export default function UsuariosPage() {
   const [busca, setBusca] = useState("");
   const [form, setForm] = useState(null); // null = fechado
   const [erroForm, setErroForm] = useState("");
+  const [salvando, setSalvando] = useState(false);
 
   useEffect(() => {
     getUsuarios()
       .then(setUsuarios)
+      .catch((err) => toast.erro(err.message))
       .finally(() => setCarregando(false));
-  }, []);
+  }, [toast]);
 
   const lista = useMemo(
     () =>
@@ -36,15 +36,10 @@ export default function UsuariosPage() {
 
   function novo() {
     setErroForm("");
-    setForm({ nome: "", email: "", perfil: "SERVIDOR", ativo: true });
+    setForm({ nome: "", email: "", perfil: "SERVIDOR" });
   }
 
-  function editar(u) {
-    setErroForm("");
-    setForm({ ...u });
-  }
-
-  function salvar(e) {
+  async function salvar(e) {
     e.preventDefault();
     const nome = form.nome.trim();
     const email = form.email.trim();
@@ -52,17 +47,19 @@ export default function UsuariosPage() {
       setErroForm("Preencha nome e e-mail.");
       return;
     }
-    if (form.id) {
-      setUsuarios((l) => l.map((u) => (u.id === form.id ? { ...form, nome, email } : u)));
-      toast.sucesso("Usuário atualizado.");
-    } else {
-      setUsuarios((l) => [...l, { ...form, nome, email, id: String(++seqId) }]);
-      toast.sucesso("Usuário criado.");
+    setSalvando(true);
+    try {
+      const criado = await criarUsuario({ nome, email, perfil: form.perfil });
+      setUsuarios((l) => [...l, criado]);
+      toast.sucesso("Usuário criado. A senha inicial foi enviada pelo backend.");
+      setForm(null);
+    } catch (err) {
+      setErroForm(err.message);
+    } finally {
+      setSalvando(false);
     }
-    setForm(null);
   }
 
-  // ativar/inativar local (mock) — vira chamada à API depois
   async function alternar(u) {
     const inativar = u.ativo;
     const ok = await confirmar({
@@ -74,8 +71,13 @@ export default function UsuariosPage() {
       tipo: inativar ? "perigo" : "ok",
     });
     if (!ok) return;
-    setUsuarios((l) => l.map((x) => (x.id === u.id ? { ...x, ativo: !x.ativo } : x)));
-    toast.sucesso(`${u.nome} foi ${inativar ? "inativado" : "ativado"}.`);
+    try {
+      const atualizado = await atualizarStatus(u.id, !u.ativo);
+      setUsuarios((l) => l.map((x) => (x.id === u.id ? atualizado : x)));
+      toast.sucesso(`${u.nome} foi ${inativar ? "inativado" : "ativado"}.`);
+    } catch (err) {
+      toast.erro(err.message);
+    }
   }
 
   return (
@@ -124,8 +126,8 @@ export default function UsuariosPage() {
                     </td>
                     <td className="admin-mut">{u.email}</td>
                     <td>
-                      <span className={`tag ${u.perfil === "ADMIN" ? "tag--azul" : "tag--cinza"}`}>
-                        {u.perfil === "ADMIN" ? "Administrador" : "Servidor"}
+                      <span className={`tag ${u.perfil === "GESTOR" ? "tag--azul" : "tag--cinza"}`}>
+                        {u.perfil === "GESTOR" ? "Gestor" : "Servidor"}
                       </span>
                     </td>
                     <td>
@@ -134,9 +136,6 @@ export default function UsuariosPage() {
                       </span>
                     </td>
                     <td className="dir admin-acoes-col">
-                      <button type="button" className="admin-acao" onClick={() => editar(u)}>
-                        Editar
-                      </button>
                       <button type="button" className="admin-acao" onClick={() => alternar(u)}>
                         {u.ativo ? "Inativar" : "Ativar"}
                       </button>
@@ -157,7 +156,7 @@ export default function UsuariosPage() {
       </section>
 
       {form && (
-        <Modal titulo={form.id ? "Editar usuário" : "Novo usuário"} onFechar={() => setForm(null)}>
+        <Modal titulo="Novo usuário" onFechar={() => setForm(null)}>
           <form onSubmit={salvar}>
             {erroForm && <div className="modal-erro">{erroForm}</div>}
             <label className="campo">
@@ -184,15 +183,15 @@ export default function UsuariosPage() {
                 onChange={(e) => setForm({ ...form, perfil: e.target.value })}
               >
                 <option value="SERVIDOR">Servidor</option>
-                <option value="ADMIN">Administrador</option>
+                <option value="GESTOR">Gestor</option>
               </select>
             </label>
             <div className="modal-acoes">
               <button type="button" className="modal-btn modal-btn--cancelar" onClick={() => setForm(null)}>
                 Cancelar
               </button>
-              <button type="submit" className="modal-btn modal-btn--salvar">
-                {form.id ? "Salvar" : "Criar usuário"}
+              <button type="submit" className="modal-btn modal-btn--salvar" disabled={salvando}>
+                {salvando ? "Criando..." : "Criar usuário"}
               </button>
             </div>
           </form>

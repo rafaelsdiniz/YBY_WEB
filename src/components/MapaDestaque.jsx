@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { getMunicipios } from "../services/api";
+import { getMunicipiosPublico } from "../services/api";
 import MapaTocantins from "./MapaTocantins";
 
 const semMovimento = () =>
@@ -15,7 +15,7 @@ export default function MapaDestaque() {
   const [progresso, setProgresso] = useState(() => (semMovimento() ? 1 : 0));
 
   useEffect(() => {
-    getMunicipios().then(setMunicipios).catch(() => {});
+    getMunicipiosPublico().then(setMunicipios).catch(() => {});
   }, []);
 
   useEffect(() => {

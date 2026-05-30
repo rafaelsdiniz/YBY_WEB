@@ -8,6 +8,12 @@ import {
   ClipboardList,
   LogOut,
   LogIn,
+  TrendingUp,
+  Trees,
+  AlertTriangle,
+  BrainCircuit,
+  Cloud,
+  ShieldCheck,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import "./Sidebar.css";
@@ -15,7 +21,13 @@ import "./Sidebar.css";
 const LINKS = [
   { to: "/painel", rotulo: "Painel", icone: LayoutDashboard },
   { to: "/municipios", rotulo: "Municípios", icone: MapPinned },
+  { to: "/indicadores", rotulo: "Indicadores", icone: TrendingUp },
+  { to: "/desmatamento", rotulo: "Desmatamento", icone: Trees },
+  { to: "/alertas", rotulo: "Alertas", icone: AlertTriangle },
+  { to: "/inteligencia", rotulo: "Inteligência", icone: BrainCircuit },
+  { to: "/carbono", rotulo: "Carbono", icone: Cloud },
   { to: "/relatorios", rotulo: "Relatórios", icone: FileText },
+  { to: "/transparencia", rotulo: "Transparência", icone: ShieldCheck },
   { to: "/sobre", rotulo: "Sobre", icone: Info },
 ];
 
@@ -31,7 +43,7 @@ function itemClasse({ isActive }) {
 export default function Sidebar() {
   const { usuario, sair } = useAuth();
   const navigate = useNavigate();
-  const ehAdmin = usuario?.perfil === "ADMIN";
+  const ehAdmin = usuario?.perfil === "GESTOR";
 
   function aoSair() {
     sair();
@@ -87,7 +99,7 @@ export default function Sidebar() {
                 <strong>
                   {usuario.nome}
                   <em className={ehAdmin ? "sidebar-perfil admin" : "sidebar-perfil"}>
-                    {ehAdmin ? "Admin" : "Servidor"}
+                    {ehAdmin ? "Gestor" : "Servidor"}
                   </em>
                 </strong>
                 <small>{usuario.email}</small>

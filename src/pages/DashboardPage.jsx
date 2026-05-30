@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getMunicipios } from "../services/api";
+import { getMunicipios, getMunicipioDetalhe } from "../services/api";
 import ResumoEstado from "../components/ResumoEstado";
 import MapaTocantins from "../components/MapaTocantins";
 import GraficoPrioridade from "../components/GraficoPrioridade";
@@ -14,6 +14,7 @@ export default function DashboardPage() {
   // município escolhido na página de Municípios chega via state da navegação
   const [selecionado, setSelecionado] = useState(location.state?.municipioId ?? null);
   const [carregando, setCarregando] = useState(true);
+  const [detalhe, setDetalhe] = useState(null);
 
   useEffect(() => {
     getMunicipios()
@@ -21,11 +22,28 @@ export default function DashboardPage() {
       .finally(() => setCarregando(false));
   }, []);
 
+  // ao selecionar, busca o detalhe completo (detalhe + KPI + desmatamento + risco).
+  // O setState ocorre apenas no callback assincrono; o estado de loading e derivado.
+  useEffect(() => {
+    if (!selecionado || municipios.length === 0) return;
+    const base = municipios.find((m) => m.id === selecionado);
+    if (!base) return;
+    let ativo = true;
+    getMunicipioDetalhe(base.apiId)
+      .then((d) => ativo && setDetalhe(d))
+      .catch(() => ativo && setDetalhe(base));
+    return () => {
+      ativo = false;
+    };
+  }, [selecionado, municipios]);
+
+  // detalhe so vale se for o do municipio atualmente selecionado
+  const detalheAtivo = detalhe && detalhe.id === selecionado ? detalhe : null;
+  const carregandoDetalhe = Boolean(selecionado) && !detalheAtivo;
+
   if (carregando) {
     return <p className="estado">Carregando dados do Tocantins...</p>;
   }
-
-  const detalhe = municipios.find((m) => m.id === selecionado);
 
   return (
     <>
@@ -61,9 +79,11 @@ export default function DashboardPage() {
               onSelecionar={setSelecionado}
             />
           </section>
-          {detalhe ? (
+          {carregandoDetalhe ? (
+            <p className="card detalhe-vazio">Carregando detalhes do município...</p>
+          ) : detalheAtivo ? (
             <section className="card">
-              <DetalheMunicipio municipio={detalhe} />
+              <DetalheMunicipio municipio={detalheAtivo} />
             </section>
           ) : (
             <p className="card detalhe-vazio">

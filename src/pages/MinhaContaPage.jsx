@@ -30,7 +30,7 @@ export default function MinhaContaPage() {
     );
   }
 
-  const ehAdmin = usuario.perfil === "ADMIN";
+  const ehAdmin = usuario.perfil === "GESTOR";
 
   function salvarConta(e) {
     e.preventDefault();
@@ -86,7 +86,7 @@ export default function MinhaContaPage() {
             </label>
             <label className="campo">
               <span>Perfil</span>
-              <input value={ehAdmin ? "Administrador" : "Servidor"} disabled />
+              <input value={ehAdmin ? "Gestor" : "Servidor"} disabled />
             </label>
 
             <button type="submit" className="conta-btn">Salvar alterações</button>
