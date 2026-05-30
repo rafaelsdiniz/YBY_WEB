@@ -7,10 +7,7 @@ export default function Footer() {
     <footer className="rodape">
       <div className="rodape-conteudo">
         <div className="rodape-marca">
-          <div className="rodape-logo">
-            <span className="rodape-logo-mark">Y</span>
-            <strong>YBY</strong>
-          </div>
+          <img src="/logoYBY.png" alt="YBY" className="rodape-logo-img" />
           <p>
             Inteligência de priorização para investimento ambiental no Tocantins.
             Programa JREDD+.

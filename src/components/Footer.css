@@ -13,29 +13,13 @@
   gap: 32px;
 }
 
-.rodape-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.rodape-logo-mark {
-  width: 34px;
-  height: 34px;
-  border-radius: 9px;
-  background: rgba(255, 255, 255, 0.15);
-  color: var(--branco);
-  display: grid;
-  place-items: center;
-  font-weight: 800;
-  font-size: 18px;
-}
-
-.rodape-logo strong {
-  color: var(--branco);
-  font-size: 20px;
-  letter-spacing: 1px;
+.rodape-logo-img {
+  height: 48px;
+  width: auto;
+  display: block;
+  margin-bottom: 14px;
+  /* deixa a logo branca para ler no fundo escuro */
+  filter: brightness(0) invert(1);
 }
 
 .rodape-marca p {
