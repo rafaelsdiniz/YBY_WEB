@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getMunicipios } from "./services/api";
 import MapaTocantins from "./components/MapaTocantins";
 import RankingMunicipios from "./components/RankingMunicipios";
+import DetalheMunicipio from "./components/DetalheMunicipio";
 import "./App.css";
 
 export default function App() {
@@ -18,6 +19,8 @@ export default function App() {
   if (carregando) {
     return <p className="estado">Carregando dados do Tocantins...</p>;
   }
+
+  const detalhe = municipios.find((m) => m.id === selecionado);
 
   return (
     <div className="app">
@@ -40,7 +43,13 @@ export default function App() {
             selecionado={selecionado}
             onSelecionar={setSelecionado}
           />
-          {/* Detalhe do município entra aqui */}
+          {detalhe ? (
+            <DetalheMunicipio municipio={detalhe} />
+          ) : (
+            <p className="detalhe-vazio">
+              Clique em um município no mapa ou no ranking para ver os detalhes.
+            </p>
+          )}
         </aside>
       </div>
     </div>

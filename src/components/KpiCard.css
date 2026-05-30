@@ -1,0 +1,41 @@
+.kpi {
+  background: var(--cinza-claro);
+  border-radius: 10px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--teal);
+}
+
+.kpi-valor {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1.1;
+}
+
+.kpi-sufixo {
+  font-size: 14px;
+  font-weight: 600;
+  margin-left: 3px;
+  opacity: 0.7;
+}
+
+.kpi-rotulo {
+  font-size: 12px;
+  margin-top: 4px;
+  color: var(--texto);
+  opacity: 0.75;
+}
+
+.kpi--bom {
+  border-left-color: var(--verde);
+}
+.kpi--bom .kpi-valor {
+  color: var(--verde);
+}
+
+.kpi--ruim {
+  border-left-color: var(--vermelho);
+}
+.kpi--ruim .kpi-valor {
+  color: var(--vermelho);
+}

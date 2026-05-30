@@ -44,3 +44,12 @@
   text-align: center;
   color: var(--teal);
 }
+
+.detalhe-vazio {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--cinza-claro);
+  font-size: 14px;
+  color: var(--texto);
+  opacity: 0.7;
+}
