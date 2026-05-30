@@ -7,7 +7,8 @@ import MunicipiosPage from "./pages/MunicipiosPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
 import UsuariosPage from "./pages/UsuariosPage";
 import FormulariosPage from "./pages/FormulariosPage";
-import PlaceholderPage from "./pages/PlaceholderPage";
+import RelatoriosPage from "./pages/RelatoriosPage";
+import SobrePage from "./pages/SobrePage";
 import LoginPage from "./pages/LoginPage";
 import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
 import RedefinirSenhaPage from "./pages/RedefinirSenhaPage";
@@ -47,10 +48,7 @@ export default function App() {
           path="/relatorios"
           element={
             <RequireAuth>
-              <PlaceholderPage
-                titulo="Relatórios"
-                descricao="Relatórios consolidados de investimento e conformidade"
-              />
+              <RelatoriosPage />
             </RequireAuth>
           }
         />
@@ -64,15 +62,7 @@ export default function App() {
         />
 
         {/* pública */}
-        <Route
-          path="/sobre"
-          element={
-            <PlaceholderPage
-              titulo="Sobre o YBY"
-              descricao="Inteligência de priorização para investimento ambiental (JREDD+)"
-            />
-          }
-        />
+        <Route path="/sobre" element={<SobrePage />} />
 
         {/* exclusivas do administrador */}
         <Route
