@@ -1,0 +1,145 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 550;
+  background: rgba(8, 30, 50, 0.45);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  animation: modal-fade 0.15s ease;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--branco);
+  border-radius: 14px;
+  box-shadow: var(--sombra-lg);
+  animation: modal-sobe 0.18s ease;
+  overflow: hidden;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.modal-head h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-head button {
+  border: none;
+  background: transparent;
+  color: var(--texto);
+  opacity: 0.6;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.modal-head button:hover {
+  opacity: 1;
+}
+
+.modal-corpo {
+  padding: 22px;
+}
+
+/* campos de formulário dentro do modal */
+.modal-corpo .campo {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.modal-corpo .campo span {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--azul-escuro);
+  margin-bottom: 6px;
+}
+
+.modal-corpo .campo input,
+.modal-corpo .campo select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--branco);
+}
+
+.modal-corpo .campo input:focus,
+.modal-corpo .campo select:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(10, 77, 156, 0.15);
+}
+
+.modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.modal-btn--cancelar {
+  background: var(--branco);
+  border-color: var(--borda);
+  color: var(--texto);
+}
+
+.modal-btn--cancelar:hover {
+  background: var(--cinza-claro);
+}
+
+.modal-btn--salvar {
+  background: var(--azul);
+  color: #fff;
+}
+
+.modal-btn--salvar:hover {
+  opacity: 0.92;
+}
+
+.modal-erro {
+  background: var(--vermelho-bg);
+  color: #7a1414;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  margin-bottom: 14px;
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-sobe {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal-card {
+    animation: none;
+  }
+}

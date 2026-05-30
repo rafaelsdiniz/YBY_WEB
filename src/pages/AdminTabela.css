@@ -159,6 +159,12 @@
   background: #f5f8fc;
 }
 
+.admin-acoes-col {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
 .admin-vazio {
   text-align: center !important;
   padding: 28px !important;
