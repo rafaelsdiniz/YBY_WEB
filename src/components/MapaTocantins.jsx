@@ -28,6 +28,7 @@ export default function MapaTocantins({
   cabecalho = true,
   tooltipDetalhe = true,
   progresso = null,
+  corUnica = null,
 }) {
   const wrapRef = useRef(null);
   const [hover, setHover] = useState(null);
@@ -122,7 +123,7 @@ export default function MapaTocantins({
         <g>
           {formas.map((f) => {
             const dado = porId.get(f.id);
-            const chave = dado && pintado(f) ? dado.semaforo : "SEM_DADO";
+            const chave = corUnica || (dado && pintado(f) ? dado.semaforo : "SEM_DADO");
             return (
               <path
                 key={f.id}
@@ -141,7 +142,7 @@ export default function MapaTocantins({
         <g className="mapa-marcadores">
           {marcadores.map((f) => {
             const dado = porId.get(f.id);
-            if (!dado || dado.semaforo !== "VERMELHO" || !pintado(f)) return null;
+            if (!dado || dado.semaforo !== "VERMELHO" || !pintado(f) || corUnica) return null;
             return (
               <g key={f.id} transform={`translate(${f.centro[0]} ${f.centro[1]})`}>
                 <circle className="marcador-pulso" r="6" />
@@ -156,7 +157,7 @@ export default function MapaTocantins({
           <path
             d={formaDestaque.d}
             className="mun-destaque"
-            fill={dadoDestaque ? CORES[dadoDestaque.semaforo] : CORES.SEM_DADO}
+            fill={corUnica ? CORES[corUnica] : (dadoDestaque ? CORES[dadoDestaque.semaforo] : CORES.SEM_DADO)}
             filter="url(#mapa-glow)"
           />
         )}

@@ -192,7 +192,7 @@ export default function LandingPage() {
             <h2>Inteligência para o investimento ambiental</h2>
             <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead">
-              <strong>Yby</strong> significa “terra” em tupi. É a plataforma de
+              <strong>Yby</strong> significa "terra" em tupi. É a plataforma de
               priorização do programa JREDD+ que reúne desmatamento,
               conformidade, gasto público e risco em um índice único — para que o
               investimento ambiental do Tocantins seja aplicado onde gera mais
@@ -217,6 +217,25 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* MAPA INTERATIVO (destaque) */}
+      <section id="mapa" className="secao secao--cinza">
+        <div className="secao-inner mapa-destaque">
+          <Reveal as="div" className="mapa-destaque-mapa" direcao="left">
+            <MapaDestaque />
+          </Reveal>
+          <Reveal className="mapa-destaque-texto" direcao="right">
+            <span className="secao-tag">Mapa interativo</span>
+            <h2>Conheça o Tocantins, região por região</h2>
+            <span className="secao-linha" aria-hidden="true" />
+            <p className="secao-lead">
+              São 139 municípios em um só território. Passe o mouse pelo mapa e
+              explore o estado — a mesma base que, dentro do sistema, se
+              transforma em prioridade de investimento ambiental.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       {/* NATUREZA / POR QUE ISSO IMPORTA */}
       <section id="natureza" className="secao secao--cinza">
         <div className="secao-inner">
@@ -233,25 +252,6 @@ export default function LandingPage() {
           </Reveal>
           <Reveal>
             <Carrossel slides={NATUREZA} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* MAPA INTERATIVO (destaque) */}
-      <section id="mapa" className="secao secao--cinza">
-        <div className="secao-inner mapa-destaque">
-          <Reveal as="div" className="mapa-destaque-mapa" direcao="left">
-            <MapaDestaque />
-          </Reveal>
-          <Reveal className="mapa-destaque-texto" direcao="right">
-            <span className="secao-tag">Mapa interativo</span>
-            <h2>Conheça o Tocantins, região por região</h2>
-            <span className="secao-linha" aria-hidden="true" />
-            <p className="secao-lead">
-              São 139 municípios em um só território. Passe o mouse pelo mapa e
-              explore o estado — a mesma base que, dentro do sistema, se
-              transforma em prioridade de investimento ambiental.
-            </p>
           </Reveal>
         </div>
       </section>

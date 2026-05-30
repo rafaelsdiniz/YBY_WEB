@@ -4,8 +4,8 @@ import "./LandingNavbar.css";
 
 const SECOES = [
   { href: "#sobre", rotulo: "Sobre" },
-  { href: "#natureza", rotulo: "Natureza" },
   { href: "#mapa", rotulo: "Mapa" },
+  { href: "#natureza", rotulo: "Natureza" },
   { href: "#impactos", rotulo: "Impactos" },
   { href: "#como-funciona", rotulo: "Como funciona" },
 ];

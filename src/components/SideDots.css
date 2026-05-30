@@ -14,19 +14,19 @@
   width: 11px;
   height: 11px;
   border-radius: 50%;
-  background: rgba(20, 83, 45, 0.25);
+  background: rgba(27, 74, 35, 0.25);
   border: 1.5px solid transparent;
   transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
 }
 
 .side-dots a:hover {
-  background: var(--azul);
+  background: var(--azul-claro);
 }
 
 .side-dots a.ativo {
-  background: var(--azul);
+  background: var(--azul-claro);
   transform: scale(1.25);
-  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.18);
+  box-shadow: 0 0 0 4px rgba(129, 201, 49, 0.28);
 }
 
 /* rótulo no hover */

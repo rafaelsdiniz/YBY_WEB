@@ -1,13 +1,13 @@
 :root {
   /* Identidade da LOGO: verdes. Os tokens --azul* guardam o verde da marca
      (nome mantido por compatibilidade — o sistema inteiro referencia eles). */
-  --azul: #2e7d32; /* marca principal: header, botões, realces (verde da logo) */
-  --azul-escuro: #14532d; /* verde profundo: títulos */
-  --azul-claro: #43a047; /* verde claro: hover / links */
-  --amarelo: #f4b400; /* destaque */
+  --azul: #1B4A23; /* marca principal: header, botões, realces (verde escuro da logo) */
+  --azul-escuro: #13321a; /* verde profundo: títulos, fundos escuros */
+  --azul-claro: #81C931; /* verde lima: hover, destaques, accents */
+  --amarelo: #f4b400; /* destaque quente */
   --amarelo-bg: #fff3cf;
-  --verde: #2e8b3e; /* natureza + semáforo verde */
-  --verde-bg: #d9efdc;
+  --verde: #1B4A23; /* natureza + semáforo verde */
+  --verde-bg: #eaf4d5; /* fundo lima suave */
   --vermelho: #c62828; /* semáforo vermelho */
   --vermelho-bg: #fad4d4;
   --sem-dado: #d3ddd6;

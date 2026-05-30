@@ -10,8 +10,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* sobe sob a navbar transparente */
-  margin-top: -70px;
+  /* sobe sob a navbar transparente (altura da navbar = 80px) */
+  margin-top: -80px;
   padding: 100px 24px 70px;
   overflow: hidden;
 }
@@ -34,8 +34,6 @@
   width: 100%;
   margin: 0 auto;
   color: #fff;
-  /* sombra suave dá legibilidade sem filtro sobre o vídeo */
-  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hero-titulo {
@@ -50,14 +48,13 @@
   font-size: clamp(80px, 14vw, 190px);
   font-weight: 800;
   letter-spacing: -6px;
-  /* brilho que cruza o texto */
-  background: linear-gradient(100deg, #ffffff 25%, #c9f0cf 50%, #ffffff 75%);
+  /* brilho lima que cruza o texto — sem sombra para look minimalista */
+  background: linear-gradient(100deg, #ffffff 20%, #d6f87a 48%, #ffffff 78%);
   background-size: 230% 100%;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
-  filter: drop-shadow(0 3px 18px rgba(0, 0, 0, 0.45));
   animation: hero-yby-shine 6s ease-in-out infinite;
 }
 
@@ -152,12 +149,14 @@
   font-weight: 600;
   font-size: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .hero-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.36);
+  box-shadow: 0 16px 38px rgba(129, 201, 49, 0.35);
+  background: var(--azul-claro);
+  color: var(--azul-escuro);
 }
 
 .hero-btn svg {
@@ -174,15 +173,10 @@
   scroll-margin-top: 80px;
 }
 
-/* a primeira seção sobe por cima do hero (efeito cortina) */
+/* primeira seção logo após o hero — sem borda ou sobreposição */
 .hero + .secao {
   position: relative;
   z-index: 3;
-  margin-top: -34px;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-  background: var(--branco);
-  box-shadow: 0 -20px 50px rgba(20, 83, 45, 0.12);
 }
 
 .secao--cinza {
@@ -196,7 +190,7 @@
 /* fundos com foto (ponte e rio) + overlay para legibilidade */
 #impactos {
   background-image:
-    linear-gradient(150deg, rgba(20, 83, 45, 0.58), rgba(46, 125, 50, 0.62)),
+    linear-gradient(150deg, rgba(19, 50, 26, 0.65), rgba(27, 74, 35, 0.72)),
     url("/ponte.webp");
   background-size: cover;
   background-position: center;
@@ -205,7 +199,7 @@
 
 #como-funciona {
   background-image:
-    linear-gradient(150deg, rgba(20, 83, 45, 0.6), rgba(20, 83, 45, 0.68)),
+    linear-gradient(150deg, rgba(19, 50, 26, 0.68), rgba(27, 74, 35, 0.75)),
     url("/rio%20tocantins.webp");
   background-size: cover;
   background-position: center;
@@ -334,7 +328,7 @@
   width: 52px;
   height: 52px;
   border-radius: 13px;
-  background: #e6f2e7;
+  background: rgba(129, 201, 49, 0.16);
   color: var(--azul);
   margin-bottom: 16px;
 }
@@ -445,7 +439,7 @@
 
 .mudanca--depois {
   background: var(--verde-bg);
-  border-color: #bfe0c6;
+  border-color: #b2df72;
 }
 .mudanca--depois h4 {
   color: var(--verde);
@@ -507,6 +501,23 @@
 /* mapa encostado no fundo da seção (sem o quadrado branco) */
 .mapa-destaque-mapa .mapa {
   background: transparent;
+}
+
+/* efeito 3D: extrusão por drop-shadow em cascata sobre a silhueta do SVG */
+.mapa-3d {
+  filter:
+    drop-shadow(3px 3px 0 rgba(27, 74, 35, 0.40))
+    drop-shadow(6px 6px 0 rgba(27, 74, 35, 0.25))
+    drop-shadow(10px 10px 0 rgba(27, 74, 35, 0.12))
+    drop-shadow(0 32px 44px rgba(27, 74, 35, 0.45));
+  transition: filter 0.5s ease;
+}
+
+.mapa-3d:hover {
+  filter:
+    drop-shadow(2px 2px 0 rgba(27, 74, 35, 0.35))
+    drop-shadow(5px 5px 0 rgba(27, 74, 35, 0.18))
+    drop-shadow(0 44px 60px rgba(129, 201, 49, 0.30));
 }
 
 @media (max-width: 900px) {

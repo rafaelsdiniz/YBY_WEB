@@ -4,8 +4,8 @@ import "./SideDots.css";
 const SECOES = [
   { id: "topo", rotulo: "Início" },
   { id: "sobre", rotulo: "Sobre" },
-  { id: "natureza", rotulo: "Natureza" },
   { id: "mapa", rotulo: "Mapa" },
+  { id: "natureza", rotulo: "Natureza" },
   { id: "impactos", rotulo: "Impactos" },
   { id: "mudancas", rotulo: "Mudanças" },
   { id: "como-funciona", rotulo: "Como funciona" },

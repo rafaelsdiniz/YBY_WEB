@@ -46,7 +46,7 @@ export default function MapaDestaque() {
   }, []);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className="mapa-3d">
       <MapaTocantins
         municipios={municipios}
         selecionado={selecionado}
@@ -54,6 +54,7 @@ export default function MapaDestaque() {
         cabecalho={false}
         tooltipDetalhe={false}
         progresso={progresso}
+        corUnica="VERDE"
       />
     </div>
   );

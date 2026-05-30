@@ -101,7 +101,7 @@
 }
 
 .rodape-col a:hover {
-  color: var(--amarelo);
+  color: var(--azul-claro);
 }
 
 .rodape-col p {
@@ -134,8 +134,8 @@
   height: 4px;
   background: linear-gradient(
     90deg,
-    var(--amarelo) 0 33.33%,
-    var(--verde) 33.33% 66.66%,
+    var(--azul-claro) 0 33.33%,
+    var(--azul) 33.33% 66.66%,
     var(--azul-escuro) 66.66% 100%
   );
 }
