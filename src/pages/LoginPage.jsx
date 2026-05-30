@@ -78,9 +78,7 @@ export default function LoginPage() {
           </label>
 
           <div className="login-extra">
-            <a href="#recuperar" onClick={(e) => e.preventDefault()}>
-              Esqueci minha senha
-            </a>
+            <Link to="/esqueci-senha">Esqueci minha senha</Link>
           </div>
 
           <button type="submit" className="login-btn" disabled={carregando}>

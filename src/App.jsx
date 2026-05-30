@@ -5,7 +5,10 @@ import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import LoginPage from "./pages/LoginPage";
+import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
+import RedefinirSenhaPage from "./pages/RedefinirSenhaPage";
 import LandingPage from "./pages/LandingPage";
+import NaoEncontradaPage from "./pages/NaoEncontradaPage";
 import "./App.css";
 
 export default function App() {
@@ -13,8 +16,10 @@ export default function App() {
     <Routes>
       {/* site institucional na raiz */}
       <Route index element={<LandingPage />} />
-      {/* login: tela cheia, sem navbar; ao entrar vai para /painel */}
+      {/* autenticação: tela cheia, sem navbar */}
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/esqueci-senha" element={<EsqueciSenhaPage />} />
+      <Route path="/redefinir-senha" element={<RedefinirSenhaPage />} />
 
       <Route element={<Layout />}>
         {/* rotas internas protegidas */}
@@ -56,6 +61,9 @@ export default function App() {
           }
         />
       </Route>
+
+      {/* 404 */}
+      <Route path="*" element={<NaoEncontradaPage />} />
     </Routes>
   );
 }

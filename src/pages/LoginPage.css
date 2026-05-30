@@ -170,6 +170,13 @@
   cursor: not-allowed;
 }
 
+/* botão estilizado como link (telas de sucesso) */
+.login-btn--link {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
 .login-explorar {
   display: block;
   text-align: center;
