@@ -34,18 +34,6 @@
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 }
 
-.hero-tag {
-  display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 300;
-  letter-spacing: 0.6px;
-  margin-bottom: 26px;
-  color: #fff;
-}
-
 .hero h1 {
   color: #fff;
   font-size: clamp(36px, 5.4vw, 60px);
@@ -70,31 +58,38 @@
   flex-wrap: wrap;
 }
 
-/* botões */
-.btn-primario {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: 10px;
-  background: var(--amarelo);
-  color: #3a2e00;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 16px;
-  transition: transform 0.12s ease, box-shadow 0.12s ease;
+/* indicador de scroll */
+.hero-scroll {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  color: #fff;
+  opacity: 0.85;
+  animation: hero-bounce 1.8s ease-in-out infinite;
 }
 
-.btn-primario:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.3);
+@keyframes hero-bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 9px);
+  }
 }
 
-.btn-primario.grande {
-  padding: 15px 30px;
-  font-size: 17px;
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll {
+    animation: none;
+  }
 }
 
+/* botão */
 .btn-secundario {
   display: inline-flex;
   align-items: center;
@@ -355,32 +350,6 @@
   line-height: 1.6;
   color: var(--texto);
   opacity: 0.85;
-}
-
-/* CTA final */
-.cta {
-  padding: 80px 24px;
-  background: var(--branco);
-  text-align: center;
-}
-
-.cta-inner {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.cta h2 {
-  font-size: clamp(28px, 3.4vw, 38px);
-  font-weight: 300;
-  letter-spacing: -0.8px;
-}
-
-.cta p {
-  margin: 14px 0 28px;
-  font-size: 17px;
-  font-weight: 300;
-  color: var(--texto);
-  opacity: 0.8;
 }
 
 /* responsivo */

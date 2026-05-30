@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Map,
   Gauge,
@@ -7,12 +6,13 @@ import {
   Leaf,
   Coins,
   Target,
-  ArrowRight,
   Database,
   BarChart3,
+  ChevronDown,
 } from "lucide-react";
 import LandingNavbar from "../components/LandingNavbar";
 import Footer from "../components/Footer";
+import Reveal from "../components/Reveal";
 import "./LandingPage.css";
 
 const RECURSOS = [
@@ -78,7 +78,6 @@ export default function LandingPage() {
           aria-hidden="true"
         />
         <div className="hero-conteudo">
-          <span className="hero-tag">Programa JREDD+ · Estado do Tocantins</span>
           <h1>Onde investir para proteger o Tocantins</h1>
           <p>
             O YBY transforma dados ambientais, fiscais e de risco em decisões
@@ -86,39 +85,43 @@ export default function LandingPage() {
             foco em resultado.
           </p>
           <div className="hero-acoes">
-            <Link to="/login" className="btn-primario">
-              Entrar no sistema <ArrowRight size={18} />
-            </Link>
             <a href="#sobre" className="btn-secundario">
               Conhecer o YBY
             </a>
           </div>
         </div>
+
+        <a href="#sobre" className="hero-scroll" aria-label="Rolar para baixo">
+          <ChevronDown size={26} />
+        </a>
       </header>
 
       {/* SOBRE */}
       <section id="sobre" className="secao">
         <div className="secao-inner">
-          <span className="secao-tag">Sobre o YBY</span>
-          <h2>Inteligência para o investimento ambiental</h2>
-          <p className="secao-lead">
-            <strong>Yby</strong> significa “terra” em tupi. É a plataforma de
-            priorização do programa JREDD+ que reúne desmatamento, conformidade,
-            gasto público e risco em um índice único — para que o investimento
-            ambiental do Tocantins seja aplicado onde gera mais impacto.
-          </p>
+          <Reveal>
+            <span className="secao-tag">Sobre o YBY</span>
+            <h2>Inteligência para o investimento ambiental</h2>
+            <p className="secao-lead">
+              <strong>Yby</strong> significa “terra” em tupi. É a plataforma de
+              priorização do programa JREDD+ que reúne desmatamento,
+              conformidade, gasto público e risco em um índice único — para que o
+              investimento ambiental do Tocantins seja aplicado onde gera mais
+              impacto.
+            </p>
+          </Reveal>
 
           <div className="recursos">
-            {RECURSOS.map((r) => {
+            {RECURSOS.map((r, i) => {
               const Icone = r.icone;
               return (
-                <article key={r.titulo} className="recurso">
+                <Reveal as="article" className="recurso" key={r.titulo} delay={i * 110}>
                   <span className="recurso-icone">
                     <Icone size={24} strokeWidth={2} />
                   </span>
                   <h3>{r.titulo}</h3>
                   <p>{r.texto}</p>
-                </article>
+                </Reveal>
               );
             })}
           </div>
@@ -128,22 +131,24 @@ export default function LandingPage() {
       {/* IMPACTOS */}
       <section id="impactos" className="secao secao--azul">
         <div className="secao-inner">
-          <span className="secao-tag claro">Impactos</span>
-          <h2>Resultado que se mede</h2>
-          <p className="secao-lead claro">
-            Mais do que um mapa: uma régua comum para o estado decidir, priorizar
-            e cobrar resultado.
-          </p>
+          <Reveal>
+            <span className="secao-tag claro">Impactos</span>
+            <h2>Resultado que se mede</h2>
+            <p className="secao-lead claro">
+              Mais do que um mapa: uma régua comum para o estado decidir,
+              priorizar e cobrar resultado.
+            </p>
+          </Reveal>
 
           <div className="impactos">
-            {IMPACTOS.map((i) => {
+            {IMPACTOS.map((i, idx) => {
               const Icone = i.icone;
               return (
-                <div key={i.rotulo} className="impacto">
+                <Reveal as="div" className="impacto" key={i.rotulo} delay={idx * 110}>
                   <Icone size={26} strokeWidth={2} className="impacto-icone" />
                   <strong className="impacto-valor">{i.valor}</strong>
                   <span className="impacto-rotulo">{i.rotulo}</span>
-                </div>
+                </Reveal>
               );
             })}
           </div>
@@ -154,11 +159,13 @@ export default function LandingPage() {
       {/* MUDANÇAS */}
       <section id="mudancas" className="secao">
         <div className="secao-inner">
-          <span className="secao-tag">O que muda</span>
-          <h2>Da planilha à decisão</h2>
+          <Reveal>
+            <span className="secao-tag">O que muda</span>
+            <h2>Da planilha à decisão</h2>
+          </Reveal>
 
           <div className="mudancas">
-            <div className="mudanca mudanca--antes">
+            <Reveal as="div" className="mudanca mudanca--antes">
               <h4>Antes</h4>
               <ul>
                 <li>Dados espalhados em planilhas e relatórios soltos</li>
@@ -166,8 +173,8 @@ export default function LandingPage() {
                 <li>Desperdício difícil de enxergar</li>
                 <li>Decisões lentas e pouco transparentes</li>
               </ul>
-            </div>
-            <div className="mudanca mudanca--depois">
+            </Reveal>
+            <Reveal as="div" className="mudanca mudanca--depois" delay={120}>
               <h4>Com o YBY</h4>
               <ul>
                 <li>Visão única do estado, atualizada e comparável</li>
@@ -175,7 +182,7 @@ export default function LandingPage() {
                 <li>Alertas de desperdício para realocar recursos</li>
                 <li>Decisão em minutos, com trilha clara de evidências</li>
               </ul>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -183,34 +190,25 @@ export default function LandingPage() {
       {/* COMO FUNCIONA */}
       <section id="como-funciona" className="secao secao--cinza">
         <div className="secao-inner">
-          <span className="secao-tag">Como funciona</span>
-          <h2>Três passos</h2>
+          <Reveal>
+            <span className="secao-tag">Como funciona</span>
+            <h2>Três passos</h2>
+          </Reveal>
 
           <div className="passos">
-            {PASSOS.map((p) => {
+            {PASSOS.map((p, i) => {
               const Icone = p.icone;
               return (
-                <article key={p.titulo} className="passo">
+                <Reveal as="article" className="passo" key={p.titulo} delay={i * 110}>
                   <span className="passo-icone">
                     <Icone size={22} strokeWidth={2} />
                   </span>
                   <h3>{p.titulo}</h3>
                   <p>{p.texto}</p>
-                </article>
+                </Reveal>
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* CTA FINAL */}
-      <section className="cta">
-        <div className="cta-inner">
-          <h2>Pronto para investir melhor?</h2>
-          <p>Acesse o painel e veja o Tocantins por prioridade de investimento.</p>
-          <Link to="/login" className="btn-primario grande">
-            Entrar no sistema <ArrowRight size={18} />
-          </Link>
         </div>
       </section>
 
