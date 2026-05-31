@@ -4,7 +4,7 @@ import {
   LayoutDashboard, FileText, Users, LogOut, LogIn,
   TrendingUp, BrainCircuit, Cloud, User,
   Gauge, Coins, Building2, FolderKanban, Sprout,
-  Map as MapIcon, MapPinned,
+  Map as MapIcon,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { MenuToggleIcon } from "./MenuToggleIcon";
@@ -12,7 +12,6 @@ import "./Sidebar.css";
 
 const LINKS = [
   { to: "/painel",      rotulo: "Painel",       icone: LayoutDashboard },
-  { to: "/municipios",  rotulo: "Municípios",    icone: MapPinned },
   { to: "/indicadores", rotulo: "Indicadores",   icone: TrendingUp },
   { to: "/inteligencia",rotulo: "Inteligência",  icone: BrainCircuit },
   { to: "/relatorios",  rotulo: "Relatórios",    icone: FileText },

@@ -10,8 +10,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  /* sobe sob a navbar transparente (altura da navbar = 80px) */
-  margin-top: -80px;
+  /* sobe sob a navbar transparente (altura da navbar = 96px) */
+  margin-top: -96px;
   padding: 100px 24px 70px;
   overflow: hidden;
 }
