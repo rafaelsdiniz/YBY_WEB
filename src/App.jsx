@@ -7,8 +7,6 @@ import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
 import MunicipioDetalhePage from "./pages/MunicipioDetalhePage";
 import IndicadoresPage from "./pages/IndicadoresPage";
-import DesmatamentoPage from "./pages/DesmatamentoPage";
-import AlertasPage from "./pages/AlertasPage";
 import InteligenciaPage from "./pages/InteligenciaPage";
 import CarbonoPage from "./pages/CarbonoPage";
 import CarbonoDashboardPage from "./pages/CarbonoDashboardPage";
@@ -71,22 +69,6 @@ export default function App() {
           element={
             <RequireAuth>
               <IndicadoresPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/desmatamento"
-          element={
-            <RequireAuth>
-              <DesmatamentoPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/alertas"
-          element={
-            <RequireAuth>
-              <AlertasPage />
             </RequireAuth>
           }
         />
