@@ -16,7 +16,7 @@ const real = (v) =>
 
 function resumo(m) {
   const p = m.pendencias.length ? m.pendencias.join("; ") : "nenhuma";
-  return `${m.nome}: semáforo ${m.semaforo} (${ROTULO[m.semaforo]}), prioridade ${m.prioridade}/100, risco ${m.notaRisco}/100, retorno de ${m.retornoPorReal} por R$ investido, conformidade ${m.conformidade}%. Pendências: ${p}.`;
+  return `${m.nome}: semáforo ${m.semaforo} (${ROTULO[m.semaforo]}), aptidão JREDD+ ${m.prioridade}/100, risco ${m.notaRisco}/100, retorno de ${m.retornoPorReal} por R$ investido, conformidade ${m.conformidade}%. Pendências: ${p}.`;
 }
 
 // Motor de respostas baseado nos dados (heurística por palavras-chave).
@@ -29,14 +29,14 @@ function responder(msg, municipios) {
   if (citado) return resumo(citado);
 
   if (/(ola|olá|oi|bom dia|boa tarde|ajuda|o que voce|pode fazer)/.test(q)) {
-    return "Olá! Sou o assistente do YBY. Posso responder sobre prioridade de investimento, risco, desperdício e conformidade dos municípios do Tocantins. Ex.: \"onde investir primeiro?\", \"quais estão em risco?\", \"tem desperdício?\" ou cite um município.";
+    return "Olá! Sou o assistente do YBY. Posso responder sobre aptidão JREDD+ para investimento em carbono, risco, desperdício e conformidade dos municípios do Tocantins. Ex.: \"onde investir recursos de carbono?\", \"quais estão em risco?\", \"tem desperdício?\" ou cite um município.";
   }
 
   if (/(onde investir|prioridade|primeiro|urgente|mais urgente|investir)/.test(q)) {
     const top = [...municipios].sort((a, b) => b.prioridade - a.prioridade).slice(0, 3);
     return (
-      "Por prioridade de investimento, os mais urgentes são:\n" +
-      top.map((m, i) => `${i + 1}. ${m.nome} — prioridade ${m.prioridade}/100 (${ROTULO[m.semaforo]})`).join("\n")
+      "Por aptidão JREDD+, os municípios com maior potencial para receber recursos de carbono são:\n" +
+      top.map((m, i) => `${i + 1}. ${m.nome} — aptidão ${m.prioridade}/100 (${ROTULO[m.semaforo]})`).join("\n")
     );
   }
 
@@ -82,7 +82,7 @@ function responder(msg, municipios) {
     return `Maior redução de desmatamento: ${melhor.nome} (${melhor.reducaoDesmatamento}%). Pergunte por um município para ver a série completa no painel.`;
   }
 
-  return "Posso ajudar com prioridade de investimento, risco, desperdício, conformidade e desmatamento dos municípios. Tente: \"onde investir primeiro?\", \"quais estão em risco?\" ou cite um município (ex.: Palmas).";
+  return "Posso ajudar com aptidão JREDD+ para investimento em carbono, risco ambiental, desperdício de recursos, conformidade (CAR) e desmatamento dos municípios do Tocantins. Tente: \"onde investir recursos de carbono?\", \"quais estão em risco?\" ou cite um município (ex.: Palmas).";
 }
 
 export async function perguntar(mensagem, municipios = []) {

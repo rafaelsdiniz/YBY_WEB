@@ -20,7 +20,7 @@ export default function GraficoPrioridade({ municipios }) {
 
   return (
     <div>
-      <h2 className="grafico-titulo">Top 12 por prioridade</h2>
+      <h2 className="grafico-titulo">Top 12 por Aptidão JREDD+</h2>
       <ResponsiveContainer width="100%" height={Math.max(200, dados.length * 44)}>
         <BarChart
           layout="vertical"
@@ -37,7 +37,7 @@ export default function GraficoPrioridade({ municipios }) {
             stroke="#9aa5ad"
           />
           <Tooltip
-            formatter={(v) => [v, "Prioridade"]}
+            formatter={(v) => [v, "Aptidão"]}
             cursor={{ fill: "rgba(10,77,156,0.05)" }}
           />
           <Bar dataKey="prioridade" radius={[0, 6, 6, 0]} barSize={18}>

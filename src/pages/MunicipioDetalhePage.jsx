@@ -57,7 +57,7 @@ export default function MunicipioDetalhePage() {
       <header className="page-header admin-header">
         <div>
           <h1>{municipio.nome}</h1>
-          <p>Código IBGE {municipio.codigoIbge} · prioridade {numero(municipio.prioridade)}</p>
+          <p>Código IBGE {municipio.codigoIbge} · Aptidão JREDD+ {numero(municipio.prioridade)}/100</p>
         </div>
         <button type="button" className="painel-acao secundario" onClick={() => navigate(-1)}>
           <ArrowLeft size={16} /> Voltar

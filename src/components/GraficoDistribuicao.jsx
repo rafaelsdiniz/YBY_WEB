@@ -31,7 +31,7 @@ export default function GraficoDistribuicao({ municipios }) {
 
   return (
     <div>
-      <h2 className="grafico-titulo">Distribuição por prioridade</h2>
+      <h2 className="grafico-titulo">Distribuição por Aptidão JREDD+</h2>
       <ResponsiveContainer width="100%" height={200}>
         <BarChart data={dados} margin={{ top: 8, right: 8, bottom: 4, left: -18 }}>
           <CartesianGrid vertical={false} stroke="#eef2f7" />

@@ -118,7 +118,7 @@ export default function MapaTocantins({
       {cabecalho && (
         <div className="mapa-head">
           <div>
-            <h2>Mapa de prioridade</h2>
+            <h2>Mapa de Aptidão JREDD+</h2>
             <span className="mapa-sub">Tocantins · clique em um município</span>
           </div>
 
@@ -146,7 +146,7 @@ export default function MapaTocantins({
               <div className="mapa-escala">
                 <span>menor</span>
                 <i className="mapa-escala-barra" />
-                <span>maior prioridade</span>
+                <span>maior aptidão</span>
               </div>
             ) : (
               <ul className="mapa-legenda">
@@ -184,7 +184,7 @@ export default function MapaTocantins({
         className={progresso == null ? "mapa" : "mapa mapa--pintar"}
         viewBox={`0 0 ${LARGURA} ${ALTURA}`}
         role="img"
-        aria-label="Mapa do Tocantins por prioridade de investimento"
+        aria-label="Mapa do Tocantins por aptidão para investimento em carbono"
       >
         <defs>
             {Object.entries({
@@ -263,7 +263,7 @@ export default function MapaTocantins({
             (hover.dado ? (
               <span className="mapa-tip-info">
                 <SemaforoBadge semaforo={hover.dado.semaforo} compact />
-                Prioridade {hover.dado.prioridade ?? "—"}
+                Aptidão JREDD+ {hover.dado.prioridade ?? "—"}
               </span>
             ) : (
               <span className="mapa-tip-sem">Sem dados</span>

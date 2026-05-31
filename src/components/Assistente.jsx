@@ -5,15 +5,15 @@ import { perguntar } from "../services/assistente";
 import "./Assistente.css";
 
 const SUGESTOES = [
-  "Onde investir primeiro?",
-  "Quais estão em risco?",
-  "Tem desperdício?",
+  "Onde investir recursos de carbono?",
+  "Quais têm maior aptidão JREDD+?",
+  "Quais estão em risco ambiental?",
 ];
 
 const SAUDACAO = {
   de: "ia",
   texto:
-    "Olá! Sou o assistente do YBY. Pergunte sobre prioridade, risco, desperdício ou conformidade dos municípios — ou cite um município pelo nome.",
+    "Olá! Sou o assistente do YBY. Pergunte sobre aptidão JREDD+ para investimento em carbono, risco, desperdício ou conformidade dos municípios do Tocantins — ou cite um município pelo nome.",
 };
 
 export default function Assistente() {

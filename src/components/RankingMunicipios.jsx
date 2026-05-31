@@ -15,7 +15,7 @@ export default function RankingMunicipios({ municipios, selecionado, onSeleciona
 
   return (
     <div className="ranking">
-      <h2 className="ranking-titulo">Ranking de prioridade</h2>
+      <h2 className="ranking-titulo">Ranking de Aptidão JREDD+</h2>
       <ol className="ranking-lista">
         {ordenado.map((m, i) => {
           const ativo = m.id === selecionado;

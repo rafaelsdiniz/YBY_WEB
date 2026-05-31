@@ -23,7 +23,7 @@ const norm = (s) =>
 
 const COLUNAS = [
   { chave: "nome", rotulo: "Município", num: false },
-  { chave: "prioridade", rotulo: "Prioridade", num: true },
+  { chave: "prioridade", rotulo: "Aptidão", num: true },
   { chave: "notaRisco", rotulo: "Risco", num: true },
   { chave: "retornoPorReal", rotulo: "Retorno/R$", num: true },
   { chave: "conformidade", rotulo: "Conformidade", num: true },
@@ -271,7 +271,7 @@ export default function MunicipiosPage() {
               <input type="number" step="0.01" value={form.areaHa} onChange={(e) => setForm({ ...form, areaHa: e.target.value })} />
             </label>
             <label className="campo">
-              <span>Score de prioridade (0–100)</span>
+              <span>Aptidão JREDD+ (0–100)</span>
               <input type="number" step="0.01" min="0" max="100" value={form.scorePrioridade} onChange={(e) => setForm({ ...form, scorePrioridade: e.target.value })} />
             </label>
             <label className="campo">

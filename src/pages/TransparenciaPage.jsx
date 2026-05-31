@@ -39,7 +39,7 @@ export default function TransparenciaPage() {
               </div>
             </div>
 
-            <h3 style={{ marginTop: 18 }}>Pesos do score de prioridade</h3>
+            <h3 style={{ marginTop: 18 }}>Pesos do score de aptidão JREDD+</h3>
             <ul>
               {Object.entries(meta.pesosScore || {}).map(([k, v]) => (
                 <li key={k}><strong>{k}</strong>: {v}</li>

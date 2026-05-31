@@ -43,7 +43,7 @@ export default function RelatoriosPage() {
     const cab = [
       "Município",
       "Semáforo",
-      "Prioridade",
+      "Aptidão JREDD+",
       "Risco",
       "Retorno por R$",
       "Conformidade (%)",
@@ -111,7 +111,7 @@ export default function RelatoriosPage() {
       <ResumoEstado municipios={municipios} />
 
       <section className="card">
-        <h2 className="grafico-titulo">Municípios por prioridade</h2>
+        <h2 className="grafico-titulo">Municípios por Aptidão JREDD+</h2>
         {carregando ? (
           <p className="estado">Carregando relatório...</p>
         ) : (
@@ -121,7 +121,7 @@ export default function RelatoriosPage() {
                 <tr>
                   <th>Município</th>
                   <th>Situação</th>
-                  <th className="dir">Prioridade</th>
+                  <th className="dir">Aptidão</th>
                   <th className="dir">Risco</th>
                   <th className="dir">Retorno/R$</th>
                   <th className="dir">Conformidade</th>
