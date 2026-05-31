@@ -11,6 +11,9 @@ import {
   desperdicioInteligente,
   equidade,
   simularAlocacao,
+  carbonoEvitado,
+  projecaoDesmatamento,
+  roiDesmatamentoEvitado,
 } from "../services/inteligencia";
 import "./AdminTabela.css";
 import "./Paineis.css";
@@ -54,13 +57,16 @@ export default function InteligenciaPage() {
     }
     setCarregando(true);
     try {
-      const [tend, kpi, bioma, risco] = await Promise.all([
+      const [tend, kpi, bioma, risco, carbono, projDesm, roi] = await Promise.all([
         tendencia(municipio.apiId, ano).catch(() => null),
         kpiMultidimensional(municipio.apiId, ano).catch(() => null),
         semaforoBioma(municipio.apiId).catch(() => null),
         riscoPreditivo(municipio.apiId).catch(() => null),
+        carbonoEvitado(municipio.apiId, ano).catch(() => null),
+        projecaoDesmatamento(municipio.apiId).catch(() => null),
+        roiDesmatamentoEvitado(municipio.apiId, ano).catch(() => null),
       ]);
-      setAnalise({ tend, kpi, bioma, risco });
+      setAnalise({ tend, kpi, bioma, risco, carbono, projDesm, roi });
     } finally {
       setCarregando(false);
     }
@@ -153,6 +159,36 @@ export default function InteligenciaPage() {
             )}
           </div>
         )}
+        {analise && (analise.carbono || analise.roi || analise.projDesm) && (
+          <>
+            <h3 style={{ marginTop: 18 }}>Carbono &amp; desmatamento (JREDD+)</h3>
+            <div className="kpi-grid">
+              {analise.carbono && (
+                <div className="kpi-box">
+                  <span className="kpi-rotulo">Carbono evitado</span>
+                  <span className="kpi-valor">{num(analise.carbono.tco2eEvitado).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} tCO₂e</span>
+                  <span className="kpi-sub">{analise.carbono.hectaresEvitados != null ? `${num(analise.carbono.hectaresEvitados).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ha evitados` : "—"} · {moeda(analise.carbono.valorPotencialReais)}</span>
+                </div>
+              )}
+              {analise.roi && (
+                <div className="kpi-box">
+                  <span className="kpi-rotulo">ROI desmatamento evitado</span>
+                  <span className="kpi-valor">{num(analise.roi.roi).toFixed(2)}x</span>
+                  <span className="kpi-sub">JREDD+ {moeda(analise.roi.receitaJreddReais)} vs. conversão {moeda(analise.roi.ganhoConversaoReais)}</span>
+                </div>
+              )}
+              {analise.projDesm && (
+                <div className="kpi-box">
+                  <span className="kpi-rotulo">Projeção desmatamento</span>
+                  <span className="kpi-valor">{num(analise.projDesm.taxaMediaAnual).toFixed(1)}%/ano</span>
+                  <span className="kpi-sub">média histórica {num(analise.projDesm.mediaHistoricaHa).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ha · base {analise.projDesm.anoBase}</span>
+                </div>
+              )}
+            </div>
+            {analise.roi?.recomendacao && <p className="painel-just">{analise.roi.recomendacao}</p>}
+          </>
+        )}
+
         {analise?.bioma?.justificativaSemaforo && (
           <p className="painel-just">{analise.bioma.justificativaSemaforo}</p>
         )}
