@@ -1,8 +1,8 @@
-// Credito rural de carbono (/api/v1/creditos-carbono).
-// Leitura: GESTOR e SERVIDOR. Escrita (criar/editar/excluir): GESTOR.
+// Crédito rural de carbono (GET/POST/PUT/DELETE /api/v1/creditos-carbono).
+// Leitura: GESTOR e SERVIDOR. Escrita: GESTOR.
 import { http } from "./http";
 
-// Lista paginada (size alto p/ trazer tudo de uma vez no painel).
+// Lista paginada (size alto para trazer tudo de uma vez no painel).
 export async function listarCreditos({ page = 0, size = 100 } = {}) {
   const resp = await http.get("/creditos-carbono", { query: { page, size } });
   return resp.content || [];
@@ -16,9 +16,17 @@ export async function creditosPorMunicipio(municipioId) {
   return http.get(`/creditos-carbono/municipio/${municipioId}`);
 }
 
-// Projecao financeira de um credito especifico (serie anual de tCO2e/receita).
-export async function projecaoCredito(id) {
-  return http.get(`/creditos-carbono/${id}/projecao`);
+/**
+ * Projeção financeira de um crédito específico.
+ * Retorna ProjecaoCarbonoDTO com ProjecaoAnualDTO[] (preços em USD + BRL), cotação e gráfico.
+ *
+ * @param {number} id
+ * @param {string} [dataReferenciaCotacao] - data ISO (YYYY-MM-DD) para cotação USD/BRL
+ */
+export async function projecaoCredito(id, dataReferenciaCotacao) {
+  return http.get(`/creditos-carbono/${id}/projecao`, {
+    query: { dataReferenciaCotacao },
+  });
 }
 
 export async function criarCredito(dto) {
