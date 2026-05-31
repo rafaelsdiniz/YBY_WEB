@@ -128,7 +128,7 @@ const IMPACTOS = [
   { icone: Map,      valor: 139,                      rotulo: "Municípios monitorados" },
   { icone: Users,    textoFixo: "1,58 milhão",         rotulo: "de habitantes impactados" },
   { icone: Globe,    valor: 277, sufixo: " mil km²",   rotulo: "de território analisável" },
-  { icone: Database, valor: 8,                         rotulo: "bases públicas integradas automaticamente" },
+  { icone: Database, valor: 6,                         rotulo: "bases públicas integradas automaticamente" },
 ];
 
 export default function LandingPage() {

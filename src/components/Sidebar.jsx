@@ -4,7 +4,7 @@ import {
   LayoutDashboard, FileText, Users, LogOut, LogIn,
   TrendingUp, BrainCircuit, Cloud, User,
   Gauge, Coins, Building2, FolderKanban, Sprout,
-  Map as MapIcon,
+  Map as MapIcon, Database,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { MenuToggleIcon } from "./MenuToggleIcon";
@@ -15,6 +15,7 @@ const LINKS = [
   { to: "/indicadores", rotulo: "Indicadores",   icone: TrendingUp },
   { to: "/inteligencia",rotulo: "Inteligência",  icone: BrainCircuit },
   { to: "/relatorios",  rotulo: "Relatórios",    icone: FileText },
+  { to: "/metadados",   rotulo: "Metadados",     icone: Database },
 ];
 
 const LINKS_CARBONO = [

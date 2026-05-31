@@ -243,10 +243,7 @@ export default function CreditosCarbonoPage() {
           (padrão do mercado voluntário global) e o <strong>horizonte de projeção</strong>.
           O YBY converte os valores para R$ usando a cotação USD/BRL da data informada.
         </p>
-        <div className="info-card-api">
-          <Server size={11} />
-          YBY-API · /api/v1/creditos-carbono
-        </div>
+      
       </section>
 
       {/* KPIs resumo */}

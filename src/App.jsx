@@ -20,6 +20,7 @@ import LoginPage from "./pages/LoginPage";
 import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
 import RedefinirSenhaPage from "./pages/RedefinirSenhaPage";
 import LandingPage from "./pages/LandingPage";
+import MetadadosPage from "./pages/MetadadosPage";
 import NaoEncontradaPage from "./pages/NaoEncontradaPage";
 import "./App.css";
 
@@ -121,6 +122,14 @@ export default function App() {
           element={
             <RequireAuth>
               <RelatoriosPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/metadados"
+          element={
+            <RequireAuth>
+              <MetadadosPage />
             </RequireAuth>
           }
         />
