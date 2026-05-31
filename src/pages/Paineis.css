@@ -105,17 +105,17 @@
 }
 
 /* ═══════════════════════════════════════════════════════
-   KPI BOX — card de métrica BI
-   SEM borda lateral. Profundidade apenas por sombra.
-   Faixa colorida SOMENTE no topo (discreta).
+   KPI BOX — design analítico, tons verdes, zero linhas
 ═══════════════════════════════════════════════════════ */
 .kpi-box {
-  background: #ffffff;
+  /* Fundo levemente esverdeado para tom analítico */
+  background: linear-gradient(145deg, #f7fbf7 0%, #f0f8f0 100%);
   border-radius: 14px;
   padding: 18px 20px 16px;
+  /* Sombra com toque verde — sem border */
   box-shadow:
-    0 1px 3px rgba(15, 23, 42, 0.04),
-    0 6px 22px rgba(15, 23, 42, 0.07);
+    0 1px 3px rgba(27, 74, 35, 0.06),
+    0 6px 20px rgba(27, 74, 35, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -128,30 +128,27 @@
 
 .kpi-box:hover {
   box-shadow:
-    0 4px 16px rgba(15, 23, 42, 0.08),
-    0 12px 40px rgba(15, 23, 42, 0.1);
+    0 4px 14px rgba(27, 74, 35, 0.1),
+    0 14px 36px rgba(27, 74, 35, 0.12);
   transform: translateY(-2px);
 }
 
-/* Faixa de cor sutil no topo (3px) */
+/* Variantes de cor — faixa discreta no topo */
 .kpi-box::before {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   height: 3px;
-  background: #1B4A23;
+  background: #2d6a35;
   border-radius: 14px 14px 0 0;
+  opacity: 0.6;
 }
-
-/* Variantes de cor no topo */
-.kpi-box--verde::before   { background: #16a34a; }
-.kpi-box--amarelo::before { background: #d97706; }
-.kpi-box--vermelho::before{ background: #dc2626; }
-.kpi-box--roxo::before    { background: #7c3aed; }
-.kpi-box--azul::before    { background: #0ea5e9; }
-.kpi-box--neutro::before  { background: #94a3b8; }
+.kpi-box--verde::before   { background: #16a34a; opacity: 0.7; }
+.kpi-box--amarelo::before { background: #d97706; opacity: 0.7; }
+.kpi-box--vermelho::before{ background: #dc2626; opacity: 0.7; }
+.kpi-box--roxo::before    { background: #7c3aed; opacity: 0.7; }
+.kpi-box--azul::before    { background: #2d6a35; opacity: 0.7; }
+.kpi-box--neutro::before  { background: #64748b; opacity: 0.5; }
 
 /* Rótulo */
 .kpi-box .kpi-rotulo {
@@ -159,7 +156,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  color: #94a3b8;
+  color: #5a7a60;
   margin-bottom: 8px;
   display: block;
 }
@@ -168,7 +165,7 @@
 .kpi-box .kpi-valor {
   font-size: 1.85rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #0f2d16;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
@@ -180,7 +177,7 @@
 /* Sub-texto */
 .kpi-box .kpi-sub {
   font-size: 0.68rem;
-  color: #94a3b8;
+  color: #7a9a80;
   margin-top: 7px;
   white-space: nowrap;
   overflow: hidden;

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import { Download, FileText } from "lucide-react";
+import { Download } from "lucide-react";
 import { getMunicipios } from "../services/api";
-import { gerarRelatorioExecutivo } from "../services/admin";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import ResumoEstado from "../components/ResumoEstado";
@@ -15,29 +14,14 @@ const pri = (m) => (m.prioridade == null ? -1 : m.prioridade);
 export default function RelatoriosPage() {
   const toast = useToast();
   const { usuario } = useAuth();
-  const ehGestor = usuario?.perfil === "GESTOR";
   const [municipios, setMunicipios] = useState([]);
   const [carregando, setCarregando] = useState(true);
-  const [relExec, setRelExec] = useState(null);
-  const [gerando, setGerando] = useState(false);
 
   useEffect(() => {
     getMunicipios()
       .then(setMunicipios)
       .finally(() => setCarregando(false));
   }, []);
-
-  async function gerarExecutivo() {
-    setGerando(true);
-    try {
-      setRelExec(await gerarRelatorioExecutivo());
-      toast.sucesso("Relatório executivo gerado.");
-    } catch (err) {
-      toast.erro(err.message);
-    } finally {
-      setGerando(false);
-    }
-  }
 
   function exportarCSV() {
     const cab = [
@@ -81,32 +65,15 @@ export default function RelatoriosPage() {
           <h1>Relatórios</h1>
           <p>Consolidado de investimento, risco e conformidade</p>
         </div>
-        <div style={{ display: "flex", gap: 10 }}>
-          {ehGestor && (
-            <button type="button" className="painel-acao secundario" onClick={gerarExecutivo} disabled={gerando}>
-              <FileText size={15} strokeWidth={1.75} /> {gerando ? "Gerando…" : "Relatório executivo"}
-            </button>
-          )}
-          <button
-            type="button"
-            className="admin-novo"
-            onClick={exportarCSV}
-            disabled={carregando || !municipios.length}
-          >
-            <Download size={17} strokeWidth={1.75} /> Exportar CSV
-          </button>
-        </div>
+        <button
+          type="button"
+          className="admin-novo"
+          onClick={exportarCSV}
+          disabled={carregando || !municipios.length}
+        >
+          <Download size={17} strokeWidth={1.75} /> Exportar CSV
+        </button>
       </header>
-
-      {relExec && (
-        <section className="card">
-          <h2 className="grafico-titulo">{relExec.titulo}</h2>
-          <p className="painel-meta">
-            {relExec.tipo} · gerado em {relExec.geradoEm ? new Date(relExec.geradoEm).toLocaleString("pt-BR") : "N/D"}
-          </p>
-          {relExec.observacao && <p className="painel-just">{relExec.observacao}</p>}
-        </section>
-      )}
 
       <ResumoEstado municipios={municipios} />
 

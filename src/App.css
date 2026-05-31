@@ -20,7 +20,10 @@
 
 @media (max-width: 860px) {
   .shell { flex-direction: column; }
-  .shell-main { padding: 20px 16px 40px; }
+  .shell-main {
+    padding: 20px 16px 40px;
+    margin-top: 64px; /* altura do sidebar fixo no topo */
+  }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -47,15 +50,16 @@
 }
 
 /* ═══════════════════════════════════════════════════════
-   CARD — base do sistema sem bordas laterais
+   CARD — sem bordas, design analítico tons verdes
 ═══════════════════════════════════════════════════════ */
 .card {
   background: #ffffff;
   border-radius: 16px;
   padding: 20px 22px;
+  /* Sombra com leve toque verde — sem nenhuma border */
   box-shadow:
-    0 1px 3px rgba(15, 23, 42, 0.04),
-    0 8px 28px rgba(15, 23, 42, 0.06);
+    0 1px 4px rgba(27, 74, 35, 0.05),
+    0 6px 24px rgba(27, 74, 35, 0.07);
   border: none;
 }
 

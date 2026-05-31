@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { Download } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import MunicipioSelect from "../components/MunicipioSelect";
+<<<<<<< Updated upstream
 import { historicoMenores, baixarRelatorioPdf, registrarEmissao, sincronizarEmissoes } from "../services/carbono";
+=======
+import { historicoMenores, registrarEmissao } from "../services/carbono";
+>>>>>>> Stashed changes
 import "./AdminTabela.css";
 import "./Paineis.css";
 
@@ -18,7 +21,6 @@ export default function CarbonoPage() {
   const [filtro, setFiltro] = useState({ dataInicio: "", dataFim: "", limite: 20 });
   const [lista, setLista] = useState([]);
   const [carregando, setCarregando] = useState(false);
-  const [baixando, setBaixando] = useState(false);
 
   const [form, setForm] = useState(null);
   const [municipioForm, setMunicipioForm] = useState(null);
@@ -49,18 +51,6 @@ export default function CarbonoPage() {
       toast.erro(err.message);
     } finally {
       setCarregando(false);
-    }
-  }
-
-  async function baixarPdf() {
-    setBaixando(true);
-    try {
-      await baixarRelatorioPdf(filtro);
-      toast.sucesso("Relatório PDF gerado.");
-    } catch (err) {
-      toast.erro(err.message);
-    } finally {
-      setBaixando(false);
     }
   }
 
@@ -134,9 +124,7 @@ export default function CarbonoPage() {
           <button type="button" className="painel-acao" onClick={consultar} disabled={carregando}>
             {carregando ? "Consultando…" : "Consultar"}
           </button>
-          <button type="button" className="painel-acao secundario" onClick={baixarPdf} disabled={baixando}>
-            <Download size={16} strokeWidth={1.75} /> {baixando ? "Gerando…" : "Baixar PDF"}
-          </button>
+
         </div>
 
         <div className="admin-tabela-wrap">
