@@ -1,0 +1,244 @@
+/* ===== SEÇÃO ===== */
+.fcg-section {
+  padding: 96px 24px;
+  background: #f0fdf4;
+}
+
+.fcg-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== CABEÇALHO ===== */
+.fcg-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.fcg-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #15803d;
+  margin-bottom: 14px;
+}
+
+.fcg-titulo {
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 700;
+  color: #052e16;
+  line-height: 1.15;
+  letter-spacing: -1.5px;
+  margin: 0 0 18px;
+}
+
+.fcg-subtitulo {
+  font-size: clamp(15px, 1.6vw, 18px);
+  font-weight: 300;
+  color: #166534;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.65;
+}
+
+/* ===== GRID ===== */
+.fcg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* ===== OUTER (recebe framer-motion, sem transform conflitante) ===== */
+.fcg-card-outer {
+  height: 340px;
+}
+
+/* ===== CARD (perspectiva + trigger de hover) ===== */
+.fcg-card {
+  height: 100%;
+  perspective: 1000px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+/* ===== INNER (rotação 3D) ===== */
+.fcg-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 20px;
+}
+
+.fcg-card:hover .fcg-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* ===== FACES COMPARTILHADAS ===== */
+.fcg-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 32px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== FRENTE - padrão ===== */
+.fcg-face--frente {
+  background: #ffffff;
+  border: 1.5px solid #dcfce7;
+  box-shadow: 0 4px 24px rgba(21, 128, 61, 0.08);
+  gap: 14px;
+}
+
+/* FRENTE - destaque (primeiro card) */
+.fcg-card--destaque .fcg-face--frente {
+  background: #15803d;
+  border-color: #15803d;
+  box-shadow: 0 8px 32px rgba(21, 128, 61, 0.30);
+}
+
+/* ===== ÍCONE ===== */
+.fcg-icone-wrap {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  flex-shrink: 0;
+  /* padrão */
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.fcg-card--destaque .fcg-icone-wrap {
+  background: rgba(255, 255, 255, 0.20);
+  color: #ffffff;
+}
+
+/* ===== TEXTO - frente ===== */
+.fcg-card-titulo {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+  /* padrão */
+  color: #052e16;
+}
+
+.fcg-card--destaque .fcg-card-titulo {
+  color: #ffffff;
+}
+
+.fcg-card-desc {
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  flex: 1;
+  margin: 0;
+  /* padrão */
+  color: #374151;
+}
+
+.fcg-card--destaque .fcg-card-desc {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.fcg-hint {
+  font-size: 11.5px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  opacity: 0.55;
+  /* padrão */
+  color: #15803d;
+}
+
+.fcg-card--destaque .fcg-hint {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ===== VERSO ===== */
+.fcg-face--verso {
+  background: #14532d;
+  transform: rotateY(180deg);
+  gap: 22px;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(20, 83, 45, 0.35);
+}
+
+.fcg-verso-titulo {
+  font-size: 19px;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* ===== LISTA DO VERSO ===== */
+.fcg-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.fcg-lista-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.4;
+}
+
+.fcg-check {
+  color: #81c931;
+  flex-shrink: 0;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 900px) {
+  .fcg-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .fcg-card-outer {
+    height: 360px;
+  }
+}
+
+@media (max-width: 560px) {
+  .fcg-section {
+    padding: 64px 20px;
+  }
+
+  .fcg-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .fcg-card-outer {
+    height: 320px;
+  }
+
+  .fcg-face {
+    padding: 26px;
+  }
+}
+
+/* ===== ACESSIBILIDADE: sem animação ===== */
+@media (prefers-reduced-motion: reduce) {
+  .fcg-card-inner {
+    transition: none;
+  }
+}

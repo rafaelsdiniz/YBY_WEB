@@ -2,14 +2,15 @@
   background: var(--cinza-claro);
   border-radius: 10px;
   padding: 12px 14px;
-  border-left: 4px solid var(--teal);
+  border-left: 4px solid var(--azul);
 }
 
 .kpi-valor {
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--navy);
+  font-size: 26px;
+  font-weight: 300;
+  color: var(--azul-escuro);
   line-height: 1.1;
+  letter-spacing: -0.5px;
 }
 
 .kpi-sufixo {

@@ -1,24 +1,37 @@
 :root {
-  /* Identidade YBY / JREDD+ Intelligence */
-  --navy: #12343b; /* títulos */
-  --teal: #1b5e5a; /* cabeçalhos, destaques */
-  --texto: #1f2a2e;
-
-  /* semáforo */
-  --verde: #2e7d32;
-  --verde-bg: #d7ebdd;
-  --amarelo: #c9a227;
-  --amarelo-bg: #fff1c2;
-  --vermelho: #c62828;
+  /* Identidade da LOGO: verdes. Os tokens --azul* guardam o verde da marca
+     (nome mantido por compatibilidade - o sistema inteiro referencia eles). */
+  --azul: #1B4A23; /* marca principal: header, botões, realces (verde escuro da logo) */
+  --azul-escuro: #13321a; /* verde profundo: títulos, fundos escuros */
+  --azul-claro: #81C931; /* verde lima: hover, destaques, accents */
+  --amarelo: #f4b400; /* destaque quente */
+  --amarelo-bg: #fff3cf;
+  --verde: #1B4A23; /* natureza + semáforo verde */
+  --verde-bg: #eaf4d5; /* fundo lima suave */
+  --vermelho: #c62828; /* semáforo vermelho */
   --vermelho-bg: #fad4d4;
-  --sem-dado: #d9e2dd;
+  --sem-dado: #d3ddd6;
 
-  --cinza-claro: #f2f4f3;
+  --texto: #1a261c;
   --branco: #ffffff;
+  --cinza-claro: #eef3ee; /* fundo levemente esverdeado */
+  --borda: #e2eae2;
 
-  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  /* elevação */
+  --raio: 16px;
+  --raio-sm: 10px;
+  --sombra-sm: 0 1px 2px rgba(18, 38, 63, 0.06);
+  --sombra-md: 0 4px 14px rgba(18, 38, 63, 0.08);
+  --sombra-lg: 0 14px 40px rgba(18, 38, 63, 0.12);
 
-  font: 16px/1.45 var(--sans);
+  --sans: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
+  --display: "Raleway", "Manrope", sans-serif;
+  /* Fonte do sistema (área interna): Segoe UI (a mesma do Power BI);
+     Inter como fallback em SO sem Segoe UI (Mac/Linux). */
+  --sistema: "Segoe UI", "Inter", system-ui, Roboto, sans-serif;
+
+  font: 300 16px/1.55 var(--sans);
+  letter-spacing: -0.1px;
   color: var(--texto);
   background: var(--cinza-claro);
   -webkit-font-smoothing: antialiased;
@@ -29,6 +42,16 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 body {
   margin: 0;
   min-height: 100vh;
@@ -37,11 +60,31 @@ body {
 h1,
 h2,
 h3 {
-  color: var(--navy);
+  font-family: var(--display);
+  color: var(--azul-escuro);
   margin: 0;
   line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.5px;
+}
+
+/* ── Fonte do sistema (somente área interna, dentro do Layout) ──
+   O site institucional (landing/auth) continua em Manrope/Raleway.
+   .sel-lista é incluído porque o dropdown do Select renderiza em portal
+   (fora do .shell), e o sistema é o único lugar que usa esse componente. */
+.shell,
+.sel-lista {
+  font-family: var(--sistema);
+  letter-spacing: -0.2px;
+}
+.shell h1,
+.shell h2,
+.shell h3,
+.shell h4 {
+  font-family: var(--sistema);
+  letter-spacing: -0.3px;
 }
 
 a {
-  color: var(--teal);
+  color: var(--azul);
 }

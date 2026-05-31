@@ -1,19 +1,273 @@
+.mapa-wrap {
+  position: relative;
+}
+
+.mapa-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.mapa-head h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.mapa-sub {
+  font-size: 13px;
+  color: var(--texto);
+  opacity: 0.6;
+}
+
+.mapa-controles {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+/* alternador semáforo / prioridade */
+.mapa-modo {
+  display: inline-flex;
+  background: var(--cinza-claro);
+  border: 1px solid var(--borda);
+  border-radius: 99px;
+  padding: 2px;
+}
+
+.mapa-modo button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--texto);
+  opacity: 0.7;
+  padding: 4px 12px;
+  border-radius: 99px;
+  transition: background 0.15s ease, color 0.15s ease, opacity 0.15s ease;
+}
+
+.mapa-modo button.ativo {
+  background: var(--branco);
+  color: var(--azul-escuro);
+  opacity: 1;
+  box-shadow: var(--sombra-sm);
+}
+
+.mapa-legenda {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mapa-legenda-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: inherit;
+  font-size: 12.5px;
+  color: var(--texto);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  padding: 3px 9px 3px 7px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+}
+
+.mapa-legenda-item:hover {
+  background: var(--cinza-claro);
+}
+
+.mapa-legenda-item.ativo {
+  background: var(--cinza-claro);
+  border-color: var(--borda);
+  font-weight: 600;
+}
+
+/* quando há um filtro ativo, as outras categorias ficam apagadas */
+.mapa-legenda:has(.ativo) .mapa-legenda-item:not(.ativo) {
+  opacity: 0.45;
+}
+
+.mapa-legenda-item--estatico {
+  cursor: default;
+  padding: 0;
+}
+.mapa-legenda-item--estatico:hover {
+  background: transparent;
+}
+
+.mapa-legenda-cor {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  flex: none;
+}
+
+/* escala contínua (modo prioridade) */
+.mapa-escala {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--texto);
+  opacity: 0.75;
+}
+
+.mapa-escala-barra {
+  width: 130px;
+  height: 9px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, #c62828, #f4b400 50%, #2e8b3e);
+}
+
+/* fundo suave atrás do mapa */
 .mapa {
   width: 100%;
   height: auto;
   display: block;
+  overflow: visible;
+  background: radial-gradient(120% 80% at 50% 18%, #f4f9f5 0%, #ffffff 70%);
+  border-radius: var(--raio-sm);
 }
 
+/* municípios */
 .mun {
+  stroke: #ffffff;
+  stroke-width: 0.5;
   outline: none;
-  transition: fill 0.15s ease;
+  opacity: 0;
+  animation: mun-entra 0.55s ease forwards;
+  transition: fill-opacity 0.2s ease, fill 0.25s ease;
 }
 
-.mun.clicavel {
+@keyframes mun-entra {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* modo "pintar no scroll": sem animação de entrada, com transição de cor */
+.mapa--pintar .mun {
+  animation: none;
+  opacity: 1;
+  transition: fill 0.5s ease;
+}
+
+.mun--clic {
   cursor: pointer;
 }
 
-.mun.clicavel:hover {
-  stroke: #12343b;
-  stroke-width: 1.2;
+.mun--clic:hover {
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+/* destaque (hover/selecionado) renderizado por cima */
+.mun-destaque {
+  stroke: #ffffff;
+  stroke-width: 1.6;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: destaque-pop 0.18s ease forwards;
+}
+
+@keyframes destaque-pop {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+
+/* marcadores pulsantes */
+.mapa-marcadores {
+  pointer-events: none;
+}
+
+.marcador-pulso {
+  fill: var(--vermelho);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: marcador-pulso 1.9s ease-out infinite;
+}
+
+@keyframes marcador-pulso {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.55;
+  }
+  70% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.marcador-ponto {
+  fill: var(--vermelho);
+  stroke: #ffffff;
+  stroke-width: 1;
+}
+
+/* tooltip flutuante */
+.mapa-tip {
+  position: absolute;
+  z-index: 5;
+  transform: translate(-50%, calc(-100% - 14px));
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  box-shadow: var(--sombra-lg);
+  padding: 9px 12px;
+  pointer-events: none;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mapa-tip strong {
+  font-size: 14px;
+  color: var(--azul-escuro);
+}
+
+.mapa-tip-info {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--texto);
+}
+
+.mapa-tip-sem {
+  font-size: 12.5px;
+  color: var(--texto);
+  opacity: 0.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mun,
+  .mun-destaque,
+  .marcador-pulso {
+    animation: none;
+    opacity: 1;
+  }
 }

@@ -1,0 +1,171 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 550;
+  background: rgba(8, 30, 50, 0.45);
+  backdrop-filter: blur(2px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  animation: modal-fade 0.15s ease;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 460px;
+  /* nunca passa da altura da viewport (24px de respiro do overlay em cima/baixo);
+     o corpo rola internamente em vez de o formulario "fugir" da pagina. */
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  background: var(--branco);
+  border-radius: 14px;
+  box-shadow: var(--sombra-lg);
+  animation: modal-sobe 0.18s ease;
+  overflow: hidden;
+}
+
+/* Modais com formulario em grade ganham mais largura para caber 2 colunas
+   confortavelmente (cadastros de credito, instituicao, projeto, plano safra). */
+.modal-card:has(.form-grid) {
+  max-width: 680px;
+}
+
+.modal-head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.modal-head h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.modal-head button {
+  border: none;
+  background: transparent;
+  color: var(--texto);
+  opacity: 0.6;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.modal-head button:hover {
+  opacity: 1;
+}
+
+.modal-corpo {
+  padding: 22px;
+  /* rola dentro do card quando o conteudo passa da altura disponivel */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/* campos de formulário dentro do modal */
+.modal-corpo .campo {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.modal-corpo .campo span {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--azul-escuro);
+  margin-bottom: 6px;
+}
+
+.modal-corpo .campo input,
+.modal-corpo .campo select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: 9px;
+  font: inherit;
+  color: var(--texto);
+  background: var(--branco);
+}
+
+.modal-corpo .campo select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c6b66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+}
+
+.modal-corpo .campo input:focus,
+.modal-corpo .campo select:focus {
+  outline: none;
+  border-color: var(--azul);
+  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+}
+
+.modal-acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-btn {
+  padding: 10px 20px;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.modal-btn--cancelar {
+  background: var(--branco);
+  border-color: var(--borda);
+  color: var(--texto);
+}
+
+.modal-btn--cancelar:hover {
+  background: var(--cinza-claro);
+}
+
+.modal-btn--salvar {
+  background: var(--azul);
+  color: #fff;
+}
+
+.modal-btn--salvar:hover {
+  opacity: 0.92;
+}
+
+.modal-erro {
+  background: var(--vermelho-bg);
+  color: #7a1414;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  margin-bottom: 14px;
+}
+
+@keyframes modal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modal-sobe {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .modal-overlay,
+  .modal-card {
+    animation: none;
+  }
+}

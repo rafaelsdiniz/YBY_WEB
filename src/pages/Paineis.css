@@ -1,0 +1,384 @@
+/* ═══════════════════════════════════════════════════════
+   PAINEIS.CSS — Estilos operacionais BI
+   Sem linhas/marcações laterais nos cards.
+   Profundidade criada apenas por sombra.
+═══════════════════════════════════════════════════════ */
+
+/* ── Toolbar ──────────────────────────────────────────── */
+.painel-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.painel-toolbar .campo        { margin: 0; min-width: 200px; }
+.painel-toolbar .campo.estreito { min-width: 120px; max-width: 160px; }
+
+/* ── Form fields ──────────────────────────────────────── */
+.campo { display: flex; flex-direction: column; gap: 5px; }
+.campo > span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #64748b;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 9px 13px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 0.875rem;
+  color: #0f172a;
+  background: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: #1B4A23;
+  box-shadow: 0 0 0 3px rgba(27, 74, 35, 0.1);
+}
+.campo input:disabled,
+.campo select:disabled {
+  background: #f8fafc;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.campo select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 36px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 11px center;
+}
+
+/* ── Action buttons ───────────────────────────────────── */
+.painel-acao {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border: none;
+  border-radius: 9px;
+  background: #1B4A23;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(27, 74, 35, 0.3);
+}
+.painel-acao:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(27, 74, 35, 0.35);
+}
+.painel-acao:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.painel-acao.secundario {
+  background: transparent;
+  color: #1B4A23;
+  border: 1.5px solid #1B4A23;
+  box-shadow: none;
+}
+.painel-acao.secundario:hover {
+  background: rgba(27, 74, 35, 0.05);
+}
+
+/* ═══════════════════════════════════════════════════════
+   KPI GRID — grelha de métricas
+═══════════════════════════════════════════════════════ */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+  gap: 14px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   KPI BOX — design analítico, tons verdes, zero linhas
+═══════════════════════════════════════════════════════ */
+.kpi-box {
+  /* Fundo levemente esverdeado para tom analítico */
+  background: linear-gradient(145deg, #f7fbf7 0%, #f0f8f0 100%);
+  border-radius: 14px;
+  padding: 18px 20px 16px;
+  /* Sombra com toque verde — sem border */
+  box-shadow:
+    0 1px 3px rgba(27, 74, 35, 0.06),
+    0 6px 20px rgba(27, 74, 35, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 96px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border: none;
+}
+
+.kpi-box:hover {
+  box-shadow:
+    0 4px 14px rgba(27, 74, 35, 0.1),
+    0 14px 36px rgba(27, 74, 35, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Variantes de cor — faixa discreta no topo */
+.kpi-box::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: #2d6a35;
+  border-radius: 14px 14px 0 0;
+  opacity: 0.6;
+}
+.kpi-box--verde::before   { background: #16a34a; opacity: 0.7; }
+.kpi-box--amarelo::before { background: #d97706; opacity: 0.7; }
+.kpi-box--vermelho::before{ background: #dc2626; opacity: 0.7; }
+.kpi-box--roxo::before    { background: #7c3aed; opacity: 0.7; }
+.kpi-box--azul::before    { background: #2d6a35; opacity: 0.7; }
+.kpi-box--neutro::before  { background: #64748b; opacity: 0.5; }
+
+/* Rótulo */
+.kpi-box .kpi-rotulo {
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #5a7a60;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Valor grande */
+.kpi-box .kpi-valor {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f2d16;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* Sub-texto */
+.kpi-box .kpi-sub {
+  font-size: 0.68rem;
+  color: #7a9a80;
+  margin-top: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* ── Form grid ────────────────────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+/* ── States ───────────────────────────────────────────── */
+.painel-vazio {
+  font-size: 0.83rem;
+  color: #94a3b8;
+  padding: 10px 4px;
+}
+
+/* ── Callout / highlight box ──────────────────────────── */
+.painel-just {
+  font-size: 0.82rem;
+  color: #1e3a2f;
+  background: #f0fdf4;
+  border-left: 3px solid #16a34a;
+  padding: 10px 14px;
+  border-radius: 0 9px 9px 0;
+  margin-top: 10px;
+}
+
+/* ── Meta footer ──────────────────────────────────────── */
+.painel-meta {
+  font-size: 0.68rem;
+  color: #cbd5e1;
+  margin-top: 10px;
+  text-align: right;
+}
+
+/* ═══════════════════════════════════════════════════════
+   BADGES / SELOS
+═══════════════════════════════════════════════════════ */
+.selo {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.selo--verde    { background: #dcfce7; color: #15803d; }
+.selo--amarelo  { background: #fef3c7; color: #92400e; }
+.selo--vermelho { background: #fee2e2; color: #b91c1c; }
+.selo--neutro   { background: #f1f5f9; color: #475569; }
+
+/* ═══════════════════════════════════════════════════════
+   TWO-COLUMN LAYOUT
+═══════════════════════════════════════════════════════ */
+.painel-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CHIP LIST (contagens de status/tipo)
+═══════════════════════════════════════════════════════ */
+.painel-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.painel-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 10px;
+  background: #f8fafc;
+  border-radius: 99px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.painel-chips strong {
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+/* ═══════════════════════════════════════════════════════
+   INFO CARD (contextual, topo de página)
+═══════════════════════════════════════════════════════ */
+.info-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border-left: 4px solid #1B4A23;
+  box-shadow: 0 1px 6px rgba(27, 74, 35, 0.06);
+  margin-bottom: 0;
+}
+.info-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.info-card-header h2 {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
+}
+.info-card-body {
+  font-size: 0.84rem;
+  color: #1e3a2f;
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+.info-card-api {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #bbf7d0;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.71rem;
+  font-family: "Fira Code", "Cascadia Code", "Consolas", monospace;
+  color: #14532d;
+  font-weight: 700;
+}
+
+/* ── Form validation error ────────────────────────────── */
+.campo-erro {
+  display: block;
+  font-size: 0.72rem;
+  color: #dc2626;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* ── Progress bar (tabelas) ───────────────────────────── */
+.barra-wrap {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.barra-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1B4A23, #81C931);
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Checkbox ─────────────────────────────────────────── */
+.campo--check { flex-direction: row; align-items: center; gap: 9px; }
+.campo--check input[type="checkbox"] {
+  width: 17px; height: 17px; flex: none;
+  accent-color: #1B4A23; cursor: pointer;
+}
+.campo--check span { font-size: 0.875rem; color: #334155; }
+
+/* ═══════════════════════════════════════════════════════
+   GEOPORTAL LAYER CATALOG
+═══════════════════════════════════════════════════════ */
+.geo-camadas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 14px;
+}
+.geo-camada {
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+.geo-camada-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.geo-camada-tema {
+  font-size: 0.67rem;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #94a3b8;
+  font-weight: 700;
+}
+.geo-camada-desc {
+  font-size: 0.82rem;
+  color: #475569;
+  margin: 0;
+  flex: 1;
+  line-height: 1.5;
+}
+.geo-camada .admin-acao { align-self: flex-start; }

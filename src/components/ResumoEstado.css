@@ -1,0 +1,165 @@
+/* ═══════════════════════════════════════════════════════
+   BI METRIC CARDS — ResumoEstado
+   Cards sem bordas laterais. Sombra cria profundidade.
+   Faixa de cor discreta no topo do card.
+═══════════════════════════════════════════════════════ */
+.resumo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(158px, 1fr));
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 620px) {
+  .resumo { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ── BI Card base — tons verdes, zero linhas ──────────── */
+.bi-card {
+  background: linear-gradient(145deg, #f7fbf7 0%, #f0f8f0 100%);
+  border-radius: 14px;
+  padding: 16px 18px 14px;
+  /* sombra com toque verde — sem border */
+  box-shadow:
+    0 1px 3px rgba(27, 74, 35, 0.06),
+    0 6px 20px rgba(27, 74, 35, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border: none;
+}
+
+.bi-card:hover {
+  box-shadow:
+    0 4px 14px rgba(27, 74, 35, 0.1),
+    0 14px 36px rgba(27, 74, 35, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Faixa de cor no topo (3px) */
+.bi-card--azul::before,
+.bi-card--verde::before,
+.bi-card--amarelo::before,
+.bi-card--vermelho::before,
+.bi-card--roxo::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 14px 14px 0 0;
+}
+.bi-card--azul::before    { background: #1B4A23; }
+.bi-card--verde::before   { background: #16a34a; }
+.bi-card--amarelo::before { background: #d97706; }
+.bi-card--vermelho::before{ background: #dc2626; }
+.bi-card--roxo::before    { background: #7c3aed; }
+
+/* ── Top row: icon + label ────────────────────────────── */
+.bi-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.bi-card-icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  /* sem fundo colorido — apenas o ícone */
+  background: transparent;
+}
+.bi-card--azul    .bi-card-icon { color: #1B4A23; }
+.bi-card--verde   .bi-card-icon { color: #16a34a; }
+.bi-card--amarelo .bi-card-icon { color: #d97706; }
+.bi-card--vermelho.bi-card-icon { color: #dc2626; }
+.bi-card--roxo    .bi-card-icon { color: #7c3aed; }
+
+/* Fallback colors por classe */
+.bi-card--vermelho .bi-card-icon { color: #dc2626; }
+.bi-card--roxo     .bi-card-icon { color: #7c3aed; }
+
+.bi-card-rotulo {
+  font-size: 0.66rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #5a7a60;
+  line-height: 1.2;
+}
+
+/* ── Main value ───────────────────────────────────────── */
+.bi-card-valor {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: #0f2d16;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Mini progress bar ────────────────────────────────── */
+.bi-card-barra {
+  height: 4px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+.bi-card-barra-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.bi-card-barra--azul    { background: #1B4A23; }
+.bi-card-barra--verde   { background: #16a34a; }
+.bi-card-barra--amarelo { background: #d97706; }
+.bi-card-barra--vermelho{ background: #dc2626; }
+.bi-card-barra--roxo    { background: #7c3aed; }
+
+/* ── Sub text ─────────────────────────────────────────── */
+.bi-card-sub {
+  font-size: 0.67rem;
+  color: #7a9a80;
+  margin-top: 5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── COMPAT: .stat ainda usado por DetalheMunicipio etc ─ */
+.stat {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 1px 3px rgba(15,23,42,0.04), 0 6px 22px rgba(15,23,42,0.07);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.stat:hover { box-shadow: 0 4px 20px rgba(15,23,42,0.1); transform: translateY(-2px); }
+.stat-icone { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; flex: none; }
+.stat--azul    .stat-icone { background: #f0fdf4; color: #1B4A23; }
+.stat--verde   .stat-icone { background: #dcfce7; color: #16a34a; }
+.stat--amarelo .stat-icone { background: #fef3c7; color: #d97706; }
+.stat--vermelho.stat-icone { background: #fee2e2; color: #dc2626; }
+.stat-txt { display: flex; flex-direction: column; min-width: 0; }
+.stat-valor { font-size: 1.4rem; font-weight: 800; color: #0f172a; line-height: 1; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.stat-rotulo { font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; color: #94a3b8; margin-top: 4px; }
+.stat-barra { display: block; height: 4px; background: #f1f5f9; border-radius: 99px; overflow: hidden; margin-top: 8px; }
+.stat-barra-fill { display: block; height: 100%; border-radius: 99px; transition: width 0.7s cubic-bezier(0.22,1,.36,1); }
+.stat-barra--azul { background: #1B4A23; }
+.stat-barra--verde { background: #16a34a; }
+.stat-barra--amarelo { background: #d97706; }
+.stat-barra--vermelho { background: #dc2626; }
+.stat-sub { font-size: 0.67rem; color: #94a3b8; margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

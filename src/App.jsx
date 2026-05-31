@@ -1,59 +1,162 @@
-import { useEffect, useState } from "react";
-import { getMunicipios } from "./services/api";
-import MapaTocantins from "./components/MapaTocantins";
-import RankingMunicipios from "./components/RankingMunicipios";
-import DetalheMunicipio from "./components/DetalheMunicipio";
-import Legenda from "./components/Legenda";
+import { Routes, Route } from "react-router-dom";
+import CookieConsent from "./components/CookieConsent";
+import Layout from "./components/Layout";
+import RequireAuth from "./components/RequireAuth";
+import RequireRole from "./components/RequireRole";
+import DashboardPage from "./pages/DashboardPage";
+import IndicadoresPage from "./pages/IndicadoresPage";
+import InteligenciaPage from "./pages/InteligenciaPage";
+import CarbonoPage from "./pages/CarbonoPage";
+import CarbonoDashboardPage from "./pages/CarbonoDashboardPage";
+import CreditosCarbonoPage from "./pages/CreditosCarbonoPage";
+import InstituicoesCarbonoPage from "./pages/InstituicoesCarbonoPage";
+import ProjetosJreddPage from "./pages/ProjetosJreddPage";
+import PlanoSafraPage from "./pages/PlanoSafraPage";
+import GeoportalPage from "./pages/GeoportalPage";
+import MinhaContaPage from "./pages/MinhaContaPage";
+import UsuariosPage from "./pages/UsuariosPage";
+import RelatoriosPage from "./pages/RelatoriosPage";
+import LoginPage from "./pages/LoginPage";
+import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
+import RedefinirSenhaPage from "./pages/RedefinirSenhaPage";
+import LandingPage from "./pages/LandingPage";
+import MetadadosPage from "./pages/MetadadosPage";
+import NaoEncontradaPage from "./pages/NaoEncontradaPage";
 import "./App.css";
 
 export default function App() {
-  const [municipios, setMunicipios] = useState([]);
-  const [selecionado, setSelecionado] = useState(null);
-  const [carregando, setCarregando] = useState(true);
-
-  useEffect(() => {
-    getMunicipios()
-      .then(setMunicipios)
-      .finally(() => setCarregando(false));
-  }, []);
-
-  if (carregando) {
-    return <p className="estado">Carregando dados do Tocantins...</p>;
-  }
-
-  const detalhe = municipios.find((m) => m.id === selecionado);
-
   return (
-    <div className="app">
-      <header className="app-header">
-        <h1>YBY — JREDD+ Intelligence</h1>
-        <p>Onde investir no Tocantins</p>
-      </header>
+    <>
+    <Routes>
+      {/* site institucional na raiz */}
+      <Route index element={<LandingPage />} />
+      {/* autenticação: tela cheia, sem navbar */}
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/esqueci-senha" element={<EsqueciSenhaPage />} />
+      <Route path="/redefinir-senha" element={<RedefinirSenhaPage />} />
 
-      <div className="app-grid">
-        <main className="card">
-          <MapaTocantins
-            municipios={municipios}
-            selecionado={selecionado}
-            onSelecionar={setSelecionado}
-          />
-          <Legenda />
-        </main>
-        <aside className="card">
-          <RankingMunicipios
-            municipios={municipios}
-            selecionado={selecionado}
-            onSelecionar={setSelecionado}
-          />
-          {detalhe ? (
-            <DetalheMunicipio municipio={detalhe} />
-          ) : (
-            <p className="detalhe-vazio">
-              Clique em um município no mapa ou no ranking para ver os detalhes.
-            </p>
-          )}
-        </aside>
-      </div>
-    </div>
+      <Route element={<Layout />}>
+        {/* rotas internas protegidas */}
+        <Route
+          path="/painel"
+          element={
+            <RequireAuth>
+              <DashboardPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/indicadores"
+          element={
+            <RequireAuth>
+              <IndicadoresPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/inteligencia"
+          element={
+            <RequireAuth>
+              <InteligenciaPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/carbono"
+          element={
+            <RequireAuth>
+              <CarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/carbono/painel"
+          element={
+            <RequireAuth>
+              <CarbonoDashboardPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/creditos-carbono"
+          element={
+            <RequireAuth>
+              <CreditosCarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/instituicoes-carbono"
+          element={
+            <RequireAuth>
+              <InstituicoesCarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/projetos"
+          element={
+            <RequireAuth>
+              <ProjetosJreddPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/plano-safra"
+          element={
+            <RequireAuth>
+              <PlanoSafraPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/geoportal"
+          element={
+            <RequireAuth>
+              <GeoportalPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/relatorios"
+          element={
+            <RequireAuth>
+              <RelatoriosPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/metadados"
+          element={
+            <RequireAuth>
+              <MetadadosPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/minha-conta"
+          element={
+            <RequireAuth>
+              <MinhaContaPage />
+            </RequireAuth>
+          }
+        />
+
+        {/* exclusivas do administrador */}
+        <Route
+          path="/usuarios"
+          element={
+            <RequireRole role="GESTOR">
+              <UsuariosPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      {/* 404 */}
+      <Route path="*" element={<NaoEncontradaPage />} />
+    </Routes>
+    <CookieConsent />
+    </>
   );
 }

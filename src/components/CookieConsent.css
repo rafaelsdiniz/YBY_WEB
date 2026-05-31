@@ -1,0 +1,90 @@
+.cookie {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 400;
+  width: 380px;
+  max-width: calc(100vw - 40px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 18px;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  box-shadow: var(--sombra-lg);
+  animation: cookie-sobe 0.3s ease;
+}
+
+.cookie-icone {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--amarelo-bg);
+  color: #8a6d00;
+  flex: none;
+}
+
+.cookie p {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.45;
+  color: var(--texto);
+}
+
+.cookie-acoes {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cookie-btn {
+  flex: none;
+  padding: 9px 18px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  font: inherit;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: opacity 0.12s ease, background 0.12s ease;
+}
+
+.cookie-btn--aceitar {
+  background: var(--azul);
+  color: #fff;
+}
+.cookie-btn--aceitar:hover {
+  opacity: 0.92;
+}
+
+.cookie-btn--recusar {
+  background: transparent;
+  border-color: var(--borda);
+  color: var(--texto);
+}
+.cookie-btn--recusar:hover {
+  background: var(--cinza-claro);
+}
+
+@keyframes cookie-sobe {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie {
+    animation: none;
+  }
+}

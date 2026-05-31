@@ -1,0 +1,438 @@
+/* ════════════════════════════════════════════════════════════════════
+   AuthLayout - login/senha com WebGL · glassmorphism · tucano
+   Paleta: verde #052e16 (base) · #15803d (marca) · #4ade80 (acento)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── Raiz ─────────────────────────────────────────────────────────── */
+.auth {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #052e16;   /* fallback caso WebGL não rode */
+  overflow: hidden;
+}
+
+/* ── Vídeo de fundo: Jalapão / Cerrado / Tocantins ───────────────── */
+.auth-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  z-index: 0;
+  /* Leve escala para evitar bordas brancas em resize */
+  transform: scale(1.04);
+}
+
+/* ── Overlay verde-escuro + gradiente de profundidade ─────────────── */
+.auth-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    /* gradiente direcional: mais escuro em baixo, abertura em cima */
+    linear-gradient(
+      to bottom,
+      rgba(4, 18, 9, 0.48) 0%,
+      rgba(5, 46, 22, 0.65) 50%,
+      rgba(2, 12, 5, 0.80) 100%
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Partículas de carbono (CO₂ flutuando) ────────────────────────── */
+.auth-particulas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.auth-particulas span {
+  position: absolute;
+  bottom: -8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.50);
+  box-shadow: 0 0 5px rgba(74, 222, 128, 0.40);
+  animation: auth-particula linear infinite;
+}
+
+/* Variação de tamanho entre partículas ímpares e pares */
+.auth-particulas span:nth-child(odd)  { width: 3px; height: 3px; }
+.auth-particulas span:nth-child(even) { width: 5px; height: 5px; }
+
+@keyframes auth-particula {
+  0%   { transform: translateY(0)       scale(0.3); opacity: 0;   }
+  6%   {                                             opacity: 0.9; }
+  85%  {                                             opacity: 0.5; }
+  100% { transform: translateY(-105vh)  scale(1.1); opacity: 0;   }
+}
+
+/* ── Barra superior ───────────────────────────────────────────────── */
+.auth-topbar {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 44px;
+  flex: none;
+}
+
+.auth-logo-link { display: block; text-decoration: none; }
+
+.auth-logo {
+  height: 46px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+.auth-voltar {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.42);
+  text-decoration: none;
+  transition: color 0.18s ease;
+  letter-spacing: 0.1px;
+}
+.auth-voltar:hover { color: rgba(255, 255, 255, 0.85); }
+
+/* ── Área central: tucano + card ──────────────────────────────────── */
+.auth-main {
+  position: relative;
+  z-index: 20;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 44px 20px;
+}
+
+/* ── Tucano ───────────────────────────────────────────────────────── */
+/*
+  Sai do flow flex (position: absolute) para que o card
+  seja o único item no flex e se centralize corretamente.
+  A posição left é calculada para manter ~40 px de sobreposição
+  na borda esquerda do card em qualquer largura de viewport.
+  max() evita sair da tela em viewports menores.
+*/
+.auth-tucano {
+  position: absolute;
+  left: max(0px, calc(50% - 467px));
+  top: 50%;
+  transform: translateY(-55%); /* centro visual, ligeiramente acima */
+  width: 300px;
+  z-index: 30;
+  filter: drop-shadow(0 28px 52px rgba(0, 0, 0, 0.72));
+  transition: filter 0.45s ease;
+}
+
+/* A animação fica no img para não conflitar com o transform de posição */
+.auth-tucano img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  animation: tucano-flutuar 5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+/* Brilho verde ao passar mouse no form - o tucano "reage" */
+.auth--form-ativo .auth-tucano {
+  filter:
+    drop-shadow(0 28px 52px rgba(0, 0, 0, 0.72))
+    drop-shadow(0 0  36px rgba(74, 222, 128, 0.60));
+}
+
+@keyframes tucano-flutuar {
+  0%,  100% { transform: translateY(0px)   rotate(-2.0deg); }
+  25%        { transform: translateY(-12px) rotate( 0.5deg); }
+  55%        { transform: translateY(-22px) rotate( 2.0deg); }
+  80%        { transform: translateY(-8px)  rotate(-0.5deg); }
+}
+
+/* ── Glass Card ───────────────────────────────────────────────────── */
+.auth-card {
+  position: relative;
+  z-index: 20;
+  flex: none;
+  width: 100%;
+  max-width: 415px;
+  background: rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
+  padding: 48px 42px 44px;
+  box-shadow:
+    0 32px 72px rgba(0, 0, 0, 0.52),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    border-color 0.35s ease,
+    box-shadow   0.35s ease;
+}
+
+/* Card fica com borda verde ao hover */
+.auth--form-ativo .auth-card {
+  border-color: rgba(74, 222, 128, 0.26);
+  box-shadow:
+    0 32px 72px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(74, 222, 128, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.20);
+}
+
+/* ── Texto do formulário ──────────────────────────────────────────── */
+.auth-titulo {
+  font-family: var(--display, "Raleway", sans-serif);
+  font-size: 25px;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  margin: 0 0 8px;
+}
+
+.auth-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.6;
+  margin: 0 0 30px;
+}
+
+.auth-sub strong {
+  color: #86efac;
+  font-weight: 500;
+}
+
+/* ── Campos ───────────────────────────────────────────────────────── */
+.auth-campo {
+  display: block;
+  margin-bottom: 18px;
+}
+
+/* Label: span dentro do label, ou elemento .auth-label independente */
+.auth-campo > span,
+.auth-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+  margin-bottom: 8px;
+}
+
+/* Inputs */
+.auth-campo input,
+.auth-input {
+  width: 100%;
+  padding: 13px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 12px;
+  font: inherit;
+  font-size: 15px;
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color 0.18s ease,
+    background   0.18s ease,
+    box-shadow   0.18s ease;
+}
+
+.auth-campo input::placeholder,
+.auth-input::placeholder {
+  color: rgba(255, 255, 255, 0.26);
+}
+
+.auth-campo input:focus,
+.auth-input:focus {
+  border-color: rgba(74, 222, 128, 0.55);
+  background:   rgba(255, 255, 255, 0.12);
+  box-shadow:   0 0 0 3px rgba(74, 222, 128, 0.12);
+}
+
+/* ── Mensagem de erro ─────────────────────────────────────────────── */
+.auth-erro {
+  background: rgba(239, 68, 68, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.30);
+  color: #fca5a5;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  margin-bottom: 18px;
+  line-height: 1.5;
+}
+
+/* ── "Esqueci minha senha" ────────────────────────────────────────── */
+.auth-extra {
+  text-align: right;
+  margin-bottom: 22px;
+  margin-top: -6px;
+}
+
+.auth-extra a {
+  font-size: 13px;
+  color: rgba(74, 222, 128, 0.75);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.auth-extra a:hover { color: #4ade80; }
+
+/* ── Botão principal ──────────────────────────────────────────────── */
+.auth-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #ffffff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.15px;
+  text-decoration: none;
+  text-align: center;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(21, 128, 61, 0.45);
+  transition:
+    opacity    0.15s ease,
+    transform  0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.auth-btn:hover {
+  opacity: 0.91;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 26px rgba(21, 128, 61, 0.55);
+}
+
+.auth-btn:active  { transform: translateY(0); }
+
+.auth-btn:disabled {
+  opacity: 0.50;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auth-btn-icone {
+  transition: transform 0.20s ease;
+}
+.auth-btn:hover .auth-btn-icone {
+  transform: translateX(3px);
+}
+
+/* Variante link (usado em EsqueciSenha / Redefinir) */
+.auth-btn--link {
+  text-decoration: none;
+}
+
+/* ── Link de rodapé do form ───────────────────────────────────────── */
+.auth-explorar {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.38);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.auth-explorar:hover { color: rgba(255, 255, 255, 0.78); }
+
+/* ── Rodapé: logos governamentais ─────────────────────────────────── */
+.auth-rodape {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 40px 26px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex: none;
+}
+
+.auth-rodape-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.auth-rodape-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.auth-rodape-logos img {
+  height: 26px;
+  max-width: 145px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.48;
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   RESPONSIVO
+   ══════════════════════════════════════════════════════════════════ */
+
+/* Tablet: tucano volta ao flow e vai acima do card */
+@media (max-width: 860px) {
+  .auth-main {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px 28px;
+    gap: 0;
+  }
+
+  /* Volta ao flow para empilhar acima do card */
+  .auth-tucano {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 200px;
+    margin-bottom: -36px; /* pisa no topo do card */
+    z-index: 30;
+  }
+
+  /* A animação continua no img */
+  .auth-tucano img { animation-duration: 4s; }
+
+  .auth-card {
+    padding: 54px 28px 40px; /* espaço extra no topo para o tucano */
+  }
+
+  .auth-topbar { padding: 18px 22px; }
+  .auth-logo   { height: 38px; }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+  .auth-tucano { width: 162px; margin-bottom: -28px; }
+  .auth-card   { padding: 44px 18px 32px; border-radius: 20px; }
+}
+
+/* Sem animação para quem prefere */
+@media (prefers-reduced-motion: reduce) {
+  .auth-tucano          { animation: none; }
+  .auth--form-ativo .auth-tucano { filter: drop-shadow(0 28px 52px rgba(0,0,0,0.72)); }
+}

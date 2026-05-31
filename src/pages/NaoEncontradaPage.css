@@ -1,0 +1,60 @@
+.nf {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  background: var(--cinza-claro);
+}
+
+.nf-logo {
+  height: 44px;
+  margin-bottom: 28px;
+}
+
+.nf-codigo {
+  font-size: 92px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -3px;
+  color: var(--azul);
+}
+
+.nf h1 {
+  font-size: 26px;
+  font-weight: 400;
+  margin: 12px 0 8px;
+}
+
+.nf p {
+  color: var(--texto);
+  opacity: 0.65;
+  font-weight: 300;
+  max-width: 380px;
+}
+
+.nf-acoes {
+  display: flex;
+  gap: 12px;
+  margin-top: 26px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nf-btn {
+  padding: 11px 22px;
+  border-radius: 10px;
+  background: var(--azul);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  border: 1px solid var(--azul);
+}
+
+.nf-btn--ghost {
+  background: transparent;
+  color: var(--azul);
+}

@@ -20,6 +20,10 @@
   color: var(--vermelho);
   background: var(--vermelho-bg);
 }
+.semaforo--sem_dado {
+  color: #5c6b66;
+  background: #e9eef0;
+}
 
 /* versao compacta: so a bolinha colorida */
 .semaforo--dot {
@@ -37,4 +41,7 @@
 }
 .semaforo--dot.semaforo--vermelho {
   background: var(--vermelho);
+}
+.semaforo--dot.semaforo--sem_dado {
+  background: #c7d0cc;
 }

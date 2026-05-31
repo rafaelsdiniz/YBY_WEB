@@ -1,0 +1,270 @@
+import { useEffect, useMemo, useState } from "react";
+import { UserPlus, Search } from "lucide-react";
+import {
+  getUsuarios,
+  criarUsuario,
+  atualizarUsuario,
+  atualizarStatus,
+  deletarUsuario,
+} from "../services/usuarios";
+import { useToast } from "../context/ToastContext";
+import { useConfirm } from "../context/ConfirmContext";
+import Modal from "../components/Modal";
+import Select from "../components/Select";
+import "./AdminTabela.css";
+
+const norm = (s) =>
+  s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+
+export default function UsuariosPage() {
+  const toast = useToast();
+  const confirmar = useConfirm();
+  const [usuarios, setUsuarios] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [busca, setBusca] = useState("");
+  const [form, setForm] = useState(null); // null = fechado; com id = edicao
+  const [erroForm, setErroForm] = useState("");
+  const [salvando, setSalvando] = useState(false);
+
+  useEffect(() => {
+    getUsuarios()
+      .then(setUsuarios)
+      .catch((err) => toast.erro(err.message))
+      .finally(() => setCarregando(false));
+  }, [toast]);
+
+  const lista = useMemo(
+    () =>
+      usuarios.filter(
+        (u) => norm(u.nome).includes(norm(busca)) || norm(u.email).includes(norm(busca))
+      ),
+    [usuarios, busca]
+  );
+
+  const editando = !!form?.id;
+
+  function novo() {
+    setErroForm("");
+    setForm({ nome: "", email: "", perfil: "SERVIDOR", senha: "" });
+  }
+
+  function editar(u) {
+    setErroForm("");
+    setForm({ id: u.id, nome: u.nome, email: u.email, perfil: u.perfil, senha: "" });
+  }
+
+  async function salvar(e) {
+    e.preventDefault();
+    const nome = form.nome.trim();
+    const email = form.email.trim();
+    const senha = form.senha.trim();
+    if (!nome || (!editando && !email)) {
+      setErroForm("Preencha nome e e-mail.");
+      return;
+    }
+    if (senha && senha.length < 8) {
+      setErroForm("A senha deve ter ao menos 8 caracteres.");
+      return;
+    }
+    setSalvando(true);
+    try {
+      if (editando) {
+        const atualizado = await atualizarUsuario(form.id, { nome, perfil: form.perfil, senha });
+        setUsuarios((l) => l.map((x) => (x.id === form.id ? atualizado : x)));
+        toast.sucesso(senha ? "Usuário atualizado e senha redefinida." : "Usuário atualizado.");
+      } else {
+        const criado = await criarUsuario({ nome, email, perfil: form.perfil, senha });
+        setUsuarios((l) => [...l, criado]);
+        toast.sucesso(
+          senha
+            ? "Usuário criado com a senha definida."
+            : "Usuário criado. Senha inicial gerada automaticamente."
+        );
+      }
+      setForm(null);
+    } catch (err) {
+      setErroForm(err.message);
+    } finally {
+      setSalvando(false);
+    }
+  }
+
+  async function alternar(u) {
+    const inativar = u.ativo;
+    const ok = await confirmar({
+      titulo: inativar ? "Inativar usuário?" : "Ativar usuário?",
+      mensagem: inativar
+        ? `${u.nome} perderá o acesso ao sistema.`
+        : `${u.nome} voltará a ter acesso ao sistema.`,
+      confirmar: inativar ? "Inativar" : "Ativar",
+      tipo: inativar ? "perigo" : "ok",
+    });
+    if (!ok) return;
+    try {
+      const atualizado = await atualizarStatus(u.id, !u.ativo);
+      setUsuarios((l) => l.map((x) => (x.id === u.id ? atualizado : x)));
+      toast.sucesso(`${u.nome} foi ${inativar ? "inativado" : "ativado"}.`);
+    } catch (err) {
+      toast.erro(err.message);
+    }
+  }
+
+  async function excluir(u) {
+    const ok = await confirmar({
+      titulo: "Excluir usuário?",
+      mensagem: `${u.nome} (${u.email}) será removido permanentemente.`,
+      confirmar: "Excluir",
+      tipo: "perigo",
+    });
+    if (!ok) return;
+    try {
+      await deletarUsuario(u.id);
+      setUsuarios((l) => l.filter((x) => x.id !== u.id));
+      toast.sucesso(`${u.nome} foi excluído.`);
+    } catch (err) {
+      toast.erro(err.message);
+    }
+  }
+
+  return (
+    <>
+      <header className="page-header admin-header">
+        <div>
+          <h1>Usuários</h1>
+          <p>Gerenciamento de usuários e perfis de acesso</p>
+        </div>
+        <button type="button" className="admin-novo" onClick={novo}>
+          <UserPlus size={17} strokeWidth={1.75} /> Novo usuário
+        </button>
+      </header>
+
+      <section className="card">
+        <div className="admin-busca">
+          <Search size={17} strokeWidth={1.75} />
+          <input
+            type="search"
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            placeholder="Buscar por nome ou e-mail..."
+          />
+        </div>
+
+        {carregando ? (
+          <p className="estado">Carregando usuários...</p>
+        ) : (
+          <div className="admin-tabela-wrap">
+            <table className="admin-tabela">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>E-mail</th>
+                  <th>Perfil</th>
+                  <th>Status</th>
+                  <th className="dir">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {lista.map((u) => (
+                  <tr key={u.id}>
+                    <td className="admin-nome">
+                      <span className="admin-avatar">{u.nome.charAt(0)}</span>
+                      {u.nome}
+                    </td>
+                    <td className="admin-mut">{u.email}</td>
+                    <td>
+                      <span className={`tag ${u.perfil === "GESTOR" ? "tag--azul" : "tag--cinza"}`}>
+                        {u.perfil === "GESTOR" ? "Gestor" : "Servidor"}
+                      </span>
+                    </td>
+                    <td>
+                      <span className={`tag ${u.ativo ? "tag--verde" : "tag--vermelho"}`}>
+                        {u.ativo ? "Ativo" : "Inativo"}
+                      </span>
+                    </td>
+                    <td className="dir admin-acoes-col">
+                      <button type="button" className="admin-acao" onClick={() => editar(u)}>
+                        Editar
+                      </button>
+                      <button type="button" className="admin-acao" onClick={() => alternar(u)}>
+                        {u.ativo ? "Inativar" : "Ativar"}
+                      </button>
+                      <button type="button" className="admin-acao" onClick={() => excluir(u)}>
+                        Excluir
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {lista.length === 0 && (
+                  <tr>
+                    <td colSpan={5} className="admin-vazio">
+                      Nenhum usuário encontrado.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      {form && (
+        <Modal titulo={editando ? "Editar usuário" : "Novo usuário"} onFechar={() => setForm(null)}>
+          <form onSubmit={salvar}>
+            {erroForm && <div className="modal-erro">{erroForm}</div>}
+            <label className="campo">
+              <span>Nome</span>
+              <input
+                value={form.nome}
+                onChange={(e) => setForm({ ...form, nome: e.target.value })}
+                autoFocus
+              />
+            </label>
+            <label className="campo">
+              <span>E-mail</span>
+              <input
+                type="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder="nome@tocantins.gov.br"
+                disabled={editando}
+              />
+            </label>
+            <label className="campo">
+              <span>Perfil</span>
+              <Select
+                value={form.perfil}
+                onChange={(v) => setForm({ ...form, perfil: v })}
+                options={[
+                  { value: "SERVIDOR", label: "Servidor" },
+                  { value: "GESTOR", label: "Gestor" },
+                ]}
+              />
+            </label>
+            <label className="campo">
+              <span>{editando ? "Nova senha (opcional)" : "Senha (opcional)"}</span>
+              <input
+                type="password"
+                value={form.senha}
+                onChange={(e) => setForm({ ...form, senha: e.target.value })}
+                autoComplete="new-password"
+                placeholder={
+                  editando
+                    ? "deixe em branco para manter a atual"
+                    : "deixe em branco para gerar automaticamente"
+                }
+              />
+            </label>
+            <div className="modal-acoes">
+              <button type="button" className="modal-btn modal-btn--cancelar" onClick={() => setForm(null)}>
+                Cancelar
+              </button>
+              <button type="submit" className="modal-btn modal-btn--salvar" disabled={salvando}>
+                {salvando ? "Salvando..." : editando ? "Salvar alterações" : "Criar usuário"}
+              </button>
+            </div>
+          </form>
+        </Modal>
+      )}
+    </>
+  );
+}
