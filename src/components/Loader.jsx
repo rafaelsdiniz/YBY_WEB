@@ -1,8 +1,8 @@
 import "./Loader.css";
 
 /**
- * Splash / loader com efeito 3D de átomo de carbono.
- * `tela`    = tela cheia (splash inicial, tema escuro + 3D).
+ * Splash / loader centrado na marca YBY.
+ * `tela`    = tela cheia (splash inicial, tema escuro).
  * `fechando` = fade-out de saída.
  */
 export default function Loader({
@@ -29,20 +29,12 @@ export default function Loader({
       )}
 
       <div className="loader-conteudo">
-        {/* ── Átomo de carbono 3D ── */}
-        <div className="loader-atomo-wrap" aria-hidden="true">
-          <div className="loader-atomo">
-            {/* Núcleo */}
-            <div className="loader-nucleo" />
-            {/* Órbitas eletrônicas */}
-            <div className="loader-orbita loader-orbita--1"><span /></div>
-            <div className="loader-orbita loader-orbita--2"><span /></div>
-            <div className="loader-orbita loader-orbita--3"><span /></div>
-          </div>
+        {/* ── Marca YBY com anel giratório ── */}
+        <div className="loader-marca">
+          <span className="loader-anel" aria-hidden="true" />
+          <span className="loader-halo" aria-hidden="true" />
+          <img src="/logoYBY.png" alt="YBY" className="loader-logo" />
         </div>
-
-        {/* Logo YBY */}
-        <img src="/logoYBY.png" alt="YBY" className="loader-logo" />
 
         {/* Barra de progresso */}
         <div className="loader-barra" aria-hidden="true">
