@@ -1,218 +1,368 @@
-/* Estilos compartilhados pelas telas operacionais (indicadores, desmatamento,
-   alertas, inteligencia, carbono, transparencia). Reaproveitam .card, .campo,
-   .admin-tabela, .tag e .page-header ja existentes. */
+/* ═══════════════════════════════════════════════════════
+   PAINEIS.CSS — Estilos operacionais BI
+   Sem linhas/marcações laterais nos cards.
+   Profundidade criada apenas por sombra.
+═══════════════════════════════════════════════════════ */
 
+/* ── Toolbar ──────────────────────────────────────────── */
 .painel-toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 16px;
+  gap: 12px;
   margin-bottom: 18px;
 }
-.painel-toolbar .campo {
-  margin: 0;
-  min-width: 200px;
-}
-.painel-toolbar .campo.estreito {
-  min-width: 120px;
-  max-width: 160px;
+.painel-toolbar .campo        { margin: 0; min-width: 200px; }
+.painel-toolbar .campo.estreito { min-width: 120px; max-width: 160px; }
+
+/* ── Form fields ──────────────────────────────────────── */
+.campo { display: flex; flex-direction: column; gap: 5px; }
+.campo > span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: #64748b;
 }
 
-/* Controles de formulário das telas operacionais. Sem isto, os <select>/<input>
-   ficavam com a aparência nativa do navegador ("crus"). Casa com o visual de
-   .campo do Modal e da Minha Conta. */
 .campo input,
 .campo select,
 .campo textarea {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--borda);
+  padding: 9px 13px;
+  border: 1.5px solid #e2e8f0;
   border-radius: 9px;
   font: inherit;
-  color: var(--texto);
-  background: var(--branco);
-  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  font-size: 0.875rem;
+  color: #0f172a;
+  background: #ffffff;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-
 .campo input:focus,
 .campo select:focus,
 .campo textarea:focus {
   outline: none;
-  border-color: var(--azul);
-  box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.15);
+  border-color: #1B4A23;
+  box-shadow: 0 0 0 3px rgba(27, 74, 35, 0.1);
 }
-
 .campo input:disabled,
 .campo select:disabled {
-  background: var(--cinza-claro);
-  opacity: 0.7;
+  background: #f8fafc;
+  opacity: 0.6;
   cursor: not-allowed;
 }
-
-/* seta própria no lugar do widget nativo */
 .campo select {
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
   padding-right: 36px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%235c6b66' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right 11px center;
 }
 
+/* ── Action buttons ───────────────────────────────────── */
 .painel-acao {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
+  gap: 7px;
+  padding: 9px 18px;
   border: none;
-  border-radius: 10px;
-  background: var(--azul, #0a4d8c);
-  color: #fff;
+  border-radius: 9px;
+  background: #1B4A23;
+  color: #ffffff;
+  font: inherit;
+  font-size: 0.84rem;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: opacity 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 8px rgba(27, 74, 35, 0.3);
 }
-.painel-acao:disabled {
-  opacity: 0.55;
-  cursor: not-allowed;
+.painel-acao:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(27, 74, 35, 0.35);
 }
+.painel-acao:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 .painel-acao.secundario {
   background: transparent;
-  color: var(--azul, #0a4d8c);
-  border: 1px solid var(--azul, #0a4d8c);
+  color: #1B4A23;
+  border: 1.5px solid #1B4A23;
+  box-shadow: none;
+}
+.painel-acao.secundario:hover {
+  background: rgba(27, 74, 35, 0.05);
 }
 
+/* ═══════════════════════════════════════════════════════
+   KPI GRID — grelha de métricas
+═══════════════════════════════════════════════════════ */
 .kpi-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
   gap: 14px;
 }
+
+/* ═══════════════════════════════════════════════════════
+   KPI BOX — card de métrica BI
+   SEM borda lateral. Profundidade apenas por sombra.
+   Faixa colorida SOMENTE no topo (discreta).
+═══════════════════════════════════════════════════════ */
 .kpi-box {
-  background: var(--cinza-claro, #f4f7f5);
-  border: 1px solid #e6ebe8;
-  border-radius: 12px;
-  padding: 14px 16px;
-}
-.kpi-box .kpi-rotulo {
-  display: block;
-  font-size: 0.78rem;
-  color: #5c6b66;
-  margin-bottom: 6px;
-}
-.kpi-box .kpi-valor {
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: var(--azul-escuro, #0b3a66);
-  line-height: 1.1;
-}
-.kpi-box .kpi-sub {
-  display: block;
-  font-size: 0.74rem;
-  color: #7a8780;
-  margin-top: 4px;
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px 20px 16px;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 6px 22px rgba(15, 23, 42, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-height: 96px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  border: none;
 }
 
+.kpi-box:hover {
+  box-shadow:
+    0 4px 16px rgba(15, 23, 42, 0.08),
+    0 12px 40px rgba(15, 23, 42, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Faixa de cor sutil no topo (3px) */
+.kpi-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #1B4A23;
+  border-radius: 14px 14px 0 0;
+}
+
+/* Variantes de cor no topo */
+.kpi-box--verde::before   { background: #16a34a; }
+.kpi-box--amarelo::before { background: #d97706; }
+.kpi-box--vermelho::before{ background: #dc2626; }
+.kpi-box--roxo::before    { background: #7c3aed; }
+.kpi-box--azul::before    { background: #0ea5e9; }
+.kpi-box--neutro::before  { background: #94a3b8; }
+
+/* Rótulo */
+.kpi-box .kpi-rotulo {
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* Valor grande */
+.kpi-box .kpi-valor {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* Sub-texto */
+.kpi-box .kpi-sub {
+  font-size: 0.68rem;
+  color: #94a3b8;
+  margin-top: 7px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+/* ── Form grid ────────────────────────────────────────── */
 .form-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 14px;
   align-items: end;
 }
 
+/* ── States ───────────────────────────────────────────── */
 .painel-vazio {
-  color: #6b7873;
-  padding: 8px 2px;
+  font-size: 0.83rem;
+  color: #94a3b8;
+  padding: 10px 4px;
 }
 
+/* ── Callout / highlight box ──────────────────────────── */
 .painel-just {
-  font-size: 0.84rem;
-  color: #4a5a54;
-  background: #f4f7f5;
-  border-left: 3px solid var(--azul, #0a4d8c);
-  padding: 8px 12px;
-  border-radius: 6px;
+  font-size: 0.82rem;
+  color: #1e3a2f;
+  background: #f0fdf4;
+  border-left: 3px solid #16a34a;
+  padding: 10px 14px;
+  border-radius: 0 9px 9px 0;
   margin-top: 10px;
 }
 
+/* ── Meta footer ──────────────────────────────────────── */
 .painel-meta {
-  font-size: 0.78rem;
-  color: #7a8780;
-  margin-top: 12px;
+  font-size: 0.68rem;
+  color: #cbd5e1;
+  margin-top: 10px;
+  text-align: right;
 }
 
-/* selo de semaforo textual reutilizavel */
+/* ═══════════════════════════════════════════════════════
+   BADGES / SELOS
+═══════════════════════════════════════════════════════ */
 .selo {
-  display: inline-block;
-  padding: 2px 10px;
-  border-radius: 999px;
-  font-size: 0.74rem;
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-size: 0.66rem;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
 }
-.selo--verde { background: #dff3e2; color: #1e6b2e; }
-.selo--amarelo { background: #fdf3d6; color: #8a6a00; }
-.selo--vermelho { background: #fadddd; color: #a81f1f; }
-.selo--neutro { background: #e9eef0; color: #41525c; }
+.selo--verde    { background: #dcfce7; color: #15803d; }
+.selo--amarelo  { background: #fef3c7; color: #92400e; }
+.selo--vermelho { background: #fee2e2; color: #b91c1c; }
+.selo--neutro   { background: #f1f5f9; color: #475569; }
 
-/* duas colunas responsivas para blocos lado a lado */
+/* ═══════════════════════════════════════════════════════
+   TWO-COLUMN LAYOUT
+═══════════════════════════════════════════════════════ */
 .painel-2col {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
 }
 
-/* chips de contagem (status / tipo) */
+/* ═══════════════════════════════════════════════════════
+   CHIP LIST (contagens de status/tipo)
+═══════════════════════════════════════════════════════ */
 .painel-chips {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 .painel-chips li {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  padding: 6px 14px 6px 10px;
+  background: #f8fafc;
+  border-radius: 99px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .painel-chips strong {
-  font-size: 1.1rem;
-  color: var(--azul-escuro, #0b3a66);
+  font-size: 1rem;
+  font-weight: 800;
+  color: #0f172a;
 }
 
-/* checkbox alinhado dentro do .form-grid / .painel-toolbar */
-.campo--check {
-  flex-direction: row;
+/* ═══════════════════════════════════════════════════════
+   INFO CARD (contextual, topo de página)
+═══════════════════════════════════════════════════════ */
+.info-card {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%);
+  border-left: 4px solid #1B4A23;
+  box-shadow: 0 1px 6px rgba(27, 74, 35, 0.06);
+  margin-bottom: 0;
+}
+.info-card-header {
+  display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 10px;
+  margin-bottom: 8px;
 }
-.campo--check input[type="checkbox"] {
-  width: 18px;
-  height: 18px;
-  flex: none;
-  accent-color: var(--azul, #0a4d8c);
-  cursor: pointer;
+.info-card-header h2 {
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: #14532d;
+  margin: 0;
 }
-.campo--check span {
-  font-size: 0.88rem;
-  color: var(--texto);
+.info-card-body {
+  font-size: 0.84rem;
+  color: #1e3a2f;
+  line-height: 1.65;
+  margin: 0 0 12px;
+}
+.info-card-api {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #bbf7d0;
+  border-radius: 6px;
+  padding: 3px 10px;
+  font-size: 0.71rem;
+  font-family: "Fira Code", "Cascadia Code", "Consolas", monospace;
+  color: #14532d;
+  font-weight: 700;
 }
 
-/* catalogo de camadas do geoportal */
+/* ── Form validation error ────────────────────────────── */
+.campo-erro {
+  display: block;
+  font-size: 0.72rem;
+  color: #dc2626;
+  margin-top: 3px;
+  font-weight: 500;
+}
+
+/* ── Progress bar (tabelas) ───────────────────────────── */
+.barra-wrap {
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 99px;
+  overflow: hidden;
+}
+.barra-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1B4A23, #81C931);
+  border-radius: 99px;
+  transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Checkbox ─────────────────────────────────────────── */
+.campo--check { flex-direction: row; align-items: center; gap: 9px; }
+.campo--check input[type="checkbox"] {
+  width: 17px; height: 17px; flex: none;
+  accent-color: #1B4A23; cursor: pointer;
+}
+.campo--check span { font-size: 0.875rem; color: #334155; }
+
+/* ═══════════════════════════════════════════════════════
+   GEOPORTAL LAYER CATALOG
+═══════════════════════════════════════════════════════ */
 .geo-camadas {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 14px;
 }
 .geo-camada {
-  border: 1px solid #e6ebe8;
   border-radius: 12px;
   padding: 14px 16px;
-  background: var(--branco, #fff);
+  background: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 .geo-camada-top {
   display: flex;
@@ -221,17 +371,17 @@
   gap: 10px;
 }
 .geo-camada-tema {
-  font-size: 0.72rem;
+  font-size: 0.67rem;
   text-transform: uppercase;
-  letter-spacing: 0.4px;
-  color: #7a8780;
+  letter-spacing: 0.6px;
+  color: #94a3b8;
+  font-weight: 700;
 }
 .geo-camada-desc {
-  font-size: 0.84rem;
-  color: #4a5a54;
+  font-size: 0.82rem;
+  color: #475569;
   margin: 0;
   flex: 1;
+  line-height: 1.5;
 }
-.geo-camada .admin-acao {
-  align-self: flex-start;
-}
+.geo-camada .admin-acao { align-self: flex-start; }
