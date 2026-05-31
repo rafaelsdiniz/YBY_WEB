@@ -18,7 +18,7 @@ import Loader from "../components/Loader";
 import Carrossel from "../components/Carrossel";
 import MapaDestaque from "../components/MapaDestaque";
 import ComoFunciona from "../components/ComoFunciona";
-import FlipCardGallery from "../components/ui/FlipCardGallery";
+import CircularCards from "../components/ui/CircularCards";
 import "./LandingPage.css";
 
 const NATUREZA = [
@@ -77,6 +77,8 @@ const RECURSOS = [
   {
     id: 1,
     icone: Map,
+    /* Foto: vista aérea do cerrado tocantinense (Unsplash) */
+    imagem: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80&auto=format&fit=crop",
     titulo: "Mapa de prioridade",
     subtitulo: "Visualização territorial",
     descricao:
@@ -92,6 +94,8 @@ const RECURSOS = [
   {
     id: 2,
     icone: Gauge,
+    /* Foto: floresta com luz — monitoramento ambiental (Unsplash) */
+    imagem: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80&auto=format&fit=crop",
     titulo: "Semáforo de decisão",
     subtitulo: "Decisão baseada em dados",
     descricao:
@@ -107,6 +111,8 @@ const RECURSOS = [
   {
     id: 3,
     icone: TrendingDown,
+    /* Foto: rio no cerrado — eficiência hídrica (Unsplash) */
+    imagem: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80&auto=format&fit=crop",
     titulo: "Detecção de desperdício",
     subtitulo: "Eficiência do gasto público",
     descricao:
@@ -228,7 +234,7 @@ export default function LandingPage() {
             </p>
           </Reveal>
 
-          <FlipCardGallery cards={RECURSOS} />
+          <CircularCards cards={RECURSOS} />
         </div>
       </section>
 
@@ -259,8 +265,8 @@ export default function LandingPage() {
             <h2>Por que isso importa</h2>
             <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead">
-              O Tocantins é coração do cerrado — a savana mais biodiversa do
-              planeta e a origem das águas que abastecem o Brasil. Proteger esse
+              O Tocantins é coração do cerrado e faz parte também da Amazônia Legal — uma região com alta biodiversidade 
+              e a origem das águas que abastecem o Brasil. Proteger esse
               território é garantir clima, água e futuro. O YBY existe para que
               cada real investido chegue onde mais protege essa riqueza.
             </p>
@@ -349,7 +355,7 @@ export default function LandingPage() {
               conduzida pela <strong>Secretaria do Meio Ambiente e Recursos
               Hídricos</strong>, para transformar o investimento ambiental em
               política pública transparente, eficiente e baseada em evidências —
-              colocando a tecnologia a serviço da preservação do cerrado.
+              colocando a tecnologia a serviço da preservação do cerrado e da Amazônia.
             </p>
             <div className="iniciativa-logos">
               <img src="/governotocantins.webp" alt="Governo do Tocantins" />

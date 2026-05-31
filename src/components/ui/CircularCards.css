@@ -1,0 +1,174 @@
+/* ════════════════════════════════════════════════════════════════════
+   CircularCards — adaptação do CircularTestimonials para YBY
+   Paleta: verde escuro #14532d · verde marca #2e7d32 · texto #1a261c
+   ════════════════════════════════════════════════════════════════════ */
+
+.cc-wrapper {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto 0;
+}
+
+/* ── Grid: empilhado no mobile, lado-a-lado no desktop ────────────── */
+.cc-grid {
+  display: grid;
+  gap: 36px;
+}
+
+@media (min-width: 768px) {
+  .cc-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 56px;
+  }
+}
+
+/* ── Área de fotos (esquerda) ─────────────────────────────────────── */
+.cc-visuais {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  perspective: 1000px;
+}
+
+/* Cada foto: absolute, preenche o container, 3D via style inline */
+.cc-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.18),
+    0  4px 12px rgba(0, 0, 0, 0.10);
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .cc-visuais { height: 280px; }
+}
+
+/* ── Conteúdo (direita) ───────────────────────────────────────────── */
+.cc-conteudo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}
+
+.cc-texto {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Ícone puro: sem fundo, sem borda ─────────────────────────────── */
+.cc-icone {
+  display: block;
+  color: var(--azul);          /* verde da marca */
+  margin-bottom: 14px;
+}
+
+/* ── Tipografia ───────────────────────────────────────────────────── */
+.cc-titulo {
+  font-family: var(--display, "Raleway", sans-serif);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  margin: 0 0 6px;
+  letter-spacing: -0.3px;
+  line-height: 1.25;
+}
+
+.cc-subtitulo {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--azul);
+  margin: 0 0 18px;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.cc-descricao {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--texto);
+  line-height: 1.75;
+  margin: 0 0 18px;
+}
+
+/* ── Lista de detalhes ────────────────────────────────────────────── */
+.cc-detalhes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.cc-detalhe {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--texto);
+  opacity: 0.78;
+  line-height: 1.4;
+}
+
+.cc-check {
+  color: var(--verde);
+  font-size: 13px;
+  font-weight: 700;
+  flex: none;
+  line-height: 1;
+}
+
+/* ── Setas de navegação ───────────────────────────────────────────── */
+.cc-setas {
+  display: flex;
+  gap: 10px;
+  padding-top: 32px;
+  flex: none;
+}
+
+@media (min-width: 768px) {
+  .cc-setas { padding-top: 28px; }
+}
+
+.cc-seta {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  background: #141414;
+  color: #f1f1f7;
+  transition: background 0.25s ease, transform 0.15s ease, box-shadow 0.20s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+.cc-seta:hover,
+.cc-seta[data-hover="true"] {
+  background: var(--azul);    /* verde da marca ao hover */
+  transform: scale(1.06);
+  box-shadow: 0 4px 14px rgba(46,125,50,0.40);
+}
+
+.cc-seta:active {
+  transform: scale(0.95);
+}
+
+/* ── Acessibilidade ───────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cc-foto   { transition: none !important; }
+  .cc-seta   { transition: none; }
+}
