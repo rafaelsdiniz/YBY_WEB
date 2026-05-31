@@ -77,9 +77,8 @@ const RECURSOS = [
   {
     id: 1,
     icone: Map,
-    /* Foto: vista aérea do cerrado tocantinense (Unsplash) */
-    imagem: "https://images.unsplash.com/photo-1501854140801-50d01698950b?w=800&q=80&auto=format&fit=crop",
-    titulo: "Mapa de prioridade",
+    imagem: "/sobre1.jpg",
+    titulo: "Mapa de monitoramento",
     subtitulo: "Visualização territorial",
     descricao:
       "Os 139 municípios do Tocantins coloridos por urgência de investimento, com prioridade objetiva.",
@@ -94,8 +93,7 @@ const RECURSOS = [
   {
     id: 2,
     icone: Gauge,
-    /* Foto: floresta com luz — monitoramento ambiental (Unsplash) */
-    imagem: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80&auto=format&fit=crop",
+    imagem: "/sobre2.jpg",
     titulo: "Semáforo de decisão",
     subtitulo: "Decisão baseada em dados",
     descricao:
@@ -111,8 +109,7 @@ const RECURSOS = [
   {
     id: 3,
     icone: TrendingDown,
-    /* Foto: rio no cerrado — eficiência hídrica (Unsplash) */
-    imagem: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80&auto=format&fit=crop",
+    imagem: "/sobre3.jpg",
     titulo: "Detecção de desperdício",
     subtitulo: "Eficiência do gasto público",
     descricao:
@@ -320,23 +317,33 @@ export default function LandingPage() {
           </Reveal>
 
           <div className="mudancas">
-            <Reveal as="div" className="mudanca mudanca--antes" direcao="left">
-              <h4>Antes</h4>
-              <ul>
-                <li>Dados espalhados em planilhas e relatórios soltos</li>
-                <li>Investimento sem visão de risco ou retorno</li>
-                <li>Desperdício difícil de enxergar</li>
-                <li>Decisões lentas e pouco transparentes</li>
-              </ul>
+            <Reveal as="div" className="mudanca-wrapper mudanca-wrapper--antes" direcao="left">
+              <div className="mudanca mudanca--antes">
+                <div className="mudanca-topo" />
+                <div className="mudanca-corpo">
+                  <h4>Antes</h4>
+                  <ul>
+                    <li>Dados espalhados em planilhas e relatórios soltos</li>
+                    <li>Investimento sem visão de risco ou retorno</li>
+                    <li>Desperdício difícil de enxergar</li>
+                    <li>Decisões lentas e pouco transparentes</li>
+                  </ul>
+                </div>
+              </div>
             </Reveal>
-            <Reveal as="div" className="mudanca mudanca--depois" direcao="right">
-              <h4>Com o YBY</h4>
-              <ul>
-                <li>Visão única do estado, atualizada e comparável</li>
-                <li>Prioridade objetiva por risco, retorno e conformidade</li>
-                <li>Alertas de desperdício para realocar recursos</li>
-                <li>Decisão em minutos, com trilha clara de evidências</li>
-              </ul>
+            <Reveal as="div" className="mudanca-wrapper mudanca-wrapper--depois" direcao="right">
+              <div className="mudanca mudanca--depois">
+                <div className="mudanca-topo" />
+                <div className="mudanca-corpo">
+                  <h4>Com o YBY</h4>
+                  <ul>
+                    <li>Visão única do estado, atualizada e comparável</li>
+                    <li>Prioridade objetiva por risco, retorno e conformidade</li>
+                    <li>Alertas de desperdício para realocar recursos</li>
+                    <li>Decisão em minutos, com trilha clara de evidências</li>
+                  </ul>
+                </div>
+              </div>
             </Reveal>
           </div>
         </div>

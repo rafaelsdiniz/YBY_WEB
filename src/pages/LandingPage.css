@@ -389,59 +389,162 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* mudanças (antes/depois) */
+/* mudanças (antes/depois) — design moderno com sobreposição */
 .mudancas {
-  margin-top: 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 22px;
+  margin-top: 48px;
+  display: flex;
+  align-items: stretch;
+  position: relative;
+}
+
+.mudanca-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.mudanca-wrapper--antes {
+  margin-right: -28px;
+  z-index: 1;
+}
+
+.mudanca-wrapper--depois {
+  z-index: 2;
+}
+
+.mudanca-wrapper:hover {
+  z-index: 10;
 }
 
 .mudanca {
-  border-radius: var(--raio);
-  padding: 28px;
-  border: 1px solid var(--borda);
+  flex: 1;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid transparent;
+  transition:
+    transform 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.38s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.38s ease,
+    border-color 0.38s ease;
+}
+
+.mudanca-topo {
+  height: 5px;
+  flex-shrink: 0;
+}
+
+.mudanca-corpo {
+  padding: 32px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
 }
 
 .mudanca h4 {
-  font-size: 14px;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 14px;
+  letter-spacing: 2.5px;
+  margin: 0;
 }
 
 .mudanca ul {
   margin: 0;
-  padding-left: 20px;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
 }
 
 .mudanca li {
   font-size: 15px;
   font-weight: 300;
-  line-height: 1.5;
+  line-height: 1.55;
+  padding-left: 20px;
+  position: relative;
 }
 
+.mudanca li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* — Antes */
 .mudanca--antes {
-  background: var(--cinza-claro);
-}
-.mudanca--antes h4 {
-  color: var(--texto);
-  opacity: 0.7;
-}
-.mudanca--antes li {
-  color: var(--texto);
-  opacity: 0.8;
+  background: #ffffff;
+  border-color: #d8ecda;
+  box-shadow:
+    0 2px 12px rgba(27, 74, 35, 0.06),
+    8px 0 24px rgba(27, 74, 35, 0.05);
 }
 
-.mudanca--depois {
-  background: var(--verde-bg);
-  border-color: #b2df72;
+.mudanca--antes .mudanca-topo {
+  background: linear-gradient(90deg, #c8dfc8, #e2efe2);
 }
+
+.mudanca--antes h4 {
+  color: #8a9e8a;
+}
+
+.mudanca--antes li {
+  color: #7a8f7a;
+}
+
+.mudanca--antes li::before {
+  background: #b8ccb8;
+}
+
+.mudanca-wrapper--antes:hover .mudanca--antes {
+  transform: translateX(-14px) scale(1.025);
+  box-shadow:
+    0 10px 40px rgba(27, 74, 35, 0.1),
+    12px 0 32px rgba(27, 74, 35, 0.08);
+  background: #f3fbee;
+  border-color: #b0d8b0;
+}
+
+/* — Com o YBY */
+.mudanca--depois {
+  background: linear-gradient(155deg, #1e5c28 0%, #13321a 100%);
+  border-color: #2d7a3a;
+  box-shadow:
+    0 2px 12px rgba(27, 74, 35, 0.16),
+    -8px 0 24px rgba(27, 74, 35, 0.12);
+}
+
+.mudanca--depois .mudanca-topo {
+  background: linear-gradient(90deg, #81C931, #aad940);
+}
+
 .mudanca--depois h4 {
-  color: var(--verde);
+  color: #81C931;
+}
+
+.mudanca--depois li {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.mudanca--depois li::before {
+  background: #81C931;
+}
+
+.mudanca-wrapper--depois:hover .mudanca--depois {
+  transform: translateX(14px) scale(1.025);
+  box-shadow:
+    0 10px 48px rgba(27, 74, 35, 0.28),
+    -12px 0 36px rgba(27, 74, 35, 0.2);
+  background: linear-gradient(155deg, #2d7838 0%, #1e5c28 100%);
+  border-color: #81C931;
 }
 
 /* passos */
@@ -580,9 +683,30 @@
 @media (max-width: 860px) {
   .recursos,
   .impactos,
-  .mudancas,
   .passos {
     grid-template-columns: 1fr;
+  }
+
+  .mudancas {
+    flex-direction: column;
+  }
+
+  .mudanca-wrapper--antes {
+    margin-right: 0;
+    margin-bottom: -20px;
+    z-index: 1;
+  }
+
+  .mudanca-wrapper--depois {
+    z-index: 2;
+  }
+
+  .mudanca-wrapper--antes:hover .mudanca--antes {
+    transform: translateY(-10px) scale(1.02);
+  }
+
+  .mudanca-wrapper--depois:hover .mudanca--depois {
+    transform: translateY(10px) scale(1.02);
   }
 }
 
