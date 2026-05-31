@@ -90,7 +90,7 @@
   flex-direction: column;
 }
 
-/* ===== FRENTE — padrão ===== */
+/* ===== FRENTE - padrão ===== */
 .fcg-face--frente {
   background: #ffffff;
   border: 1.5px solid #dcfce7;
@@ -98,7 +98,7 @@
   gap: 14px;
 }
 
-/* FRENTE — destaque (primeiro card) */
+/* FRENTE - destaque (primeiro card) */
 .fcg-card--destaque .fcg-face--frente {
   background: #15803d;
   border-color: #15803d;
@@ -123,7 +123,7 @@
   color: #ffffff;
 }
 
-/* ===== TEXTO — frente ===== */
+/* ===== TEXTO - frente ===== */
 .fcg-card-titulo {
   font-size: 20px;
   font-weight: 600;

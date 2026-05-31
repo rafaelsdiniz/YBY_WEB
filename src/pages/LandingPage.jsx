@@ -27,7 +27,7 @@ const NATUREZA = [
     tag: "Cerrado",
     titulo: "Onde a serra encontra a savana",
     texto:
-      "Chapadas e palmeiras de buriti formam a paisagem do cerrado tocantinense — a savana mais biodiversa do planeta.",
+      "Chapadas e palmeiras de buriti formam a paisagem do cerrado tocantinense - a savana mais biodiversa do planeta.",
   },
   {
     img: "/tocantinscarrosel.jpg",
@@ -48,7 +48,7 @@ const NATUREZA = [
     tag: "Cachoeiras",
     titulo: "Quedas escondidas nos paredões",
     texto:
-      "Cachoeiras surgem entre paredões de rocha e mata — refúgios da riqueza natural do Tocantins.",
+      "Cachoeiras surgem entre paredões de rocha e mata - refúgios da riqueza natural do Tocantins.",
   },
   {
     img: "/tocantinscarrossel1.jpg",
@@ -94,7 +94,7 @@ const RECURSOS = [
   {
     id: 2,
     icone: Gauge,
-    /* Foto: floresta com luz — monitoramento ambiental (Unsplash) */
+    /* Foto: floresta com luz - monitoramento ambiental (Unsplash) */
     imagem: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=800&q=80&auto=format&fit=crop",
     titulo: "Semáforo de decisão",
     subtitulo: "Decisão baseada em dados",
@@ -111,7 +111,7 @@ const RECURSOS = [
   {
     id: 3,
     icone: TrendingDown,
-    /* Foto: rio no cerrado — eficiência hídrica (Unsplash) */
+    /* Foto: rio no cerrado - eficiência hídrica (Unsplash) */
     imagem: "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=800&q=80&auto=format&fit=crop",
     titulo: "Detecção de desperdício",
     subtitulo: "Eficiência do gasto público",
@@ -228,7 +228,7 @@ export default function LandingPage() {
             <p className="secao-lead">
               <strong>Yby</strong> significa "terra" em tupi. É a plataforma de
               priorização do programa JREDD+ que reúne desmatamento,
-              conformidade, gasto público e risco em um índice único — para que o
+              conformidade, gasto público e risco em um índice único - para que o
               investimento ambiental do Tocantins seja aplicado onde gera mais
               impacto.
             </p>
@@ -250,7 +250,7 @@ export default function LandingPage() {
             <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead">
               São 139 municípios em um só território. Passe o mouse pelo mapa e
-              explore o estado — a mesma base que, dentro do sistema, se
+              explore o estado - a mesma base que, dentro do sistema, se
               transforma em prioridade de investimento ambiental.
             </p>
           </Reveal>
@@ -265,7 +265,7 @@ export default function LandingPage() {
             <h2>Por que isso importa</h2>
             <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead">
-              O Tocantins é coração do cerrado e faz parte também da Amazônia Legal — uma região com alta biodiversidade 
+              O Tocantins é coração do cerrado e faz parte também da Amazônia Legal - uma região com alta biodiversidade 
               e a origem das águas que abastecem o Brasil. Proteger esse
               território é garantir clima, água e futuro. O YBY existe para que
               cada real investido chegue onde mais protege essa riqueza.
@@ -356,7 +356,7 @@ export default function LandingPage() {
               O YBY é uma iniciativa do <strong>Governo do Tocantins</strong>,
               conduzida pela <strong>Secretaria do Meio Ambiente e Recursos
               Hídricos</strong>, para transformar o investimento ambiental em
-              política pública transparente, eficiente e baseada em evidências —
+              política pública transparente, eficiente e baseada em evidências,
               colocando a tecnologia a serviço da preservação do cerrado e da Amazônia.
             </p>
             <div className="iniciativa-logos">

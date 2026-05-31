@@ -19,7 +19,7 @@ function FlipCard({ card, delay, featured }) {
       onClick={aoClicar}
       role="button"
       tabIndex={0}
-      aria-label={`${card.titulo} — clique para ver detalhes`}
+      aria-label={`${card.titulo} - clique para ver detalhes`}
       onKeyDown={(e) => e.key === "Enter" && aoClicar()}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}

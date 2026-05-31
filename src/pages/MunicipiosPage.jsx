@@ -179,7 +179,7 @@ export default function MunicipiosPage() {
       <header className="page-header admin-header">
         <div>
           <h1>Municípios</h1>
-          <p>{municipios.length} municípios na base — clique para abrir no painel</p>
+          <p>{municipios.length} municípios na base - clique para abrir no painel</p>
         </div>
         {ehGestor && (
           <div style={{ display: "flex", gap: 10 }}>

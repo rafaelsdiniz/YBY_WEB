@@ -167,7 +167,7 @@ export default function InteligenciaPage() {
                 <div className="kpi-box">
                   <span className="kpi-rotulo">Carbono evitado</span>
                   <span className="kpi-valor">{num(analise.carbono.tco2eEvitado).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} tCO₂e</span>
-                  <span className="kpi-sub">{analise.carbono.hectaresEvitados != null ? `${num(analise.carbono.hectaresEvitados).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ha evitados` : "—"} · {moeda(analise.carbono.valorPotencialReais)}</span>
+                  <span className="kpi-sub">{analise.carbono.hectaresEvitados != null ? `${num(analise.carbono.hectaresEvitados).toLocaleString("pt-BR", { maximumFractionDigits: 0 })} ha evitados` : "N/D"} · {moeda(analise.carbono.valorPotencialReais)}</span>
                 </div>
               )}
               {analise.roi && (

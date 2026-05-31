@@ -28,7 +28,7 @@
   transform: translateY(-2px);
 }
 
-/* Ícone puro, sem fundo — estilo Apple SF Symbols / Microsoft Fluent */
+/* Ícone puro, sem fundo - estilo Apple SF Symbols / Microsoft Fluent */
 .stat-icone {
   display: grid;
   place-items: center;

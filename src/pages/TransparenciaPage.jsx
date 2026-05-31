@@ -34,7 +34,7 @@ export default function TransparenciaPage() {
               <div className="kpi-box">
                 <span className="kpi-rotulo">Última atualização</span>
                 <span className="kpi-valor" style={{ fontSize: "1rem" }}>
-                  {meta.ultimaAtualizacao ? new Date(meta.ultimaAtualizacao).toLocaleString("pt-BR") : "—"}
+                  {meta.ultimaAtualizacao ? new Date(meta.ultimaAtualizacao).toLocaleString("pt-BR") : "N/D"}
                 </span>
               </div>
             </div>

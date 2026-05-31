@@ -1,6 +1,6 @@
 // Dados de exemplo (mock) dos 139 municípios do Tocantins.
 // Os 6 primeiros são curados; os demais são sintéticos (determinísticos por
-// código IBGE) só para a demonstração — viram dados reais da API depois.
+// código IBGE) só para a demonstração - viram dados reais da API depois.
 export const MUNICIPIOS_MOCK = [
   {
     "id": "1700251",

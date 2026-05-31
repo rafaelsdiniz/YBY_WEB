@@ -9,9 +9,9 @@ const RECURSOS = [
 ];
 
 const SEMAFORO = [
-  { cor: "var(--verde)", titulo: "Verde — Pode investir", texto: "Baixo risco e bom retorno." },
-  { cor: "var(--amarelo)", titulo: "Amarelo — Investir com cuidado", texto: "Há ressalvas a resolver." },
-  { cor: "var(--vermelho)", titulo: "Vermelho — Não investir agora", texto: "Risco alto (embargo, sobreposição)." },
+  { cor: "var(--verde)", titulo: "Verde - Pode investir", texto: "Baixo risco e bom retorno." },
+  { cor: "var(--amarelo)", titulo: "Amarelo - Investir com cuidado", texto: "Há ressalvas a resolver." },
+  { cor: "var(--vermelho)", titulo: "Vermelho - Não investir agora", texto: "Risco alto (embargo, sobreposição)." },
 ];
 
 export default function SobrePage() {
@@ -19,7 +19,7 @@ export default function SobrePage() {
     <>
       <header className="page-header">
         <h1>Sobre o YBY</h1>
-        <p>Inteligência de monitoramento e gestão para investimento ambiental — Programa JREDD+</p>
+        <p>Inteligência de monitoramento e gestão para investimento ambiental - Programa JREDD+</p>
       </header>
 
       <section className="card sobre-intro">
@@ -27,7 +27,7 @@ export default function SobrePage() {
           <strong>Yby</strong> significa “terra” em tupi. A plataforma reúne dados
           ambientais, fiscais e de risco em um índice único de prioridade, para
           que o investimento ambiental do Tocantins seja aplicado onde gera mais
-          impacto — com transparência e foco em resultado.
+          impacto - com transparência e foco em resultado.
         </p>
       </section>
 
@@ -61,7 +61,7 @@ export default function SobrePage() {
         </ul>
       </section>
 
-      <p className="sobre-versao">YBY · JREDD+ Intelligence — Tocantins · versão 1.0</p>
+      <p className="sobre-versao">YBY · JREDD+ Intelligence - Tocantins · versão 1.0</p>
     </>
   );
 }

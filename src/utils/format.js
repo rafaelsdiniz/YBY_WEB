@@ -1,8 +1,8 @@
 // Formatadores null-safe: quando o dado ainda nao veio da API (null/undefined),
-// mostram "—" em vez de inventar 0. Assim a UI fica honesta enquanto o backend
+// mostram "N/D" em vez de inventar 0. Assim a UI fica honesta enquanto o backend
 // nao popula score/KPI/indicadores, e se preenche sozinha quando o dado chega.
 
-export const SEM_DADO = "—";
+export const SEM_DADO = "N/D";
 
 export function temValor(v) {
   return v !== null && v !== undefined && !Number.isNaN(Number(v));

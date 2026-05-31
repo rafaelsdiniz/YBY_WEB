@@ -199,9 +199,9 @@ export default function InstituicoesCarbonoPage() {
                       {i.ativo === false && <span className="selo selo--vermelho" style={{ marginLeft: 8 }}>inativa</span>}
                     </td>
                     <td>{rotulo(INSTITUICAO_TIPO, i.tipo)}</td>
-                    <td className="admin-mut">{i.padraoCertificacao ? rotulo(PADRAO_CERTIFICACAO, i.padraoCertificacao) : "—"}</td>
+                    <td className="admin-mut">{i.padraoCertificacao ? rotulo(PADRAO_CERTIFICACAO, i.padraoCertificacao) : "N/D"}</td>
                     <td className="dir">
-                      {i.precoReferenciaTonelada == null ? "—" : `${numero(i.precoReferenciaTonelada, 2)} ${i.moeda || ""}`}
+                      {i.precoReferenciaTonelada == null ? "N/D" : `${numero(i.precoReferenciaTonelada, 2)} ${i.moeda || ""}`}
                     </td>
                     <td>{i.compraJredd ? <span className="tag tag--verde">sim</span> : <span className="tag tag--cinza">não</span>}</td>
                     {ehGestor && (
@@ -255,7 +255,7 @@ export default function InstituicoesCarbonoPage() {
                   <tr key={c.instituicaoId}>
                     <td className="admin-nome">{c.nome}</td>
                     <td className="admin-mut">{rotulo(INSTITUICAO_TIPO, c.tipo)}</td>
-                    <td className="admin-mut">{c.padraoCertificacao ? rotulo(PADRAO_CERTIFICACAO, c.padraoCertificacao) : "—"}</td>
+                    <td className="admin-mut">{c.padraoCertificacao ? rotulo(PADRAO_CERTIFICACAO, c.padraoCertificacao) : "N/D"}</td>
                     <td className="dir">{numero(c.precoTonelada, 2)} {c.moeda}</td>
                     <td className="dir">{numero(c.receitaEstimada, 2)} {c.moeda}</td>
                   </tr>

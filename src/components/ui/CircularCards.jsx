@@ -108,7 +108,7 @@ export default function CircularCards({ cards, autoplay = true }) {
     return { zIndex: 1, opacity: 0, pointerEvents: "none", transition };
   }
 
-  /* O ícone vem como componente Lucide — precisa de var local maiúscula */
+  /* O ícone vem como componente Lucide - precisa de var local maiúscula */
   const Icone = cardAtivo?.icone ?? null;
 
   return (
@@ -140,7 +140,7 @@ export default function CircularCards({ cards, autoplay = true }) {
               transition={{ duration: 0.28, ease: "easeInOut" }}
               className="cc-texto"
             >
-              {/* Ícone Lucide puro — sem fundo, sem borda */}
+              {/* Ícone Lucide puro - sem fundo, sem borda */}
               {Icone && (
                 <span className="cc-icone" aria-hidden="true">
                   <Icone size={34} strokeWidth={1.5} />

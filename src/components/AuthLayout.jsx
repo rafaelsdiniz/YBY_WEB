@@ -53,7 +53,7 @@ export default function AuthLayout({ children }) {
 
       {/* ── Barra superior ── */}
       <header className="auth-topbar">
-        <Link to="/" className="auth-logo-link" title="YBY — página inicial">
+        <Link to="/" className="auth-logo-link" title="YBY - página inicial">
           <img src="/logoYBY.png" alt="YBY" className="auth-logo" />
         </Link>
         <Link to="/" className="auth-voltar">← Voltar ao site</Link>

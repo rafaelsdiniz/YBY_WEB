@@ -50,7 +50,7 @@ export default function Footer() {
 
       <div className="rodape-base">
         <div className="rodape-base-inner">
-          <span>© {ano} YBY · Gestão Ambiental — Estado do Tocantins</span>
+          <span>© {ano} YBY · Gestão Ambiental - Estado do Tocantins</span>
           <span>Feito para o Tocantins.</span>
         </div>
       </div>

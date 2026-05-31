@@ -36,7 +36,7 @@ function responder(msg, municipios) {
     const top = [...municipios].sort((a, b) => b.prioridade - a.prioridade).slice(0, 3);
     return (
       "Por aptidão JREDD+, os municípios com maior potencial para receber recursos de carbono são:\n" +
-      top.map((m, i) => `${i + 1}. ${m.nome} — aptidão ${m.prioridade}/100 (${ROTULO[m.semaforo]})`).join("\n")
+      top.map((m, i) => `${i + 1}. ${m.nome} - aptidão ${m.prioridade}/100 (${ROTULO[m.semaforo]})`).join("\n")
     );
   }
 
@@ -45,7 +45,7 @@ function responder(msg, municipios) {
     if (!r.length) return "Nenhum município está em risco alto (vermelho) no momento.";
     return (
       "Municípios em risco alto (não investir agora):\n" +
-      r.map((m) => `• ${m.nome} — risco ${m.notaRisco}/100; ${m.pendencias.join("; ") || "sem pendências registradas"}`).join("\n")
+      r.map((m) => `• ${m.nome} - risco ${m.notaRisco}/100; ${m.pendencias.join("; ") || "sem pendências registradas"}`).join("\n")
     );
   }
 
@@ -54,14 +54,14 @@ function responder(msg, municipios) {
     if (!d.length) return "Não há municípios marcados como desperdício na base atual.";
     return (
       "Municípios com desperdício (gastam muito e rendem pouco):\n" +
-      d.map((m) => `• ${m.nome} — gasto ${real(m.gastoPublico)}, retorno ${m.retornoPorReal} por R$`).join("\n")
+      d.map((m) => `• ${m.nome} - gasto ${real(m.gastoPublico)}, retorno ${m.retornoPorReal} por R$`).join("\n")
     );
   }
 
   if (/(verde|pode investir|pronto|melhor|seguro)/.test(q)) {
     const v = municipios.filter((m) => m.semaforo === "VERDE");
     if (!v.length) return "Nenhum município está como verde (pronto para investir) agora.";
-    return "Prontos para investir (verde):\n" + v.map((m) => `• ${m.nome} — retorno ${m.retornoPorReal} por R$, conformidade ${m.conformidade}%`).join("\n");
+    return "Prontos para investir (verde):\n" + v.map((m) => `• ${m.nome} - retorno ${m.retornoPorReal} por R$, conformidade ${m.conformidade}%`).join("\n");
   }
 
   if (/(conformidade|car|regular)/.test(q)) {

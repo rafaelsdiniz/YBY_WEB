@@ -81,7 +81,7 @@ export default function ProjetosJreddPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const nomeMun = (id) => (id == null ? "—" : nomes.get(String(id)) || `#${id}`);
+  const nomeMun = (id) => (id == null ? "N/D" : nomes.get(String(id)) || `#${id}`);
 
   function novo() {
     setMunicipioForm(null);

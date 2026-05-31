@@ -188,7 +188,7 @@ export default function CarbonoDashboardPage() {
                         <td className="admin-nome">{c.nome}</td>
                         <td className="admin-mut">{rotulo(INSTITUICAO_TIPO, c.tipo)}</td>
                         <td className="dir">
-                          {c.precoTonelada == null ? "—" : `${numero(c.precoTonelada, 2)} ${c.moeda || ""}`}
+                          {c.precoTonelada == null ? "N/D" : `${numero(c.precoTonelada, 2)} ${c.moeda || ""}`}
                         </td>
                       </tr>
                     ))}
@@ -203,7 +203,7 @@ export default function CarbonoDashboardPage() {
 
           <p className="painel-meta">
             Algoritmo {dados.versaoAlgoritmo} · gerado em{" "}
-            {dados.geradoEm ? new Date(dados.geradoEm).toLocaleString("pt-BR") : "—"}
+            {dados.geradoEm ? new Date(dados.geradoEm).toLocaleString("pt-BR") : "N/D"}
           </p>
         </>
       )}
