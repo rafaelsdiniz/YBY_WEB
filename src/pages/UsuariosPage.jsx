@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { UserPlus, Search } from "lucide-react";
-import { getUsuarios, criarUsuario, atualizarStatus } from "../services/usuarios";
+import {
+  getUsuarios,
+  criarUsuario,
+  atualizarUsuario,
+  atualizarStatus,
+  deletarUsuario,
+} from "../services/usuarios";
 import { useToast } from "../context/ToastContext";
 import { useConfirm } from "../context/ConfirmContext";
 import Modal from "../components/Modal";
@@ -16,7 +22,7 @@ export default function UsuariosPage() {
   const [usuarios, setUsuarios] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [busca, setBusca] = useState("");
-  const [form, setForm] = useState(null); // null = fechado
+  const [form, setForm] = useState(null); // null = fechado; com id = edicao
   const [erroForm, setErroForm] = useState("");
   const [salvando, setSalvando] = useState(false);
 
@@ -35,24 +41,46 @@ export default function UsuariosPage() {
     [usuarios, busca]
   );
 
+  const editando = !!form?.id;
+
   function novo() {
     setErroForm("");
-    setForm({ nome: "", email: "", perfil: "SERVIDOR" });
+    setForm({ nome: "", email: "", perfil: "SERVIDOR", senha: "" });
+  }
+
+  function editar(u) {
+    setErroForm("");
+    setForm({ id: u.id, nome: u.nome, email: u.email, perfil: u.perfil, senha: "" });
   }
 
   async function salvar(e) {
     e.preventDefault();
     const nome = form.nome.trim();
     const email = form.email.trim();
-    if (!nome || !email) {
+    const senha = form.senha.trim();
+    if (!nome || (!editando && !email)) {
       setErroForm("Preencha nome e e-mail.");
+      return;
+    }
+    if (senha && senha.length < 8) {
+      setErroForm("A senha deve ter ao menos 8 caracteres.");
       return;
     }
     setSalvando(true);
     try {
-      const criado = await criarUsuario({ nome, email, perfil: form.perfil });
-      setUsuarios((l) => [...l, criado]);
-      toast.sucesso("Usuário criado. A senha inicial foi enviada pelo backend.");
+      if (editando) {
+        const atualizado = await atualizarUsuario(form.id, { nome, perfil: form.perfil, senha });
+        setUsuarios((l) => l.map((x) => (x.id === form.id ? atualizado : x)));
+        toast.sucesso(senha ? "Usuário atualizado e senha redefinida." : "Usuário atualizado.");
+      } else {
+        const criado = await criarUsuario({ nome, email, perfil: form.perfil, senha });
+        setUsuarios((l) => [...l, criado]);
+        toast.sucesso(
+          senha
+            ? "Usuário criado com a senha definida."
+            : "Usuário criado. Senha inicial gerada automaticamente."
+        );
+      }
       setForm(null);
     } catch (err) {
       setErroForm(err.message);
@@ -76,6 +104,23 @@ export default function UsuariosPage() {
       const atualizado = await atualizarStatus(u.id, !u.ativo);
       setUsuarios((l) => l.map((x) => (x.id === u.id ? atualizado : x)));
       toast.sucesso(`${u.nome} foi ${inativar ? "inativado" : "ativado"}.`);
+    } catch (err) {
+      toast.erro(err.message);
+    }
+  }
+
+  async function excluir(u) {
+    const ok = await confirmar({
+      titulo: "Excluir usuário?",
+      mensagem: `${u.nome} (${u.email}) será removido permanentemente.`,
+      confirmar: "Excluir",
+      tipo: "perigo",
+    });
+    if (!ok) return;
+    try {
+      await deletarUsuario(u.id);
+      setUsuarios((l) => l.filter((x) => x.id !== u.id));
+      toast.sucesso(`${u.nome} foi excluído.`);
     } catch (err) {
       toast.erro(err.message);
     }
@@ -137,8 +182,14 @@ export default function UsuariosPage() {
                       </span>
                     </td>
                     <td className="dir admin-acoes-col">
+                      <button type="button" className="admin-acao" onClick={() => editar(u)}>
+                        Editar
+                      </button>
                       <button type="button" className="admin-acao" onClick={() => alternar(u)}>
                         {u.ativo ? "Inativar" : "Ativar"}
+                      </button>
+                      <button type="button" className="admin-acao" onClick={() => excluir(u)}>
+                        Excluir
                       </button>
                     </td>
                   </tr>
@@ -157,7 +208,7 @@ export default function UsuariosPage() {
       </section>
 
       {form && (
-        <Modal titulo="Novo usuário" onFechar={() => setForm(null)}>
+        <Modal titulo={editando ? "Editar usuário" : "Novo usuário"} onFechar={() => setForm(null)}>
           <form onSubmit={salvar}>
             {erroForm && <div className="modal-erro">{erroForm}</div>}
             <label className="campo">
@@ -175,6 +226,7 @@ export default function UsuariosPage() {
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="nome@tocantins.gov.br"
+                disabled={editando}
               />
             </label>
             <label className="campo">
@@ -188,12 +240,26 @@ export default function UsuariosPage() {
                 ]}
               />
             </label>
+            <label className="campo">
+              <span>{editando ? "Nova senha (opcional)" : "Senha (opcional)"}</span>
+              <input
+                type="password"
+                value={form.senha}
+                onChange={(e) => setForm({ ...form, senha: e.target.value })}
+                autoComplete="new-password"
+                placeholder={
+                  editando
+                    ? "deixe em branco para manter a atual"
+                    : "deixe em branco para gerar automaticamente"
+                }
+              />
+            </label>
             <div className="modal-acoes">
               <button type="button" className="modal-btn modal-btn--cancelar" onClick={() => setForm(null)}>
                 Cancelar
               </button>
               <button type="submit" className="modal-btn modal-btn--salvar" disabled={salvando}>
-                {salvando ? "Criando..." : "Criar usuário"}
+                {salvando ? "Salvando..." : editando ? "Salvar alterações" : "Criar usuário"}
               </button>
             </div>
           </form>
