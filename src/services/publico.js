@@ -8,8 +8,3 @@ export async function rankingPublico({ page = 0, size = 50, ordenar = "score", o
 export async function geoJsonPublico(semaforo) {
   return http.get("/public/geojson", { auth: false, query: { semaforo } });
 }
-
-// Metadados (versao do algoritmo, pesos, total de municipios, ultima atualizacao).
-export async function metadados() {
-  return http.get("/public/metadados", { auth: false });
-}

@@ -34,7 +34,12 @@ export default function GraficoSemaforo({ municipios }) {
                   <Cell key={d.chave} fill={CORES[d.chave]} />
                 ))}
               </Pie>
-              <Tooltip formatter={(v, n) => [`${v} município(s)`, n]} />
+              <Tooltip
+                formatter={(v, n) => [`${v} município(s)`, n]}
+                position={{ y: 0 }}
+                allowEscapeViewBox={{ x: false, y: true }}
+                wrapperStyle={{ zIndex: 5 }}
+              />
             </PieChart>
           </ResponsiveContainer>
           <div className="gsem-centro">

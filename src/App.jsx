@@ -15,11 +15,9 @@ import InstituicoesCarbonoPage from "./pages/InstituicoesCarbonoPage";
 import ProjetosJreddPage from "./pages/ProjetosJreddPage";
 import PlanoSafraPage from "./pages/PlanoSafraPage";
 import GeoportalPage from "./pages/GeoportalPage";
-import TransparenciaPage from "./pages/TransparenciaPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
 import UsuariosPage from "./pages/UsuariosPage";
 import RelatoriosPage from "./pages/RelatoriosPage";
-import SobrePage from "./pages/SobrePage";
 import LoginPage from "./pages/LoginPage";
 import EsqueciSenhaPage from "./pages/EsqueciSenhaPage";
 import RedefinirSenhaPage from "./pages/RedefinirSenhaPage";
@@ -137,14 +135,6 @@ export default function App() {
           }
         />
         <Route
-          path="/transparencia"
-          element={
-            <RequireAuth>
-              <TransparenciaPage />
-            </RequireAuth>
-          }
-        />
-        <Route
           path="/relatorios"
           element={
             <RequireAuth>
@@ -160,9 +150,6 @@ export default function App() {
             </RequireAuth>
           }
         />
-
-        {/* pública */}
-        <Route path="/sobre" element={<SobrePage />} />
 
         {/* exclusivas do administrador */}
         <Route

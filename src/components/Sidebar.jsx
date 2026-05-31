@@ -3,14 +3,12 @@ import {
   LayoutDashboard,
   MapPinned,
   FileText,
-  Info,
   Users,
   LogOut,
   LogIn,
   TrendingUp,
   BrainCircuit,
   Cloud,
-  ShieldCheck,
   User,
   Gauge,
   Coins,
@@ -28,8 +26,6 @@ const LINKS = [
   { to: "/indicadores", rotulo: "Indicadores", icone: TrendingUp },
   { to: "/inteligencia", rotulo: "Inteligência", icone: BrainCircuit },
   { to: "/relatorios", rotulo: "Relatórios", icone: FileText },
-  { to: "/transparencia", rotulo: "Transparência", icone: ShieldCheck },
-  { to: "/sobre", rotulo: "Sobre", icone: Info },
 ];
 
 // Bloco do mercado de credito de carbono / JREDD+ / Plano Safra.
