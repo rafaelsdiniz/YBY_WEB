@@ -37,7 +37,7 @@ export default function RankingMunicipios({ municipios, selecionado, onSeleciona
       </ol>
       {restantes > 0 && (
         <p className="ranking-nota">
-          + {restantes} municípios - veja todos em <strong>Municípios</strong>.
+          + {restantes} municípios no estado.
         </p>
       )}
     </div>

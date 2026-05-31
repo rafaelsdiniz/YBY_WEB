@@ -88,7 +88,7 @@ const RECURSOS = [
       "Semáforo verde, amarelo e vermelho",
       "Atualizado com dados reais",
     ],
-    href: "/municipios",
+    href: "/painel",
   },
   {
     id: 2,
@@ -104,7 +104,7 @@ const RECURSOS = [
       "Apoio à tomada de decisão",
       "Visualização simples e objetiva",
     ],
-    href: "/municipios",
+    href: "/painel",
   },
   {
     id: 3,

@@ -35,7 +35,6 @@ export default function Footer() {
         <nav className="rodape-col">
           <h4>Plataforma</h4>
           <Link to="/painel">Painel</Link>
-          <Link to="/municipios">Municípios</Link>
           <Link to="/relatorios">Relatórios</Link>
           <Link to="/login">Entrar</Link>
         </nav>

@@ -1,7 +1,6 @@
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
-  MapPinned,
   FileText,
   Users,
   LogOut,
@@ -22,7 +21,6 @@ import "./Sidebar.css";
 
 const LINKS = [
   { to: "/painel", rotulo: "Painel", icone: LayoutDashboard },
-  { to: "/municipios", rotulo: "Municípios", icone: MapPinned },
   { to: "/indicadores", rotulo: "Indicadores", icone: TrendingUp },
   { to: "/inteligencia", rotulo: "Inteligência", icone: BrainCircuit },
   { to: "/relatorios", rotulo: "Relatórios", icone: FileText },

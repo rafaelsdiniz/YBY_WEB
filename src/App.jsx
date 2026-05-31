@@ -4,7 +4,6 @@ import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
 import RequireRole from "./components/RequireRole";
 import DashboardPage from "./pages/DashboardPage";
-import MunicipiosPage from "./pages/MunicipiosPage";
 import IndicadoresPage from "./pages/IndicadoresPage";
 import InteligenciaPage from "./pages/InteligenciaPage";
 import CarbonoPage from "./pages/CarbonoPage";
@@ -42,14 +41,6 @@ export default function App() {
           element={
             <RequireAuth>
               <DashboardPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/municipios"
-          element={
-            <RequireAuth>
-              <MunicipiosPage />
             </RequireAuth>
           }
         />
