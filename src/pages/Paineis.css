@@ -154,3 +154,84 @@
 .selo--amarelo { background: #fdf3d6; color: #8a6a00; }
 .selo--vermelho { background: #fadddd; color: #a81f1f; }
 .selo--neutro { background: #e9eef0; color: #41525c; }
+
+/* duas colunas responsivas para blocos lado a lado */
+.painel-2col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+/* chips de contagem (status / tipo) */
+.painel-chips {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.painel-chips li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.painel-chips strong {
+  font-size: 1.1rem;
+  color: var(--azul-escuro, #0b3a66);
+}
+
+/* checkbox alinhado dentro do .form-grid / .painel-toolbar */
+.campo--check {
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+}
+.campo--check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  accent-color: var(--azul, #0a4d8c);
+  cursor: pointer;
+}
+.campo--check span {
+  font-size: 0.88rem;
+  color: var(--texto);
+}
+
+/* catalogo de camadas do geoportal */
+.geo-camadas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+.geo-camada {
+  border: 1px solid #e6ebe8;
+  border-radius: 12px;
+  padding: 14px 16px;
+  background: var(--branco, #fff);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.geo-camada-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.geo-camada-tema {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #7a8780;
+}
+.geo-camada-desc {
+  font-size: 0.84rem;
+  color: #4a5a54;
+  margin: 0;
+  flex: 1;
+}
+.geo-camada .admin-acao {
+  align-self: flex-start;
+}

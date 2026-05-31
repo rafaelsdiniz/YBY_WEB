@@ -39,17 +39,20 @@ export async function trocarSenha(senhaAtual, novaSenha) {
   return { ok: true };
 }
 
-// Recuperacao por e-mail: ainda nao ha endpoint no backend (apenas /auth/login,
-// /auth/me e /auth/senha). Mantemos o contrato para a tela nao quebrar; quando
-// a API expuser /auth/recuperar e /auth/redefinir, ligar aqui.
+// Recuperacao por e-mail (fluxo "esqueci minha senha"). A resposta e generica
+// para nao revelar se o e-mail existe. Como o ambiente nao tem servico de e-mail,
+// a API devolve o `token` aqui (em producao iria por e-mail) — repassamos para a
+// tela poder seguir o fluxo de redefinicao.
 export async function solicitarRecuperacao(email) {
   if (!email) throw new Error("Informe seu e-mail.");
-  await new Promise((r) => setTimeout(r, 400));
-  return { ok: true };
+  const resp = await http.post("/auth/esqueci-senha", { email }, { auth: false });
+  return { ok: true, mensagem: resp?.mensagem, token: resp?.token, expiraEm: resp?.expiraEm };
 }
 
+// Redefine a senha a partir do token recebido. Resposta 204 (sem corpo).
 export async function redefinirSenha(token, novaSenha) {
+  if (!token) throw new Error("Token de redefinição ausente.");
   if (!novaSenha) throw new Error("Informe a nova senha.");
-  await new Promise((r) => setTimeout(r, 400));
+  await http.post("/auth/redefinir-senha", { token, novaSenha }, { auth: false });
   return { ok: true };
 }
