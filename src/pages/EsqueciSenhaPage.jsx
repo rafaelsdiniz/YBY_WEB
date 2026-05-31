@@ -7,6 +7,7 @@ export default function EsqueciSenhaPage() {
   const [email, setEmail] = useState("");
   const [erro, setErro] = useState("");
   const [enviado, setEnviado] = useState(false);
+  const [token, setToken] = useState("");
   const [carregando, setCarregando] = useState(false);
 
   async function aoEnviar(e) {
@@ -14,7 +15,10 @@ export default function EsqueciSenhaPage() {
     setErro("");
     setCarregando(true);
     try {
-      await solicitarRecuperacao(email);
+      const resp = await solicitarRecuperacao(email);
+      // Sem servico de e-mail no ambiente, a API devolve o token aqui para seguir
+      // o fluxo de redefinicao direto pela tela.
+      setToken(resp?.token || "");
       setEnviado(true);
     } catch (err) {
       setErro(err.message);
@@ -32,8 +36,16 @@ export default function EsqueciSenhaPage() {
             Se houver uma conta para <strong>{email}</strong>, enviamos um link
             para redefinir a senha. O link expira em 30 minutos.
           </p>
-          <Link to="/" className="auth-btn auth-btn--link">
-            Voltar ao login
+          {token && (
+            <Link
+              to={`/redefinir-senha?token=${encodeURIComponent(token)}`}
+              className="auth-btn"
+            >
+              Redefinir senha agora
+            </Link>
+          )}
+          <Link to="/" className="auth-explorar">
+            ← Voltar ao login
           </Link>
         </div>
       ) : (

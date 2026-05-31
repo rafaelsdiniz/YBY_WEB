@@ -7,10 +7,14 @@ import DashboardPage from "./pages/DashboardPage";
 import MunicipiosPage from "./pages/MunicipiosPage";
 import MunicipioDetalhePage from "./pages/MunicipioDetalhePage";
 import IndicadoresPage from "./pages/IndicadoresPage";
-import DesmatamentoPage from "./pages/DesmatamentoPage";
-import AlertasPage from "./pages/AlertasPage";
 import InteligenciaPage from "./pages/InteligenciaPage";
 import CarbonoPage from "./pages/CarbonoPage";
+import CarbonoDashboardPage from "./pages/CarbonoDashboardPage";
+import CreditosCarbonoPage from "./pages/CreditosCarbonoPage";
+import InstituicoesCarbonoPage from "./pages/InstituicoesCarbonoPage";
+import ProjetosJreddPage from "./pages/ProjetosJreddPage";
+import PlanoSafraPage from "./pages/PlanoSafraPage";
+import GeoportalPage from "./pages/GeoportalPage";
 import TransparenciaPage from "./pages/TransparenciaPage";
 import MinhaContaPage from "./pages/MinhaContaPage";
 import UsuariosPage from "./pages/UsuariosPage";
@@ -69,22 +73,6 @@ export default function App() {
           }
         />
         <Route
-          path="/desmatamento"
-          element={
-            <RequireAuth>
-              <DesmatamentoPage />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/alertas"
-          element={
-            <RequireAuth>
-              <AlertasPage />
-            </RequireAuth>
-          }
-        />
-        <Route
           path="/inteligencia"
           element={
             <RequireAuth>
@@ -97,6 +85,54 @@ export default function App() {
           element={
             <RequireAuth>
               <CarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/carbono/painel"
+          element={
+            <RequireAuth>
+              <CarbonoDashboardPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/creditos-carbono"
+          element={
+            <RequireAuth>
+              <CreditosCarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/instituicoes-carbono"
+          element={
+            <RequireAuth>
+              <InstituicoesCarbonoPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/projetos"
+          element={
+            <RequireAuth>
+              <ProjetosJreddPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/plano-safra"
+          element={
+            <RequireAuth>
+              <PlanoSafraPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/geoportal"
+          element={
+            <RequireAuth>
+              <GeoportalPage />
             </RequireAuth>
           }
         />

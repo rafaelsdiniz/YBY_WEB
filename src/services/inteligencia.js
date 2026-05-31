@@ -39,3 +39,22 @@ export async function equidade(ano) {
 export async function simularAlocacao(request) {
   return http.post("/inteligencia/alocacao", request);
 }
+
+// RN-300: carbono evitado (emissoes evitadas pela reducao de desmatamento).
+export async function carbonoEvitado(municipioId, ano, preco) {
+  return http.get(`/inteligencia/carbono-evitado/${municipioId}`, { query: { ano, preco } });
+}
+
+// RN-300: projecao de desmatamento (serie historica + projecao futura).
+export async function projecaoDesmatamento(municipioId, horizonteAnos) {
+  return http.get(`/inteligencia/projecao-desmatamento/${municipioId}`, {
+    query: { horizonteAnos },
+  });
+}
+
+// RN-300: ROI de desmatamento evitado (JREDD+ vs. conversao da area).
+export async function roiDesmatamentoEvitado(municipioId, ano, preco, valorAgropecuariaHaAno) {
+  return http.get(`/inteligencia/roi-desmatamento-evitado/${municipioId}`, {
+    query: { ano, preco, valorAgropecuariaHaAno },
+  });
+}

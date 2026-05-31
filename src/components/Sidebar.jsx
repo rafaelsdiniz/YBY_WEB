@@ -8,12 +8,16 @@ import {
   LogOut,
   LogIn,
   TrendingUp,
-  Trees,
-  AlertTriangle,
   BrainCircuit,
   Cloud,
   ShieldCheck,
   User,
+  Gauge,
+  Coins,
+  Building2,
+  FolderKanban,
+  Sprout,
+  Map as MapIcon,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import "./Sidebar.css";
@@ -22,13 +26,21 @@ const LINKS = [
   { to: "/painel", rotulo: "Painel", icone: LayoutDashboard },
   { to: "/municipios", rotulo: "Municípios", icone: MapPinned },
   { to: "/indicadores", rotulo: "Indicadores", icone: TrendingUp },
-  { to: "/desmatamento", rotulo: "Desmatamento", icone: Trees },
-  { to: "/alertas", rotulo: "Alertas", icone: AlertTriangle },
   { to: "/inteligencia", rotulo: "Inteligência", icone: BrainCircuit },
-  { to: "/carbono", rotulo: "Carbono", icone: Cloud },
   { to: "/relatorios", rotulo: "Relatórios", icone: FileText },
   { to: "/transparencia", rotulo: "Transparência", icone: ShieldCheck },
   { to: "/sobre", rotulo: "Sobre", icone: Info },
+];
+
+// Bloco do mercado de credito de carbono / JREDD+ / Plano Safra.
+const LINKS_CARBONO = [
+  { to: "/carbono/painel", rotulo: "Painel de carbono", icone: Gauge },
+  { to: "/carbono", rotulo: "Emissões", icone: Cloud },
+  { to: "/creditos-carbono", rotulo: "Créditos", icone: Coins },
+  { to: "/instituicoes-carbono", rotulo: "Instituições", icone: Building2 },
+  { to: "/projetos", rotulo: "Projetos JREDD+", icone: FolderKanban },
+  { to: "/plano-safra", rotulo: "Plano Safra", icone: Sprout },
+  { to: "/geoportal", rotulo: "Geoportal", icone: MapIcon },
 ];
 
 const LINKS_ADMIN = [
@@ -62,6 +74,19 @@ export default function Sidebar() {
             const Icone = l.icone;
             return (
               <NavLink key={l.to} to={l.to} className={itemClasse}>
+                <Icone size={19} strokeWidth={1.75} />
+                <span>{l.rotulo}</span>
+              </NavLink>
+            );
+          })}
+        </nav>
+
+        <span className="sidebar-secao sidebar-secao--sep">Carbono &amp; Safra</span>
+        <nav className="sidebar-nav">
+          {LINKS_CARBONO.map((l) => {
+            const Icone = l.icone;
+            return (
+              <NavLink key={l.to} to={l.to} end={l.to === "/carbono"} className={itemClasse}>
                 <Icone size={19} strokeWidth={1.75} />
                 <span>{l.rotulo}</span>
               </NavLink>
