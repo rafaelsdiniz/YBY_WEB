@@ -54,11 +54,6 @@ export default function DashboardPage() {
       {resumo && (
         <div className="kpi-grid" style={{ marginBottom: 18 }}>
           <div className="kpi-box">
-            <span className="kpi-rotulo">Alertas ativos</span>
-            <span className="kpi-valor">{numero(resumo.totalAlertasAtivos)}</span>
-            <span className="kpi-sub">{numero(resumo.alertasCriticos)} críticos</span>
-          </div>
-          <div className="kpi-box">
             <span className="kpi-rotulo">Focos de queimada (ano)</span>
             <span className="kpi-valor">{numero(resumo.focosQueimadaAnoCorrente)}</span>
             <span className="kpi-sub">{numero(resumo.focosQueimadaUltimos30Dias)} nos últimos 30 dias</span>

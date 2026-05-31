@@ -10,7 +10,6 @@
 import { http } from "./http";
 import { kpiPeriodo } from "./indicadores";
 import { historicoDesmatamento } from "./desmatamento";
-import { risco as riscoMunicipio } from "./alertas";
 import { rankingPublico } from "./publico";
 
 // Preserva null (dado ausente) em vez de coagir para 0 — a UI mostra "—".
@@ -68,10 +67,9 @@ export async function getMunicipioDetalhe(apiId) {
   const detalhe = await http.get(`/municipios/${apiId}`);
 
   // chamadas auxiliares toleram falha individual (dado pode nao existir ainda)
-  const [kpi, serie, riscoInfo] = await Promise.all([
+  const [kpi, serie] = await Promise.all([
     kpiPeriodo(apiId, anoInicio, anoFim).catch(() => null),
     historicoDesmatamento(apiId).catch(() => []),
-    riscoMunicipio(apiId).catch(() => null),
   ]);
 
   return {
@@ -81,13 +79,13 @@ export async function getMunicipioDetalhe(apiId) {
     codigoIbge: detalhe.codigoIbge,
     prioridade: detalhe.scorePrioridade == null ? null : Math.round(Number(detalhe.scorePrioridade)),
     semaforo: detalhe.scorePrioridade == null ? "SEM_DADO" : upper(detalhe.semaforo),
-    notaRisco: numOuNull(detalhe.notaRisco ?? riscoInfo?.notaRisco),
+    notaRisco: numOuNull(detalhe.notaRisco),
     retornoPorReal: numOuNull(detalhe.kpiRetorno ?? kpi?.kpiRetorno),
     gastoPublico: numOuNull(kpi?.gastoPublico),
     conformidade: null, // nao exposto diretamente; reservado p/ quando a API trouxer
     reducaoDesmatamento: null,
     desperdicio: false,
-    pendencias: detalhe.pendencias || riscoInfo?.pendencias || [],
+    pendencias: detalhe.pendencias || [],
     serieDesmatamento: serie,
   };
 }

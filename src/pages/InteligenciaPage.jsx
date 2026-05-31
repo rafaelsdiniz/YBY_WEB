@@ -240,7 +240,6 @@ export default function InteligenciaPage() {
                 <th className="dir">Custo/resultado</th>
                 <th className="dir">Média do grupo</th>
                 <th className="dir">Razão</th>
-                <th>Nível</th>
               </tr>
             </thead>
             <tbody>
@@ -251,11 +250,10 @@ export default function InteligenciaPage() {
                   <td className="dir">{num(d.custoPorResultado).toFixed(2)}</td>
                   <td className="dir">{num(d.mediaGrupo).toFixed(2)}</td>
                   <td className="dir">{num(d.razaoSobreMedia).toFixed(2)}x</td>
-                  <td>{selo(d.nivelAlerta)}</td>
                 </tr>
               ))}
               {desperdicios.length === 0 && (
-                <tr><td colSpan={6} className="admin-vazio">Consulte para ver o benchmarking de eficiência.</td></tr>
+                <tr><td colSpan={5} className="admin-vazio">Consulte para ver o benchmarking de eficiência.</td></tr>
               )}
             </tbody>
           </table>

@@ -1,6 +1,5 @@
 import SemaforoBadge from "./SemaforoBadge";
 import KpiCard from "./KpiCard";
-import AlertaDesperdicio from "./AlertaDesperdicio";
 import GraficoDesmatamento from "./GraficoDesmatamento";
 import RelatorioPdf from "./RelatorioPdf";
 import { numero, moeda, temValor, SEM_DADO } from "../utils/format";
@@ -23,8 +22,6 @@ export default function DetalheMunicipio({ municipio }) {
         <h2>{m.nome}</h2>
         <SemaforoBadge semaforo={m.semaforo} />
       </header>
-
-      <AlertaDesperdicio ativo={m.desperdicio} />
 
       <div className="detalhe-kpis">
         <KpiCard
