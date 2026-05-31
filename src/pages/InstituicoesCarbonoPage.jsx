@@ -224,7 +224,7 @@ export default function InstituicoesCarbonoPage() {
       <section className="card">
         <h2 className="grafico-titulo"><Link2 size={17} /> Matching de compradores</h2>
         <div className="painel-toolbar">
-          <label className="campo">
+          <label className="campo" style={{ width: 340, maxWidth: "100%" }}>
             <span>Crédito de carbono</span>
             <Select
               value={match?.creditoId ?? ""}

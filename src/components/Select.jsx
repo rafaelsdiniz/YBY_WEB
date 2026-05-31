@@ -31,7 +31,11 @@ export default function Select({
     const el = trigRef.current;
     if (!el) return;
     const r = el.getBoundingClientRect();
-    setCoords({ left: r.left, top: r.bottom + 6, width: r.width });
+    // Garante que a lista não ultrapasse a borda direita da viewport.
+    const margem = 8;
+    const largura = Math.min(r.width, window.innerWidth - margem * 2);
+    const left = Math.min(r.left, window.innerWidth - margem - largura);
+    setCoords({ left: Math.max(margem, left), top: r.bottom + 6, width: largura });
   }
 
   function abrir() {

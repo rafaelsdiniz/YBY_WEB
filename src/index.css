@@ -26,6 +26,9 @@
 
   --sans: "Manrope", system-ui, "Segoe UI", Roboto, sans-serif;
   --display: "Raleway", "Manrope", sans-serif;
+  /* Fonte do sistema (área interna): Segoe UI (a mesma do Power BI);
+     Inter como fallback em SO sem Segoe UI (Mac/Linux). */
+  --sistema: "Segoe UI", "Inter", system-ui, Roboto, sans-serif;
 
   font: 300 16px/1.55 var(--sans);
   letter-spacing: -0.1px;
@@ -63,6 +66,23 @@ h3 {
   line-height: 1.2;
   font-weight: 400;
   letter-spacing: -0.5px;
+}
+
+/* ── Fonte do sistema (somente área interna, dentro do Layout) ──
+   O site institucional (landing/auth) continua em Manrope/Raleway.
+   .sel-lista é incluído porque o dropdown do Select renderiza em portal
+   (fora do .shell), e o sistema é o único lugar que usa esse componente. */
+.shell,
+.sel-lista {
+  font-family: var(--sistema);
+  letter-spacing: -0.2px;
+}
+.shell h1,
+.shell h2,
+.shell h3,
+.shell h4 {
+  font-family: var(--sistema);
+  letter-spacing: -0.3px;
 }
 
 a {

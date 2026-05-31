@@ -92,6 +92,11 @@
   color: var(--texto);
   cursor: pointer;
 }
+/* texto longo da opção quebra linha em vez de vazar da lista */
+.sel-opcao > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
 
 .sel-opcao.ativa {
   background: var(--cinza-claro);
