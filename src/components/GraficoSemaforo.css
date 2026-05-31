@@ -1,16 +1,14 @@
 .gsem-corpo {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
 }
-
 .gsem-donut {
   position: relative;
-  flex: 1;
-  min-width: 180px;
+  flex: none;
+  width: 164px;
 }
-
 .gsem-centro {
   position: absolute;
   inset: 0;
@@ -20,49 +18,61 @@
   justify-content: center;
   pointer-events: none;
 }
-
 .gsem-centro strong {
-  font-size: 30px;
-  font-weight: 300;
-  color: var(--azul-escuro);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #0f172a;
   line-height: 1;
-  letter-spacing: -1px;
+  font-variant-numeric: tabular-nums;
 }
-
 .gsem-centro span {
-  font-size: 11px;
-  color: var(--texto);
-  opacity: 0.6;
+  font-size: 0.64rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-top: 3px;
 }
-
 .gsem-legenda {
   list-style: none;
   margin: 0;
   padding: 0;
-  min-width: 150px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 9px;
+  gap: 12px;
+  min-width: 130px;
 }
-
 .gsem-legenda li {
   display: flex;
   align-items: center;
-  gap: 9px;
-  font-size: 13.5px;
-  font-weight: 300;
-  color: var(--texto);
+  gap: 10px;
 }
-
-.gsem-legenda li span {
-  width: 11px;
-  height: 11px;
+.gsem-dot {
+  width: 10px;
+  height: 10px;
   border-radius: 3px;
   flex: none;
+  display: inline-block;
 }
-
-.gsem-legenda li b {
-  margin-left: auto;
-  font-weight: 500;
-  color: var(--azul-escuro);
+.gsem-leg-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.gsem-leg-info strong {
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.gsem-leg-info span {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+.gsem-legenda em {
+  font-style: normal;
+  font-size: 0.7rem;
+  color: #cbd5e1;
+  font-weight: 600;
 }

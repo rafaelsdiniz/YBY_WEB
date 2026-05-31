@@ -1,89 +1,159 @@
-/* Shell do sistema: sidebar + conteúdo */
+/* ═══════════════════════════════════════════════════════
+   SHELL — Layout base do sistema
+═══════════════════════════════════════════════════════ */
 .shell {
   display: flex;
   min-height: 100vh;
   align-items: stretch;
+  background: #f0f4f8;
 }
 
 .shell-main {
   flex: 1;
   min-width: 0;
-  padding: 30px 34px 48px;
+  padding: 28px 32px 56px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: #f0f4f8;
 }
 
 @media (max-width: 860px) {
-  .shell {
-    flex-direction: column;
-  }
-  .shell-main {
-    padding: 22px 18px 36px;
-  }
+  .shell { flex-direction: column; }
+  .shell-main { padding: 20px 16px 40px; }
 }
 
-/* Cabeçalho de página */
+/* ═══════════════════════════════════════════════════════
+   PAGE HEADER
+═══════════════════════════════════════════════════════ */
 .page-header {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
 .page-header h1 {
-  font-size: 30px;
-  font-weight: 300;
-  letter-spacing: -0.9px;
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  margin: 0;
 }
 
 .page-header p {
   margin: 5px 0 0;
-  color: var(--texto);
-  opacity: 0.6;
-  font-size: 15px;
-  font-weight: 300;
+  color: #64748b;
+  font-size: 0.84rem;
+  font-weight: 400;
 }
 
+/* ═══════════════════════════════════════════════════════
+   CARD — base do sistema sem bordas laterais
+═══════════════════════════════════════════════════════ */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 8px 28px rgba(15, 23, 42, 0.06);
+  border: none;
+}
+
+/* ═══════════════════════════════════════════════════════
+   CARD HEADER — ícone + título + badge (BI)
+═══════════════════════════════════════════════════════ */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.card-header-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: #f0fdf4;
+  display: grid;
+  place-items: center;
+  color: #1B4A23;
+  flex: none;
+}
+
+.card-header-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: #475569;
+  margin: 0;
+  flex: 1;
+}
+
+.card-header-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  background: #f1f5f9;
+  color: #64748b;
+  padding: 2px 9px;
+  border-radius: 99px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION TITLE (dentro de card)
+═══════════════════════════════════════════════════════ */
+.grafico-titulo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  color: #475569;
+  margin-bottom: 16px;
+  margin-top: 0;
+}
+
+/* ═══════════════════════════════════════════════════════
+   LAYOUT HELPERS
+═══════════════════════════════════════════════════════ */
 .app-grid {
   display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 20px;
+  grid-template-columns: 1fr 340px;
+  gap: 16px;
   align-items: start;
 }
 
-@media (max-width: 1080px) {
-  .app-grid {
-    grid-template-columns: 1fr;
-  }
+@media (max-width: 1100px) {
+  .app-grid { grid-template-columns: 1fr; }
 }
 
 .painel-col {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   min-width: 0;
 }
 
-.grafico-titulo {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--azul-escuro);
-  margin-bottom: 14px;
+.section-gap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.card {
-  background: var(--branco);
-  border: 1px solid var(--borda);
-  border-radius: var(--raio);
-  padding: 18px;
-  box-shadow: var(--sombra-md);
-}
-
+/* ═══════════════════════════════════════════════════════
+   MISC
+═══════════════════════════════════════════════════════ */
 .estado {
-  padding: 40px;
+  padding: 56px;
   text-align: center;
-  color: var(--azul);
+  color: #94a3b8;
+  font-size: 0.88rem;
 }
 
 .detalhe-vazio {
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--texto);
-  opacity: 0.7;
+  font-size: 0.83rem;
+  color: #94a3b8;
   text-align: center;
+  padding: 28px;
 }
