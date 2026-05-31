@@ -169,7 +169,7 @@ export default function IndicadoresPage() {
       {form && (
         <section className="card">
           <h2 className="grafico-titulo">
-            Lançar / atualizar indicador — {municipio?.nome ?? "selecione um município"}
+            Lançar / atualizar indicador - {municipio?.nome ?? "selecione um município"}
           </h2>
           <form onSubmit={salvar}>
             <div className="form-grid">

@@ -1,6 +1,6 @@
 :root {
   /* Identidade da LOGO: verdes. Os tokens --azul* guardam o verde da marca
-     (nome mantido por compatibilidade — o sistema inteiro referencia eles). */
+     (nome mantido por compatibilidade - o sistema inteiro referencia eles). */
   --azul: #1B4A23; /* marca principal: header, botões, realces (verde escuro da logo) */
   --azul-escuro: #13321a; /* verde profundo: títulos, fundos escuros */
   --azul-claro: #81C931; /* verde lima: hover, destaques, accents */

@@ -263,7 +263,7 @@ export default function MapaTocantins({
             (hover.dado ? (
               <span className="mapa-tip-info">
                 <SemaforoBadge semaforo={hover.dado.semaforo} compact />
-                Aptidão JREDD+ {hover.dado.prioridade ?? "—"}
+                Aptidão JREDD+ {hover.dado.prioridade ?? "N/D"}
               </span>
             ) : (
               <span className="mapa-tip-sem">Sem dados</span>

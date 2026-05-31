@@ -82,7 +82,7 @@ export default function GeoportalPage() {
                     <tr key={a.municipioId}>
                       <td className="admin-nome">{a.nome}</td>
                       <td className="admin-mut">{rotulo(BIOMA, a.bioma)}</td>
-                      <td><span className={seloSemaforo(a.semaforo)}>{a.semaforo || "—"}</span></td>
+                      <td><span className={seloSemaforo(a.semaforo)}>{a.semaforo || "N/D"}</span></td>
                       <td className="dir">{numero(a.areaHa)}</td>
                       <td className="dir">{numero(a.scorePrioridade)}</td>
                       <td className="dir">{numero(a.potencialTco2eAno)}</td>
@@ -103,7 +103,7 @@ export default function GeoportalPage() {
                 <article key={c.codigo} className="geo-camada">
                   <div className="geo-camada-top">
                     <strong>{c.titulo}</strong>
-                    <span className={seloRelevancia(c.relevanciaCarbono)}>{c.relevanciaCarbono || "—"}</span>
+                    <span className={seloRelevancia(c.relevanciaCarbono)}>{c.relevanciaCarbono || "N/D"}</span>
                   </div>
                   <span className="geo-camada-tema">{c.tema}</span>
                   <p className="geo-camada-desc">{c.descricao}</p>

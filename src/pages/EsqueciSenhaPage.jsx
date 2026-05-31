@@ -31,18 +31,29 @@ export default function EsqueciSenhaPage() {
     <AuthLayout>
       {enviado ? (
         <div>
-          <h1 className="auth-titulo">Verifique seu e-mail</h1>
-          <p className="auth-sub">
-            Se houver uma conta para <strong>{email}</strong>, enviamos um link
-            para redefinir a senha. O link expira em 30 minutos.
-          </p>
-          {token && (
-            <Link
-              to={`/redefinir-senha?token=${encodeURIComponent(token)}`}
-              className="auth-btn"
-            >
-              Redefinir senha agora
-            </Link>
+          {token ? (
+            <>
+              <h1 className="auth-titulo">Redefina sua senha</h1>
+              <p className="auth-sub">
+                Ambiente de demonstração: o envio de e-mail não está configurado,
+                então o link de redefinição aparece aqui mesmo. Clique abaixo para
+                criar uma nova senha (válido por 30 minutos).
+              </p>
+              <Link
+                to={`/redefinir-senha?token=${encodeURIComponent(token)}`}
+                className="auth-btn"
+              >
+                Redefinir senha agora
+              </Link>
+            </>
+          ) : (
+            <>
+              <h1 className="auth-titulo">Verifique seu e-mail</h1>
+              <p className="auth-sub">
+                Se houver uma conta para <strong>{email}</strong>, enviamos um link
+                para redefinir a senha. O link expira em 30 minutos.
+              </p>
+            </>
           )}
           <Link to="/" className="auth-explorar">
             ← Voltar ao login

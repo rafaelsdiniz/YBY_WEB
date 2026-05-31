@@ -64,4 +64,4 @@ export const opcoes = (mapa) =>
   Object.entries(mapa).map(([value, label]) => ({ value, label }));
 
 // Rotulo seguro (cai no proprio valor se nao mapeado).
-export const rotulo = (mapa, valor) => (valor == null ? "—" : mapa[valor] ?? valor);
+export const rotulo = (mapa, valor) => (valor == null ? "N/D" : mapa[valor] ?? valor);

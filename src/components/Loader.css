@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════
-   Loader — splash inicial (tela cheia) + loader inline
+   Loader - splash inicial (tela cheia) + loader inline
    Tema tela: verde escuro, átomo de carbono 3D, partículas flutuantes.
    Tema inline: neutro claro, sem 3D pesado.
    ════════════════════════════════════════════════════════════════════ */
@@ -75,7 +75,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   MARCA YBY — logo no centro com anel giratório + halo suave.
+   MARCA YBY - logo no centro com anel giratório + halo suave.
    ════════════════════════════════════════════════════════════════════ */
 .loader-marca {
   position: relative;

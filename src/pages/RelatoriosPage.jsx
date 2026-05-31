@@ -102,7 +102,7 @@ export default function RelatoriosPage() {
         <section className="card">
           <h2 className="grafico-titulo">{relExec.titulo}</h2>
           <p className="painel-meta">
-            {relExec.tipo} · gerado em {relExec.geradoEm ? new Date(relExec.geradoEm).toLocaleString("pt-BR") : "—"}
+            {relExec.tipo} · gerado em {relExec.geradoEm ? new Date(relExec.geradoEm).toLocaleString("pt-BR") : "N/D"}
           </p>
           {relExec.observacao && <p className="painel-just">{relExec.observacao}</p>}
         </section>

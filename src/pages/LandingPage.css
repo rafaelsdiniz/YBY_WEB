@@ -48,7 +48,7 @@
   font-size: clamp(80px, 14vw, 190px);
   font-weight: 800;
   letter-spacing: -6px;
-  /* brilho lima que cruza o texto — sem sombra para look minimalista */
+  /* brilho lima que cruza o texto - sem sombra para look minimalista */
   background: linear-gradient(100deg, #ffffff 20%, #d6f87a 48%, #ffffff 78%);
   background-size: 230% 100%;
   -webkit-background-clip: text;
@@ -173,7 +173,7 @@
   scroll-margin-top: 80px;
 }
 
-/* primeira seção logo após o hero — sem borda ou sobreposição */
+/* primeira seção logo após o hero - sem borda ou sobreposição */
 .hero + .secao {
   position: relative;
   z-index: 3;
@@ -586,7 +586,7 @@
   opacity: 0.85;
 }
 
-/* mapa interativo (destaque) — mapa à esquerda, sem fundo */
+/* mapa interativo (destaque) - mapa à esquerda, sem fundo */
 .mapa-destaque {
   display: grid;
   grid-template-columns: 1fr 1fr;

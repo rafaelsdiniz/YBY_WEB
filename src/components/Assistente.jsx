@@ -13,7 +13,7 @@ const SUGESTOES = [
 const SAUDACAO = {
   de: "ia",
   texto:
-    "Olá! Sou o assistente do YBY. Pergunte sobre aptidão JREDD+ para investimento em carbono, risco, desperdício ou conformidade dos municípios do Tocantins — ou cite um município pelo nome.",
+    "Olá! Sou o assistente do YBY. Pergunte sobre aptidão JREDD+ para investimento em carbono, risco, desperdício ou conformidade dos municípios do Tocantins - ou cite um município pelo nome.",
 };
 
 export default function Assistente() {

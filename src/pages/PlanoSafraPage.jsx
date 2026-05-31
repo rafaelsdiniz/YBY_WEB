@@ -17,7 +17,7 @@ import { opcoes, rotulo, PROGRAMA_SAFRA } from "../services/enums";
 import "./AdminTabela.css";
 import "./Paineis.css";
 
-const pctTaxa = (fracao) => (fracao == null ? "—" : `${numero(Number(fracao) * 100, 2)}%`);
+const pctTaxa = (fracao) => (fracao == null ? "N/D" : `${numero(Number(fracao) * 100, 2)}%`);
 
 const vazioLinha = {
   nome: "",
@@ -242,7 +242,7 @@ export default function PlanoSafraPage() {
                       <td className="dir">{pctTaxa(i.taxaJurosAa)}</td>
                       <td className="dir">{moeda(i.valorFinanciavel)}</td>
                       <td className="dir">{moeda(i.custoJurosAnoUm)}</td>
-                      <td className="dir">{i.tco2eAno == null ? "—" : numero(i.tco2eAno)}</td>
+                      <td className="dir">{i.tco2eAno == null ? "N/D" : numero(i.tco2eAno)}</td>
                     </tr>
                   ))}
                   {(resultado.itens || []).length === 0 && (
@@ -283,7 +283,7 @@ export default function PlanoSafraPage() {
                     <td className="admin-mut">{rotulo(PROGRAMA_SAFRA, l.programa)}</td>
                     <td>{l.anoSafra}</td>
                     <td className="dir">{pctTaxa(l.taxaJurosAa)}</td>
-                    <td className="dir">{l.tetoFinanciamento == null ? "—" : moeda(l.tetoFinanciamento)}</td>
+                    <td className="dir">{l.tetoFinanciamento == null ? "N/D" : moeda(l.tetoFinanciamento)}</td>
                     <td>{l.exigePraticaCarbono ? <span className="tag tag--verde">sim</span> : <span className="tag tag--cinza">não</span>}</td>
                     {ehGestor && (
                       <td className="dir admin-acoes-col">

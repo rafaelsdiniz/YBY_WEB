@@ -16,7 +16,7 @@ export default function Legenda() {
           <span className="legenda-cor" style={{ background: it.cor }} />
           <span>
             <strong>{it.titulo}</strong>
-            <span className="legenda-desc"> — {it.desc}</span>
+            <span className="legenda-desc"> - {it.desc}</span>
           </span>
         </li>
       ))}

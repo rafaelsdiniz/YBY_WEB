@@ -68,7 +68,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   FRENTE — branca, limpa
+   FRENTE - branca, limpa
    ════════════════════════════════════════════════════════════════════ */
 .fc-frente {
   background: #ffffff;
@@ -81,7 +81,7 @@
   padding: 28px;
 }
 
-/* Ícone grande no topo — sem fundo, direto */
+/* Ícone grande no topo - sem fundo, direto */
 .fc-frente-icone {
   color: #15803d;
   display: block;
@@ -111,7 +111,7 @@
   opacity: 0.70;
 }
 
-/* Dica "↩ ver mais" — visível só no mobile (sem hover) */
+/* Dica "↩ ver mais" - visível só no mobile (sem hover) */
 .fc-dica {
   display: none;
   font-size: 11px;
@@ -126,7 +126,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   VERSO — verde escuro, texto branco
+   VERSO - verde escuro, texto branco
    ════════════════════════════════════════════════════════════════════ */
 .fc-verso {
   background: linear-gradient(145deg, #15803d 0%, #14532d 100%);
@@ -211,7 +211,7 @@
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   CARD DESTAQUE — frente em verde principal (primeiro card)
+   CARD DESTAQUE - frente em verde principal (primeiro card)
    ════════════════════════════════════════════════════════════════════ */
 
 /* Sobreposição: dois cards "fantasmas" empilhados atrás do card principal */
@@ -228,7 +228,7 @@
   pointer-events: none;
 }
 
-/* Camada mais ao fundo — mais inclinada */
+/* Camada mais ao fundo - mais inclinada */
 .fc-wrap--destaque::before {
   background: #bbf7d0;
   border: 1px solid #86efac;
@@ -236,7 +236,7 @@
   z-index: -2;
 }
 
-/* Camada intermediária — levemente inclinada */
+/* Camada intermediária - levemente inclinada */
 .fc-wrap--destaque::after {
   background: #dcfce7;
   border: 1px solid #bbf7d0;

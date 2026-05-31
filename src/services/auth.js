@@ -41,7 +41,7 @@ export async function trocarSenha(senhaAtual, novaSenha) {
 
 // Recuperacao por e-mail (fluxo "esqueci minha senha"). A resposta e generica
 // para nao revelar se o e-mail existe. Como o ambiente nao tem servico de e-mail,
-// a API devolve o `token` aqui (em producao iria por e-mail) — repassamos para a
+// a API devolve o `token` aqui (em producao iria por e-mail) - repassamos para a
 // tela poder seguir o fluxo de redefinicao.
 export async function solicitarRecuperacao(email) {
   if (!email) throw new Error("Informe seu e-mail.");

@@ -12,7 +12,7 @@ import { kpiPeriodo } from "./indicadores";
 import { historicoDesmatamento } from "./desmatamento";
 import { rankingPublico } from "./publico";
 
-// Preserva null (dado ausente) em vez de coagir para 0 — a UI mostra "—".
+// Preserva null (dado ausente) em vez de coagir para 0 - a UI mostra "N/D".
 const numOuNull = (v) => (v == null ? null : Number(v));
 const upper = (s) => (s ? String(s).toUpperCase() : "SEM_DADO");
 

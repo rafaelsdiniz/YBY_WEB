@@ -19,7 +19,7 @@ const areaCurta = (ha) =>
   ha >= 1e6 ? `${numero(ha / 1e6, 1)} mi ha` : `${numero(ha)} ha`;
 
 // Faixa de indicadores agregados do estado, no topo do painel.
-// Usa apenas dados presentes no ranking (prioridade, semáforo, retorno) — assim
+// Usa apenas dados presentes no ranking (prioridade, semáforo, retorno) - assim
 // nenhum card mostra valor inventado quando o detalhe ainda não foi carregado.
 export default function ResumoEstado({ municipios }) {
   const total = municipios.length;
@@ -48,14 +48,14 @@ export default function ResumoEstado({ municipios }) {
     {
       icone: LandPlot,
       tom: "azul",
-      valor: areaTotal == null ? "—" : areaCurta(areaTotal),
+      valor: areaTotal == null ? "N/D" : areaCurta(areaTotal),
       rotulo: "Área monitorada",
       sub: areaTotal == null ? "sem área informada" : `${areasComDado.length} municípios`,
     },
     {
       icone: Gauge,
       tom: "azul",
-      valor: prioridadeMedia == null ? "—" : numero(prioridadeMedia),
+      valor: prioridadeMedia == null ? "N/D" : numero(prioridadeMedia),
       rotulo: "Aptidão JREDD+",
       sub: "score de aptidão 0 a 100",
       barra: prioridadeMedia ?? 0,
@@ -91,7 +91,7 @@ export default function ResumoEstado({ municipios }) {
     {
       icone: Coins,
       tom: "amarelo",
-      valor: retornoMedio == null ? "—" : `R$ ${numero(retornoMedio, 2)}`,
+      valor: retornoMedio == null ? "N/D" : `R$ ${numero(retornoMedio, 2)}`,
       rotulo: "Retorno médio por R$",
       sub: "retorno por real investido",
     },
