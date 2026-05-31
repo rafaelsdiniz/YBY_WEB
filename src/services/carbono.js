@@ -34,3 +34,8 @@ export async function baixarRelatorioPdf({ dataInicio, dataFim, limite = 20 } = 
 export async function registrarEmissao(dto) {
   return http.post("/carbono/registros", dto);
 }
+
+// (Re)gera a serie SEEG de emissoes de um ano para todos os municipios (GESTOR).
+export async function sincronizarEmissoes(ano) {
+  return http.post("/carbono/sincronizar", undefined, { query: { ano } });
+}

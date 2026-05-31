@@ -58,3 +58,13 @@ export async function roiDesmatamentoEvitado(municipioId, ano, preco, valorAgrop
     query: { ano, preco, valorAgropecuariaHaAno },
   });
 }
+
+// RN-300: recalcula e armazena os snapshots preditivos de todos os municipios (GESTOR).
+export async function recalcularInteligencia() {
+  return http.post("/inteligencia/recalcular");
+}
+
+// Snapshot preditivo armazenado de um municipio (resultado do ultimo recalculo).
+export async function projecaoArmazenada(municipioId) {
+  return http.get(`/inteligencia/projecao-armazenada/${municipioId}`);
+}

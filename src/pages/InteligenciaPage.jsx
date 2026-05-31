@@ -14,6 +14,7 @@ import {
   carbonoEvitado,
   projecaoDesmatamento,
   roiDesmatamentoEvitado,
+  recalcularInteligencia,
 } from "../services/inteligencia";
 import "./AdminTabela.css";
 import "./Paineis.css";
@@ -38,7 +39,8 @@ export default function InteligenciaPage() {
   const ehGestor = usuario?.perfil === "GESTOR";
 
   const [municipio, setMunicipio] = useState(null);
-  const [ano, setAno] = useState(anoAtual);
+  // Dados ambientais anuais (PRODES/SEEG) são defasados ~1 ano: parte do último ano consolidado.
+  const [ano, setAno] = useState(anoAtual - 1);
   const [analise, setAnalise] = useState(null); // { tend, kpi, bioma, risco }
   const [carregando, setCarregando] = useState(false);
 
@@ -49,6 +51,19 @@ export default function InteligenciaPage() {
   const [aloc, setAloc] = useState({ orcamentoTotal: "", estrategia: "MAXIMO_KPI", maxMunicipios: "", valorMinimoPorMunicipio: "" });
   const [resultadoAloc, setResultadoAloc] = useState(null);
   const [simulando, setSimulando] = useState(false);
+  const [recalculando, setRecalculando] = useState(false);
+
+  async function recalcular() {
+    setRecalculando(true);
+    try {
+      const r = await recalcularInteligencia();
+      toast.sucesso(`Inteligência recalculada: ${r.municipiosProcessados} municípios (ano-base ${r.anoBase}).`);
+    } catch (err) {
+      toast.erro(err.message);
+    } finally {
+      setRecalculando(false);
+    }
+  }
 
   async function analisarMunicipio() {
     if (!municipio) {
@@ -208,6 +223,11 @@ export default function InteligenciaPage() {
             <input type="number" value={anoEstado} onChange={(e) => setAnoEstado(+e.target.value)} />
           </label>
           <button type="button" className="painel-acao" onClick={analisarEstado}>Consultar</button>
+          {ehGestor && (
+            <button type="button" className="painel-acao secundario" onClick={recalcular} disabled={recalculando}>
+              {recalculando ? "Recalculando…" : "Recalcular inteligência"}
+            </button>
+          )}
         </div>
 
         {equidadeInfo && (

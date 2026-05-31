@@ -3,7 +3,7 @@ import { Download } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import MunicipioSelect from "../components/MunicipioSelect";
-import { historicoMenores, baixarRelatorioPdf, registrarEmissao } from "../services/carbono";
+import { historicoMenores, baixarRelatorioPdf, registrarEmissao, sincronizarEmissoes } from "../services/carbono";
 import "./AdminTabela.css";
 import "./Paineis.css";
 
@@ -23,6 +23,23 @@ export default function CarbonoPage() {
   const [form, setForm] = useState(null);
   const [municipioForm, setMunicipioForm] = useState(null);
   const [salvando, setSalvando] = useState(false);
+  const [sincronizando, setSincronizando] = useState(false);
+
+  async function sincronizar() {
+    const anoPadrao = new Date().getFullYear() - 1;
+    const ano = Number(window.prompt("Ano para (re)gerar a série SEEG de emissões:", anoPadrao));
+    if (!ano) return;
+    setSincronizando(true);
+    try {
+      const r = await sincronizarEmissoes(ano);
+      toast.sucesso(`Emissões sincronizadas: ${r.inseridos} municípios (${ano}).`);
+      await consultar();
+    } catch (err) {
+      toast.erro(err.message);
+    } finally {
+      setSincronizando(false);
+    }
+  }
 
   async function consultar() {
     setCarregando(true);
@@ -89,9 +106,14 @@ export default function CarbonoPage() {
           <p>Municípios com menores emissões (tCO₂e) e relatório oficial</p>
         </div>
         {ehGestor && (
-          <button type="button" className="painel-acao" onClick={novoRegistro}>
-            Registrar emissão
-          </button>
+          <div style={{ display: "flex", gap: 8 }}>
+            <button type="button" className="painel-acao secundario" onClick={sincronizar} disabled={sincronizando}>
+              {sincronizando ? "Sincronizando…" : "Sincronizar SEEG"}
+            </button>
+            <button type="button" className="painel-acao" onClick={novoRegistro}>
+              Registrar emissão
+            </button>
+          </div>
         )}
       </header>
 
