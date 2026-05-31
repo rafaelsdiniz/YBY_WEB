@@ -1,9 +1,9 @@
 import "./Legenda.css";
 
 const ITENS = [
-  { cor: "var(--verde)", titulo: "Pode investir", desc: "baixo risco, bom retorno" },
-  { cor: "var(--amarelo)", titulo: "Investir com cuidado", desc: "tem ressalvas a resolver" },
-  { cor: "var(--vermelho)", titulo: "Não investir agora", desc: "risco alto (embargo, sobreposição)" },
+  { cor: "var(--verde)", titulo: "Situação boa", desc: "indicadores saudáveis" },
+  { cor: "var(--amarelo)", titulo: "Requer atenção", desc: "pontos a acompanhar" },
+  { cor: "var(--vermelho)", titulo: "Situação crítica", desc: "alerta elevado (embargo, desmatamento)" },
   { cor: "var(--sem-dado)", titulo: "Sem dados", desc: "município fora da base" },
 ];
 

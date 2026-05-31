@@ -46,18 +46,11 @@ export default function ResumoEstado({ municipios }) {
       sub: semDado ? `${semDado} ainda sem dados` : "todos com dados",
     },
     {
-      icone: LandPlot,
-      tom: "azul",
-      valor: areaTotal == null ? "N/D" : areaCurta(areaTotal),
-      rotulo: "Área monitorada",
-      sub: areaTotal == null ? "sem área informada" : `${areasComDado.length} municípios`,
-    },
-    {
       icone: Gauge,
       tom: "azul",
       valor: prioridadeMedia == null ? "N/D" : numero(prioridadeMedia),
-      rotulo: "Aptidão JREDD+",
-      sub: "score de aptidão 0 a 100",
+      rotulo: "Aptidão média",
+      sub: "score de 0 a 100",
       barra: prioridadeMedia ?? 0,
       tomBarra: "azul",
     },
@@ -65,7 +58,7 @@ export default function ResumoEstado({ municipios }) {
       icone: ShieldCheck,
       tom: "verde",
       valor: numero(verdes),
-      rotulo: "Prontos para investir",
+      rotulo: "Situação boa",
       sub: `${pctEstado(verdes)}% do estado`,
       barra: pctEstado(verdes),
       tomBarra: "verde",
@@ -74,7 +67,7 @@ export default function ResumoEstado({ municipios }) {
       icone: ShieldAlert,
       tom: "amarelo",
       valor: numero(amarelos),
-      rotulo: "Exigem cuidado",
+      rotulo: "Requer atenção",
       sub: `${pctEstado(amarelos)}% do estado`,
       barra: pctEstado(amarelos),
       tomBarra: "amarelo",
@@ -83,19 +76,32 @@ export default function ResumoEstado({ municipios }) {
       icone: AlertTriangle,
       tom: "vermelho",
       valor: numero(vermelhos),
-      rotulo: "Em risco alto",
+      rotulo: "Situação crítica",
       sub: `${pctEstado(vermelhos)}% do estado`,
       barra: pctEstado(vermelhos),
       tomBarra: "vermelho",
     },
-    {
+  ];
+
+  // Área e retorno só entram quando há dado real (evita cards "N/D" feios).
+  if (areaTotal != null) {
+    cards.splice(1, 0, {
+      icone: LandPlot,
+      tom: "azul",
+      valor: areaCurta(areaTotal),
+      rotulo: "Área monitorada",
+      sub: `${areasComDado.length} municípios`,
+    });
+  }
+  if (retornoMedio != null) {
+    cards.push({
       icone: Coins,
       tom: "amarelo",
-      valor: retornoMedio == null ? "N/D" : `R$ ${numero(retornoMedio, 2)}`,
+      valor: `R$ ${numero(retornoMedio, 2)}`,
       rotulo: "Retorno médio por R$",
-      sub: "retorno por real investido",
-    },
-  ];
+      sub: "retorno por real",
+    });
+  }
 
   return (
     <div className="resumo">
@@ -109,6 +115,7 @@ export default function ResumoEstado({ municipios }) {
             <div className="stat-txt">
               <strong className="stat-valor">{c.valor}</strong>
               <span className="stat-rotulo">{c.rotulo}</span>
+              {c.sub && <span className="stat-sub">{c.sub}</span>}
               {c.barra != null && (
                 <span className="stat-barra">
                   <i
@@ -117,7 +124,6 @@ export default function ResumoEstado({ municipios }) {
                   />
                 </span>
               )}
-              {c.sub && <span className="stat-sub">{c.sub}</span>}
             </div>
           </div>
         );

@@ -24,7 +24,7 @@ export default function RankingMunicipios({ municipios, selecionado, onSeleciona
               <button
                 type="button"
                 className={ativo ? "ranking-item ativo" : "ranking-item"}
-                onClick={() => onSelecionar(m.id)}
+                onClick={() => onSelecionar?.(m.id)}
               >
                 <span className="ranking-pos">{i + 1}</span>
                 <SemaforoBadge semaforo={m.semaforo} compact />

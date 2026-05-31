@@ -1,5 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { getMunicipios } from "../services/api";
 import { resumoDashboard } from "../services/dashboard";
 import { moeda, numero } from "../utils/format";
@@ -12,7 +11,6 @@ import RankingMunicipios from "../components/RankingMunicipios";
 import "./Paineis.css";
 
 export default function DashboardPage() {
-  const navigate = useNavigate();
   const [municipios, setMunicipios] = useState([]);
   const [resumo, setResumo] = useState(null);
   const [carregando, setCarregando] = useState(true);
@@ -28,16 +26,6 @@ export default function DashboardPage() {
       .catch(() => {});
   }, []);
 
-  // clicar no mapa ou no ranking abre a pagina dedicada do municipio.
-  // o id recebido e o codigoIbge; resolvemos o apiId pela lista carregada.
-  const abrir = useCallback(
-    (id) => {
-      const m = municipios.find((x) => x.id === id);
-      if (m) navigate(`/municipios/${m.apiId}`);
-    },
-    [municipios, navigate]
-  );
-
   if (carregando) {
     return <p className="estado">Carregando dados do Tocantins...</p>;
   }
@@ -46,7 +34,7 @@ export default function DashboardPage() {
     <>
       <header className="page-header">
         <h1>Painel de monitoramento ambiental</h1>
-        <p>Onde investir no Tocantins · clique em um município para ver a página dele</p>
+        <p>Situação ambiental do Tocantins · passe o mouse no mapa para ver os indicadores</p>
       </header>
 
       <ResumoEstado municipios={municipios} />
@@ -73,11 +61,7 @@ export default function DashboardPage() {
       <div className="app-grid">
         <div className="painel-col">
           <section className="card">
-            <MapaTocantins
-              municipios={municipios}
-              selecionado={null}
-              onSelecionar={abrir}
-            />
+            <MapaTocantins municipios={municipios} selecionado={null} />
           </section>
           <section className="card">
             <GraficoPrioridade municipios={municipios} />
@@ -92,11 +76,7 @@ export default function DashboardPage() {
             <GraficoDistribuicao municipios={municipios} />
           </section>
           <section className="card">
-            <RankingMunicipios
-              municipios={municipios}
-              selecionado={null}
-              onSelecionar={abrir}
-            />
+            <RankingMunicipios municipios={municipios} selecionado={null} />
           </section>
         </aside>
       </div>

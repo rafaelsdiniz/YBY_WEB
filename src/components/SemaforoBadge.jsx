@@ -1,9 +1,9 @@
 import "./SemaforoBadge.css";
 
 const ROTULOS = {
-  VERDE: "Pode investir",
-  AMARELO: "Investir com cuidado",
-  VERMELHO: "Não investir agora",
+  VERDE: "Situação boa",
+  AMARELO: "Requer atenção",
+  VERMELHO: "Situação crítica",
   SEM_DADO: "Sem dados",
 };
 

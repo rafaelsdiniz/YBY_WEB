@@ -6,9 +6,9 @@ const CORES = { VERDE: "#2E8B3E", AMARELO: "#F4B400", VERMELHO: "#C62828" };
 // Donut com a distribuição dos municípios por semáforo.
 export default function GraficoSemaforo({ municipios }) {
   const dados = [
-    { nome: "Pode investir", chave: "VERDE" },
-    { nome: "Cuidado", chave: "AMARELO" },
-    { nome: "Não investir", chave: "VERMELHO" },
+    { nome: "Situação boa", chave: "VERDE" },
+    { nome: "Requer atenção", chave: "AMARELO" },
+    { nome: "Situação crítica", chave: "VERMELHO" },
   ].map((d) => ({
     ...d,
     valor: municipios.filter((m) => m.semaforo === d.chave).length,

@@ -1,8 +1,8 @@
 .resumo {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
-  gap: 14px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
 }
 
 @media (max-width: 620px) {
@@ -11,37 +11,49 @@
   }
 }
 
+/* card vertical: ícone (badge) em cima, valor grande, rótulo, sub e barra */
 .stat {
   display: flex;
-  align-items: center;
-  gap: 12px;
+  flex-direction: column;
   background: var(--branco);
   border: 1px solid var(--borda);
-  border-radius: var(--raio-sm);
-  padding: 14px 16px;
+  border-radius: 16px;
+  padding: 18px 18px 16px;
   box-shadow: var(--sombra-sm);
-  transition: box-shadow 0.15s ease, transform 0.15s ease;
+  transition: box-shadow 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
 }
 
 .stat:hover {
   box-shadow: var(--sombra-md);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
 }
 
-/* Ícone puro, sem fundo - estilo Apple SF Symbols / Microsoft Fluent */
+/* badge do ícone com fundo por tom */
 .stat-icone {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  margin-bottom: 14px;
   flex: none;
 }
-
-/* Cores semânticas diretamente no ícone */
-.stat--neutro   .stat-icone { color: var(--azul); }
-.stat--verde    .stat-icone { color: var(--verde); }
-.stat--vermelho .stat-icone { color: var(--vermelho); }
-.stat--amarelo  .stat-icone { color: #b45309; }
+.stat--azul .stat-icone {
+  background: var(--verde-bg);
+  color: var(--azul);
+}
+.stat--verde .stat-icone {
+  background: var(--verde-bg);
+  color: var(--verde);
+}
+.stat--amarelo .stat-icone {
+  background: var(--amarelo-bg);
+  color: #8a6d00;
+}
+.stat--vermelho .stat-icone {
+  background: var(--vermelho-bg);
+  color: var(--vermelho);
+}
 
 .stat-txt {
   display: flex;
@@ -50,58 +62,43 @@
 }
 
 .stat-valor {
-  font-size: 26px;
-  font-weight: 300;
+  font-size: 30px;
+  font-weight: 700;
   color: var(--azul-escuro);
-  line-height: 1.1;
-  letter-spacing: -1px;
+  line-height: 1;
+  letter-spacing: -0.6px;
 }
 
 .stat-rotulo {
-  font-size: 12.5px;
-  font-weight: 300;
+  margin-top: 7px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--azul-escuro);
+  opacity: 0.9;
+}
+
+.stat-sub {
+  margin-top: 3px;
+  font-size: 11.5px;
   color: var(--texto);
-  opacity: 0.65;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  opacity: 0.55;
 }
 
-/* tons dos icones */
-.stat--azul .stat-icone {
-  background: #e6f2e7;
-  color: var(--azul);
-}
-.stat--verde .stat-icone {
-  background: var(--verde-bg);
-  color: var(--verde);
-}
-.stat--vermelho .stat-icone {
-  background: var(--vermelho-bg);
-  color: var(--vermelho);
-}
-.stat--amarelo .stat-icone {
-  background: var(--amarelo-bg);
-  color: #8a6d00;
-}
-
-/* mini barra de proporção dentro do card */
+/* barra de proporção (semáforo / aptidão) */
 .stat-barra {
   display: block;
-  height: 5px;
-  margin-top: 7px;
+  height: 6px;
+  margin-top: 12px;
   border-radius: 99px;
   background: var(--cinza-claro);
   overflow: hidden;
 }
-
 .stat-barra-fill {
   display: block;
   height: 100%;
   border-radius: 99px;
   transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
 .stat-barra--azul {
   background: var(--azul);
 }
@@ -113,14 +110,4 @@
 }
 .stat-barra--vermelho {
   background: var(--vermelho);
-}
-
-.stat-sub {
-  font-size: 11.5px;
-  color: var(--texto);
-  opacity: 0.55;
-  margin-top: 5px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }

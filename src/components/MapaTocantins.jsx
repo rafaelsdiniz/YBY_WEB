@@ -12,9 +12,9 @@ const CORES = {
 };
 
 const LEGENDA = [
-  { chave: "VERDE", cor: CORES.VERDE, rotulo: "Pode investir" },
-  { chave: "AMARELO", cor: CORES.AMARELO, rotulo: "Cuidado" },
-  { chave: "VERMELHO", cor: CORES.VERMELHO, rotulo: "Não investir" },
+  { chave: "VERDE", cor: CORES.VERDE, rotulo: "Situação boa" },
+  { chave: "AMARELO", cor: CORES.AMARELO, rotulo: "Requer atenção" },
+  { chave: "VERMELHO", cor: CORES.VERMELHO, rotulo: "Situação crítica" },
   { chave: "SEM_DADO", cor: CORES.SEM_DADO, rotulo: "Sem dados" },
 ];
 
@@ -119,7 +119,7 @@ export default function MapaTocantins({
         <div className="mapa-head">
           <div>
             <h2>Mapa de Aptidão JREDD+</h2>
-            <span className="mapa-sub">Tocantins · clique em um município</span>
+            <span className="mapa-sub">Tocantins · passe o mouse para ver os indicadores</span>
           </div>
 
           <div className="mapa-controles">
@@ -216,7 +216,7 @@ export default function MapaTocantins({
                 className={dado ? "mun mun--clic" : "mun"}
                 style={{ animationDelay: `${f.delay}ms` }}
                 onMouseMove={(e) => aoMover(e, f, dado)}
-                onClick={() => dado && onSelecionar(dado.id)}
+                onClick={() => dado && onSelecionar?.(dado.id)}
               />
             );
           })}

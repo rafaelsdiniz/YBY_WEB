@@ -9,8 +9,9 @@ export default function CookieConsent() {
 
   if (!visivel) return null;
 
-  function aceitar() {
-    localStorage.setItem(CHAVE, "1");
+  // "1" = aceito · "0" = recusado. Em ambos os casos não mostramos mais o aviso.
+  function decidir(valor) {
+    localStorage.setItem(CHAVE, valor);
     setVisivel(false);
   }
 
@@ -20,12 +21,25 @@ export default function CookieConsent() {
         <Cookie size={20} strokeWidth={1.75} />
       </span>
       <p>
-        Usamos cookies para melhorar sua experiência no YBY. Ao continuar
-        navegando, você concorda com nossa política de privacidade.
+        Usamos cookies para melhorar sua experiência no YBY. Você pode aceitar ou
+        recusar os cookies opcionais.
       </p>
-      <button type="button" onClick={aceitar}>
-        Aceitar
-      </button>
+      <div className="cookie-acoes">
+        <button
+          type="button"
+          className="cookie-btn cookie-btn--recusar"
+          onClick={() => decidir("0")}
+        >
+          Recusar
+        </button>
+        <button
+          type="button"
+          className="cookie-btn cookie-btn--aceitar"
+          onClick={() => decidir("1")}
+        >
+          Aceitar
+        </button>
+      </div>
     </div>
   );
 }

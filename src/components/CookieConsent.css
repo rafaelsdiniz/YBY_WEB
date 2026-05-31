@@ -7,6 +7,7 @@
   max-width: calc(100vw - 40px);
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 12px;
   padding: 16px 18px;
   background: var(--branco);
@@ -35,22 +36,40 @@
   color: var(--texto);
 }
 
-.cookie button {
+.cookie-acoes {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.cookie-btn {
   flex: none;
   padding: 9px 18px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 9px;
-  background: var(--azul);
-  color: #fff;
   font: inherit;
   font-weight: 500;
   font-size: 14px;
   cursor: pointer;
-  transition: opacity 0.12s ease;
+  transition: opacity 0.12s ease, background 0.12s ease;
 }
 
-.cookie button:hover {
+.cookie-btn--aceitar {
+  background: var(--azul);
+  color: #fff;
+}
+.cookie-btn--aceitar:hover {
   opacity: 0.92;
+}
+
+.cookie-btn--recusar {
+  background: transparent;
+  border-color: var(--borda);
+  color: var(--texto);
+}
+.cookie-btn--recusar:hover {
+  background: var(--cinza-claro);
 }
 
 @keyframes cookie-sobe {

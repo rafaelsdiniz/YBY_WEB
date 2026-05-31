@@ -1,5 +1,4 @@
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { RefreshCw, Plus } from "lucide-react";
 import {
   getMunicipios,
@@ -32,7 +31,6 @@ const COLUNAS = [
 const FORM_VAZIO = { nome: "", codigoIbge: "", areaHa: "", scorePrioridade: "", semaforo: "VERDE" };
 
 export default function MunicipiosPage() {
-  const navigate = useNavigate();
   const { usuario } = useAuth();
   const toast = useToast();
   const confirmar = useConfirm();
@@ -82,10 +80,6 @@ export default function MunicipiosPage() {
         ? { campo, dir: o.dir === "asc" ? "desc" : "asc" }
         : { campo, dir: campo === "nome" ? "asc" : "desc" }
     );
-  }
-
-  function abrirDetalhe(apiId) {
-    navigate(`/municipios/${apiId}`);
   }
 
   function novo() {
@@ -179,7 +173,7 @@ export default function MunicipiosPage() {
       <header className="page-header admin-header">
         <div>
           <h1>Municípios</h1>
-          <p>{municipios.length} municípios na base - clique para abrir no painel</p>
+          <p>{municipios.length} municípios na base</p>
         </div>
         {ehGestor && (
           <div style={{ display: "flex", gap: 10 }}>
@@ -227,7 +221,7 @@ export default function MunicipiosPage() {
             </thead>
             <tbody>
               {lista.map((m) => (
-                <tr key={m.id} onClick={() => abrirDetalhe(m.apiId)}>
+                <tr key={m.id}>
                   <td className="mun-nome">{m.nome}</td>
                   <td className="num">{numero(m.prioridade)}</td>
                   <td className="num">{numero(m.notaRisco, 1)}</td>
