@@ -51,7 +51,11 @@ export default function GraficoSemaforo({ municipios }) {
                 <Cell key={d.chave} fill={COR[d.chave]} />
               ))}
             </Pie>
-            <Tooltip content={<TooltipCustom />} />
+            <Tooltip
+              content={<TooltipCustom />}
+              position={{ y: 116 }}
+              allowEscapeViewBox={{ x: false, y: true }}
+            />
           </PieChart>
         </ResponsiveContainer>
         <div className="gsem-centro">
