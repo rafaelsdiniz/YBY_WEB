@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="rodape-marca">
           <img src="/logoYBY.png" alt="YBY" className="rodape-logo-img" />
           <p className="rodape-tagline">
-            Inteligência de priorização para investimento ambiental no Tocantins.
+            Inteligência de monitoramento para investimento ambiental no Tocantins.
             Programa JREDD+.
           </p>
           <div className="rodape-iniciativa">

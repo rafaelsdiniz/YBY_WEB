@@ -45,7 +45,7 @@ export default function DashboardPage() {
   return (
     <>
       <header className="page-header">
-        <h1>Painel de priorização</h1>
+        <h1>Painel de monitoramento ambiental</h1>
         <p>Onde investir no Tocantins · clique em um município para ver a página dele</p>
       </header>
 

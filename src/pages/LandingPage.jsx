@@ -286,7 +286,7 @@ export default function LandingPage() {
             <span className="secao-linha" aria-hidden="true" />
             <p className="secao-lead claro">
               Mais do que um mapa: uma régua comum para o estado decidir,
-              priorizar e cobrar resultado.
+              monitorar e cobrar resultado.
             </p>
           </Reveal>
 

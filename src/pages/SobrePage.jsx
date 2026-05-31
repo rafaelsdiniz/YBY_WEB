@@ -19,7 +19,7 @@ export default function SobrePage() {
     <>
       <header className="page-header">
         <h1>Sobre o YBY</h1>
-        <p>Inteligência de priorização para investimento ambiental — Programa JREDD+</p>
+        <p>Inteligência de monitoramento e gestão para investimento ambiental — Programa JREDD+</p>
       </header>
 
       <section className="card sobre-intro">
