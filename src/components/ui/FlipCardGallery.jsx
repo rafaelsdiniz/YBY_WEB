@@ -1,44 +1,30 @@
 import { useState } from "react";
 import { CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
 import "./FlipCardGallery.css";
 
-/**
- * Flip Card Gallery
- *
- * Cada card tem frente (ícone + título limpo) e verso (detalhes em verde).
- * Desktop: flip ativado por hover (CSS puro, 60 fps).
- * Mobile:  flip ativado por toque (estado React).
- *
- * @param {{ cards: FlipCardData[] }} props
- *
- * @typedef {Object} FlipCardData
- * @property {number}   id
- * @property {Function} icone      - componente Lucide
- * @property {string}   titulo
- * @property {string}   subtitulo
- * @property {string}   descricao
- * @property {string[]} detalhes
- * @property {string}   [href]
- */
-function FlipCard({ card }) {
+function FlipCard({ card, delay, featured }) {
   const [virado, setVirado] = useState(false);
   const Icone = card.icone;
 
   function aoClicar() {
-    /* Flip por clique só em dispositivos sem hover (touch) */
     if (window.matchMedia("(hover: none)").matches) {
       setVirado((v) => !v);
     }
   }
 
   return (
-    <div
-      className={`fc-wrap${virado ? " fc-wrap--virado" : ""}`}
+    <motion.div
+      className={`fc-wrap${virado ? " fc-wrap--virado" : ""}${featured ? " fc-wrap--destaque" : ""}`}
       onClick={aoClicar}
       role="button"
       tabIndex={0}
       aria-label={`${card.titulo} — clique para ver detalhes`}
       onKeyDown={(e) => e.key === "Enter" && aoClicar()}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.55, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
     >
       <div className="fc-inner">
 
@@ -53,9 +39,7 @@ function FlipCard({ card }) {
             <p className="fc-subtitulo">{card.subtitulo}</p>
           </div>
 
-          <span className="fc-dica" aria-hidden="true">
-            ↩ ver mais
-          </span>
+          <span className="fc-dica" aria-hidden="true">↩ ver mais</span>
         </div>
 
         {/* ── VERSO ───────────────────────────────────── */}
@@ -88,15 +72,15 @@ function FlipCard({ card }) {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function FlipCardGallery({ cards }) {
   return (
     <div className="fc-galeria">
-      {cards.map((c) => (
-        <FlipCard key={c.id} card={c} />
+      {cards.map((c, idx) => (
+        <FlipCard key={c.id} card={c} delay={idx * 0.13} featured={idx === 0} />
       ))}
     </div>
   );

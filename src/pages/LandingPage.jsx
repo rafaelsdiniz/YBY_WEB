@@ -3,9 +3,9 @@ import {
   Map,
   Gauge,
   TrendingDown,
-  ShieldCheck,
-  Leaf,
-  Coins,
+  Users,
+  Globe,
+  Database,
   ChevronDown,
 } from "lucide-react";
 import LandingNavbar from "../components/LandingNavbar";
@@ -80,11 +80,11 @@ const RECURSOS = [
     titulo: "Mapa de prioridade",
     subtitulo: "Visualização territorial",
     descricao:
-      "Os 139 municípios do Tocantins coloridos por urgência de investimento — o estado inteiro numa só tela, com prioridade objetiva.",
+      "Os 139 municípios do Tocantins coloridos por urgência de investimento, com prioridade objetiva.",
     detalhes: [
       "139 municípios mapeados",
       "Prioridade visual por urgência",
-      "Semáforo verde / amarelo / vermelho",
+      "Semáforo verde, amarelo e vermelho",
       "Atualizado com dados reais",
     ],
     href: "/municipios",
@@ -95,12 +95,12 @@ const RECURSOS = [
     titulo: "Semáforo de decisão",
     subtitulo: "Decisão baseada em dados",
     descricao:
-      "Traduz risco e prontidão em três cores: onde investir agora, onde investir com cuidado e onde evitar no momento.",
+      "Decisão baseada em dados para orientar onde o investimento ambiental gera mais impacto.",
     detalhes: [
-      "Verde — pode investir",
-      "Amarelo — investir com cuidado",
-      "Vermelho — não investir agora",
-      "Baseado em conformidade e risco legal",
+      "Classificação por prioridade",
+      "Indicadores consolidados",
+      "Apoio à tomada de decisão",
+      "Visualização simples e objetiva",
     ],
     href: "/municipios",
   },
@@ -110,22 +110,22 @@ const RECURSOS = [
     titulo: "Detecção de desperdício",
     subtitulo: "Eficiência do gasto público",
     descricao:
-      "Identifica municípios que gastam muito e entregam pouco resultado ambiental, para realocar recursos com precisão.",
+      "Eficiência do gasto público com identificação de áreas de maior risco e menor retorno.",
     detalhes: [
-      "Custo vs. resultado ambiental",
-      "Ranking de eficiência por município",
-      "Alertas automáticos de desperdício",
-      "Sugestão de realocação de recursos",
+      "Análise de gasto público",
+      "Identificação de desperdícios",
+      "Apoio à fiscalização",
+      "Melhor uso dos recursos",
     ],
     href: "/indicadores",
   },
 ];
 
 const IMPACTOS = [
-  { icone: Map,         valor: 139, rotulo: "municípios monitorados" },
-  { icone: Coins,       prefixo: "R$ ", valor: 42, sufixo: " mi", rotulo: "em investimento acompanhado" },
-  { icone: Leaf,        prefixo: "+",   valor: 30, sufixo: "%",    rotulo: "redução de desmatamento onde há gasto eficiente" },
-  { icone: ShieldCheck, valor: 64, sufixo: "%", rotulo: "conformidade média (CAR)" },
+  { icone: Map,      valor: 139,                      rotulo: "Municípios monitorados" },
+  { icone: Users,    textoFixo: "1,58 milhão",         rotulo: "de habitantes impactados" },
+  { icone: Globe,    valor: 277, sufixo: " mil km²",   rotulo: "de território analisável" },
+  { icone: Database, valor: 8,                         rotulo: "bases públicas integradas automaticamente" },
 ];
 
 export default function LandingPage() {
@@ -291,14 +291,16 @@ export default function LandingPage() {
                 <Reveal as="div" className="impacto reveal-shine" key={item.rotulo} delay={idx * 110}>
                   <Icone size={34} strokeWidth={1.5} className="impacto-icone" />
                   <strong className="impacto-valor">
-                    <Contador valor={item.valor} prefixo={item.prefixo} sufixo={item.sufixo} />
+                    {item.textoFixo
+                      ? item.textoFixo
+                      : <Contador valor={item.valor} prefixo={item.prefixo} sufixo={item.sufixo} />
+                    }
                   </strong>
                   <span className="impacto-rotulo">{item.rotulo}</span>
                 </Reveal>
               );
             })}
           </div>
-          <p className="impactos-nota">* Números ilustrativos da base de demonstração.</p>
         </div>
       </section>
 

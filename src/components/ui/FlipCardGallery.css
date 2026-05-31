@@ -209,3 +209,62 @@
 .fc-link:hover {
   opacity: 0.75;
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   CARD DESTAQUE — frente em verde principal (primeiro card)
+   ════════════════════════════════════════════════════════════════════ */
+
+/* Sobreposição: dois cards "fantasmas" empilhados atrás do card principal */
+.fc-wrap--destaque {
+  position: relative;
+}
+
+.fc-wrap--destaque::before,
+.fc-wrap--destaque::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+/* Camada mais ao fundo — mais inclinada */
+.fc-wrap--destaque::before {
+  background: #bbf7d0;
+  border: 1px solid #86efac;
+  transform: rotate(5deg) translate(6px, 7px);
+  z-index: -2;
+}
+
+/* Camada intermediária — levemente inclinada */
+.fc-wrap--destaque::after {
+  background: #dcfce7;
+  border: 1px solid #bbf7d0;
+  transform: rotate(2.5deg) translate(3px, 4px);
+  z-index: -1;
+}
+
+.fc-wrap--destaque .fc-frente {
+  background: linear-gradient(145deg, #15803d 0%, #14532d 100%);
+  border-color: #14532d;
+  box-shadow:
+    0 4px 16px rgba(21, 128, 61, 0.25),
+    0 1px 4px rgba(21, 128, 61, 0.18);
+}
+
+.fc-wrap--destaque .fc-frente-icone {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.fc-wrap--destaque .fc-titulo {
+  color: #ffffff;
+}
+
+.fc-wrap--destaque .fc-subtitulo {
+  color: rgba(255, 255, 255, 0.72);
+  opacity: 1;
+}
+
+.fc-wrap--destaque .fc-dica {
+  color: rgba(255, 255, 255, 0.50);
+}
