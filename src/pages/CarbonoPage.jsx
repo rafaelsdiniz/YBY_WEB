@@ -2,11 +2,7 @@ import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useToast } from "../context/ToastContext";
 import MunicipioSelect from "../components/MunicipioSelect";
-<<<<<<< Updated upstream
 import { historicoMenores, baixarRelatorioPdf, registrarEmissao, sincronizarEmissoes } from "../services/carbono";
-=======
-import { historicoMenores, registrarEmissao } from "../services/carbono";
->>>>>>> Stashed changes
 import "./AdminTabela.css";
 import "./Paineis.css";
 
